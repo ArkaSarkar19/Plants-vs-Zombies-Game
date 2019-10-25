@@ -25,7 +25,7 @@ public class LoginBox {
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Signup.fxml"));
         Scene scene1 = new Scene(login);
         window.setScene(scene1);
-        window.setTitle("Login");
+        window.setTitle("Register");
         window.setResizable(false);
         window.showAndWait();
     }

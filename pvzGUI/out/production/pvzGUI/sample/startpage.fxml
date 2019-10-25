@@ -23,7 +23,7 @@
                   <Image url="@bgimage.png" />
                </image>
             </ImageView>
-            <Button layoutX="437.0" layoutY="267.0" mnemonicParsing="false" prefHeight="164.0" prefWidth="240.0" styleClass="clickToStart" stylesheets="@startpage.css" text="Button" fx:id="clickToStart" onAction="#handleStart"/>
+            <Button fx:id="clickToStart" layoutX="333.0" layoutY="731.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="58.0" prefWidth="414.0" styleClass="clickToStart" stylesheets="@startpage.css" text="Click To Start" />
          </children>
       </Pane>
    </children>
