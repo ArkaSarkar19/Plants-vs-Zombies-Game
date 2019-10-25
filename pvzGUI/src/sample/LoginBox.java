@@ -16,6 +16,7 @@ public class LoginBox {
         Scene scene1 = new Scene(login, 720,405);
         window.setScene(scene1);
         window.setTitle("Login");
+        window.setResizable(false);
         window.showAndWait();
     }
     public static void getSignup() throws IOException {
@@ -25,6 +26,7 @@ public class LoginBox {
         Scene scene1 = new Scene(login);
         window.setScene(scene1);
         window.setTitle("Login");
+        window.setResizable(false);
         window.showAndWait();
     }
 }

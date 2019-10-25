@@ -20,7 +20,7 @@
             <Image url="@login.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="106.0" layoutY="122.0" prefHeight="67.0" prefWidth="213.0" text="Username : ">
+      <Label layoutX="106.0" layoutY="122.0" prefHeight="67.0" prefWidth="213.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Username : ">
          <font>
             <Font name="Ani" size="39.0" />
          </font>
@@ -28,7 +28,7 @@
             <Glow />
          </effect>
       </Label>
-      <Label layoutX="106.0" layoutY="203.0" prefHeight="67.0" prefWidth="213.0" text="Password : " textFill="#070000">
+      <Label layoutX="106.0" layoutY="203.0" prefHeight="67.0" prefWidth="213.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Password : " textFill="#070000">
          <font>
             <Font name="Ani" size="39.0" />
          </font>
@@ -36,10 +36,10 @@
             <Glow />
          </effect>
       </Label>
-      <TextField layoutX="311.0" layoutY="134.0" prefHeight="44.0" prefWidth="315.0" promptText="Bucky" />
-      <TextField layoutX="311.0" layoutY="215.0" prefHeight="44.0" prefWidth="315.0" promptText="**********" />
-      <Button layoutX="113.0" layoutY="305.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Login" />
-      <Button layoutX="517.0" layoutY="305.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Cancel" />
-      <Button layoutX="311.0" layoutY="305.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" text="Signup" fx:id="clickToSignup" onAction="#handleSignup" />
+      <TextField layoutX="311.0" layoutY="134.0" opacity="0.8" prefHeight="44.0" prefWidth="315.0" promptText="Bucky" />
+      <TextField layoutX="311.0" layoutY="215.0" opacity="0.8" prefHeight="44.0" prefWidth="315.0" promptText="**********" />
+      <Button layoutX="113.0" layoutY="305.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Login" />
+      <Button layoutX="517.0" layoutY="305.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="129.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Cancel" />
+      <Button fx:id="clickToSignup" layoutX="311.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="53.0" prefWidth="129.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Signup" />
    </children>
 </Pane>
