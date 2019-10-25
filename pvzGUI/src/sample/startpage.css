@@ -1,5 +1,5 @@
 @font-face {
-    src: url("SERIO___.TTF");
+    src: url("resources/SERIO___.TTF");
 }
 .clickToStart{
     -fx-text-fill: white;
@@ -61,6 +61,7 @@
 }
 
 .loginboxlabels{
+    -fx-font-family: 'SeriesOrbit';
     /*-fx-background-color: "#0c6607";*/
     -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
     -fx-text-fill: black;

@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="810.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@bgimage.png" />
+                  <Image url="@resources/bgimage.png" />
                </image>
             </ImageView>
             <Button fx:id="clickToStart" alignment="TOP_CENTER" layoutX="329.0" layoutY="730.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="64.0" prefWidth="424.0" styleClass="clickToStart" stylesheets="@startpage.css" text="Click to Start" textAlignment="JUSTIFY" >

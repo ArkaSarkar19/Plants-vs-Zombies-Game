@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="526.0" fitWidth="942.0" layoutX="3.0" opacity="0.79" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@login.jpg" />
+            <Image url="@resources/login.jpg" />
          </image>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -23,24 +23,24 @@
             <GaussianBlur radius="9.23" />
          </effect>
       </ImageView>
-      <Label layoutX="271.0" layoutY="101.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Name : ">
+      <Label layoutX="229.0" layoutY="113.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Username : ">
          <font>
             <Font name="Ani" size="39.0" />
          </font>
       </Label>
-      <Label layoutX="219.0" layoutY="196.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Password : ">
+      <Label layoutX="226.0" layoutY="195.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Password : ">
          <font>
             <Font name="Ani" size="39.0" />
          </font>
       </Label>
-      <Label layoutX="88.0" layoutY="291.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Confirm Password : ">
+      <Label layoutX="44.0" layoutY="279.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Confirm Password : ">
          <font>
             <Font name="Ani" size="39.0" />
          </font>
       </Label>
-      <TextField layoutX="451.0" layoutY="112.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="Bucky" />
-      <TextField layoutX="451.0" layoutY="302.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="***********" />
-      <TextField layoutX="451.0" layoutY="207.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="***********" />
+      <TextField layoutX="485.0" layoutY="112.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="Bucky" />
+      <TextField layoutX="485.0" layoutY="279.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="***********" />
+      <TextField layoutX="485.0" layoutY="194.0" opacity="0.61" prefHeight="46.0" prefWidth="340.0" promptText="***********" />
       <Button layoutX="200.0" layoutY="393.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="251.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Lets Go !!" textAlignment="CENTER">
          <font>
             <Font name="Ani" size="28.0" />
