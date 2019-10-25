@@ -7,14 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+    public static Parent root;
+    public static Stage window;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("startpage.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1080, 810));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        window = primaryStage;
+        root = FXMLLoader.load(getClass().getResource("startpage.fxml"));
+        window.setTitle("Pants Vs Zombies");
+        window.setScene(new Scene(root, 1080, 810));
+        window.setResizable(false);
+        window.show();
     }
 
 
