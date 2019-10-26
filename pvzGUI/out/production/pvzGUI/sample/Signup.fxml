@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="942.0" styleClass="lowerPane" stylesheets="@startpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<?import javafx.scene.control.PasswordField?>
+<AnchorPane prefHeight="510.0" prefWidth="942.0" styleClass="lowerPane" stylesheets="@startpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane prefHeight="364.0" prefWidth="942.0" styleClass="upperPaneLogin" stylesheets="@startpage.css">
          <children>
@@ -26,8 +27,8 @@
                   <Font name="Ani" size="25.0" />
                </font>
             </Label>
-            <TextField layoutX="419.0" layoutY="258.0" opacity="0.61" prefHeight="46.0" prefWidth="406.0" promptText="password again" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
-            <TextField layoutX="419.0" layoutY="187.0" opacity="0.61" prefHeight="46.0" prefWidth="406.0" promptText="password" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
+            <PasswordField accessibleRole="PASSWORD_FIELD" layoutX="419.0" layoutY="258.0" opacity="0.61" prefHeight="46.0" prefWidth="406.0" promptText="password again" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
+            <PasswordField accessibleRole="PASSWORD_FIELD" layoutX="419.0" layoutY="187.0" opacity="0.61" prefHeight="46.0" prefWidth="406.0" promptText="password" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
             <TextField layoutX="419.0" layoutY="113.0" opacity="0.61" prefHeight="46.0" prefWidth="406.0" promptText="username" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
             <Label layoutX="295.0" layoutY="39.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="REGISTER YOURSELF">
                <font>
