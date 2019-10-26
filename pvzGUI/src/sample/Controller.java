@@ -22,7 +22,6 @@ public class Controller {
     public void handleleveltexttransition(){
         FadeTransition ft = new FadeTransition();
         ft.setNode(textonlevelscreen);
-       // ft.setDuration(new Duration(0.5));
         ft.setFromValue(1.0);
         ft.setToValue(0.0);
         ft.setCycleCount(Timeline.INDEFINITE);
