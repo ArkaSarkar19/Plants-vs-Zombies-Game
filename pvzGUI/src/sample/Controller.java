@@ -4,9 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-
 import java.io.IOException;
-import java.time.Duration;
 
 public class Controller {
     public Button clickToSignup;
@@ -15,6 +13,7 @@ public class Controller {
     public ImageView textonlevelscreen;
     public void handleStart() throws IOException {
        LoginBox.getLogin();
+       Main.window.close();
     }
     public void handleSignup() throws IOException {
         LoginBox.getSignup();
