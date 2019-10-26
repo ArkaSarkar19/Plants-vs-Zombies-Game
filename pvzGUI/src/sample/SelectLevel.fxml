@@ -12,7 +12,7 @@
             <Image url="@resources/RandomStuff/Plants-vs.-Zombies-Battle-for-Neighbourville-Review-02-SO-AMAZING.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="textonlevelscreen" fitHeight="49.0" fitWidth="944.0" layoutX="63.0" layoutY="61.0" onMouseClicked="#handleleveltexttransition" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="textonlevelscreen" fitHeight="49.0" fitWidth="944.0" layoutX="63.0" layoutY="61.0" onMouseEntered="#handleleveltexttransition" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/spritesNStuff/huge_wave_of_zombies_text.png" />
          </image>
