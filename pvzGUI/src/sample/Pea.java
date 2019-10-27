@@ -31,7 +31,7 @@ public class Pea extends GameObject{
 
     }
     protected boolean checkBoundary(){
-
+        return position<=0;
     }
 }
 
