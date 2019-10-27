@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,5 +21,6 @@
             <InnerShadow choke="0.24" />
          </effect>
       </ImageView>
+      <Button fx:id="playButton" layoutX="495.0" layoutY="413.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="154.0" text="Button" />
    </children>
 </AnchorPane>
