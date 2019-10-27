@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.layout.Pane;
+
 public abstract class Plant extends Character {
     protected final int[][] position;
     protected final int buyTime;
@@ -39,6 +41,10 @@ abstract class PeaShooter extends Plant{
          this.startTime = System.currentTimeMillis();
          this.timeIntervalForShooting = 1500;
      }
+     @Override
+     public GameObject useAbility(){
+         return this.shootPeas();
+     }
      protected abstract Pea shootPeas();
 }
 
@@ -67,3 +73,15 @@ class Sunflower extends Plant{
         return new_sun;
     }
 }
+
+class WallNut extends Plant{
+    public WallNut(int[][] position){
+        super(10000,50,15,position);
+    }
+
+    @Override
+    public GameObject useAbility() {
+        return null;
+    }
+}
+
