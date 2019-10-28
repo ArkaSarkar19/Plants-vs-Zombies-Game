@@ -11,6 +11,7 @@ public class Controller {
     public Button clickToStart;
     public Button clickToLogin;
     public ImageView textonlevelscreen;
+    public Button level1Button;
     public void handleStart() throws IOException {
        LoginBox.getLogin();
        Main.window.close();
@@ -32,6 +33,10 @@ public class Controller {
 
         LoginBox.getLevelpage();
         LoginBox.loginwindow.close();
+    }
+    public void handlegetlevel1() throws IOException {
+        Level1.getlevel1();
+        LoginBox.levelwindow.close();
     }
 
 }
