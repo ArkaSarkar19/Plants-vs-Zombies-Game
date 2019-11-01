@@ -63,7 +63,6 @@ public    void getInGameMenu() throws IOException {
     Button inGameResume = (Button)scene1.lookup("#inGameResumeButton");
     inGameResume.setOnAction(event -> {
         inGameMenuwindow.close();
-        Level1.tt.play();
     });
     Button inGameMainMenuButton = (Button)scene1.lookup("#inGameMainMenuButton");
     inGameMainMenuButton.setOnAction(event -> {
@@ -75,10 +74,6 @@ public    void getInGameMenu() throws IOException {
             e.printStackTrace();
         }
     });
-    System.out.println(Level1.tt.getCurrentTime());
-    double distance = Level1.tt.getCurrentTime().toMillis()*800/40000;
-    System.out.println(distance);
-    Level1.tt.pause();
     
     inGameMenuwindow.setScene(scene1);
     inGameMenuwindow.setResizable(false);

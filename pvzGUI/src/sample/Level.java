@@ -1,6 +1,5 @@
 package sample;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +65,8 @@ public class Level implements Serializable {
 }
 
 class Level1 extends Level{
+    public ArrayList<NormalZombie> lane = new ArrayList<>();
+    double start ;
     public static Stage level1window;
     public static TranslateTransition tt;
     public Level1(Player player,GameScreen gameInstance){
@@ -73,32 +74,34 @@ class Level1 extends Level{
 
     }
 
-    public  void getlevel1() throws IOException {
+    public  void getlevel1() throws IOException, InterruptedException {
+        start = System.currentTimeMillis();
         level1window = new Stage();
         level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         Scene scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
-        NormalZombie z1 = new NormalZombie(9);
-        Pane a = (Pane)scene1.lookup("#dekho");
-        NormalZombie z2 = new NormalZombie(2);
-        a.getChildren().add(z1.getZombieImage());
-        z1.getZombieImage().setX(800);
-//        p.add(z2.getZombieImage(),9,0);
+        Timeline tml = new Timeline();
+        tml.setCycleCount(Timeline.INDEFINITE);
 
-        p.add(z1.getZombieImage(),9,9);
-        Zombie[] zArr = {z1,z2};
-//        double st = System.currentTimeMillis();
+            tml.playFrom(String.valueOf(((System.currentTimeMillis() - start + 4000))));
+            {
+               for(int i=0;i<10;i++) {
+                   NormalZombie z = new NormalZombie(2);
+                   p.add(z.getZombieImage(), 9, i%5);
+                   z.move(tml,i);
 
-//       for (int j =0;j<500;j++) {
+               }
+                NormalZombie z = new NormalZombie(2);
+                p.add(z.getZombieImage(), 9, 5);
+                z.move(tml,0);
 
-            for (int i = 0; i < 200; i++){
-                zArr[0].move();
-//                zArr[1].move();
 
 
             }
-//        }
+
+        tml.play();
+
 
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");

@@ -60,7 +60,7 @@ public class LoginBox {
             Level1 l = new Level1(null,null);
             try {
                 l.getlevel1();
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
             levelwindow.close();
