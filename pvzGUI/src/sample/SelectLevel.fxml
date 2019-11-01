@@ -21,6 +21,6 @@
             <InnerShadow choke="0.24" />
          </effect>
       </ImageView>
-      <Button fx:id="level1Button" layoutX="237.0" layoutY="316.0" mnemonicParsing="false" onAction="#handlegetlevel1" prefHeight="161.0" prefWidth="154.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 1" />
+      <Button fx:id="level1Button" layoutX="237.0" layoutY="316.0" mnemonicParsing="false" prefHeight="161.0" prefWidth="154.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 1" />
    </children>
 </AnchorPane>
