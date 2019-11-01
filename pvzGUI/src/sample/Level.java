@@ -1,4 +1,5 @@
 package sample;
+import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
@@ -78,22 +79,50 @@ class Level1 extends Level{
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         Scene scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
-        Image z = new Image(Level1.class.getResource("resources/spritesNStuff/zombie_normal.gif").toString());
-        ImageView zomb = new ImageView(z);
-        zomb.setFitHeight(80);
-        zomb.setFitWidth(80);Image image = new Image(String.valueOf(Level1.class.getResource("resources/login.jpg")));
-        ImageView im = new ImageView(image);
-         tt = new TranslateTransition();
-        tt.setNode(zomb);
-        tt.setDuration(Duration.millis(40000));
-        tt.setByX(-700);
-        tt.setCycleCount(5);
-        tt.play();
-        System.out.println(tt.getCurrentTime());
-        p.add(zomb,8,0);
+        NormalZombie z1 = new NormalZombie(9);
+        Pane a = (Pane)scene1.lookup("#dekho");
+        NormalZombie z2 = new NormalZombie(2);
+        a.getChildren().add(z1.getZombieImage());
+        z1.getZombieImage().setX(800);
+//        p.add(z2.getZombieImage(),9,0);
+
+        p.add(z1.getZombieImage(),9,9);
+        Zombie[] zArr = {z1,z2};
+//        double st = System.currentTimeMillis();
+
+//       for (int j =0;j<500;j++) {
+
+            for (int i = 0; i < 200; i++){
+                zArr[0].move();
+//                zArr[1].move();
+
+
+            }
+//        }
+
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
+
+//        tt.play();
+//        TranslateTransition ttx = new TranslateTransition();
+//        ttx.setNode(zx);
+//        ttx.setDuration(Duration.millis(40000));
+//        ttx.setByX(-800);
+//        ttx.setCycleCount(5);
+////        ttx.play();
+//        ParallelTransition pt = new ParallelTransition(tt,ttx);
+//
+//        pt.play();
+//        tt.setNode(zomb);
+//        tt.setDuration(Duration.millis(40000));
+//        tt.setByX(-800);
+//        tt.setCycleCount(5);
+//        tt.play();
+//        System.out.println(tt.getCurrentTime());
+//        p.add(zomb,9,0);
+//        p.add(zx,9,7);
+
     }
 }

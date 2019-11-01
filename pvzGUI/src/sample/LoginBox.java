@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
+//import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.io.IOException;
 
 public class LoginBox {

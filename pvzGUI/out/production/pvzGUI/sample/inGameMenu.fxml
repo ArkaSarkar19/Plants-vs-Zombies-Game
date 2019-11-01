@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fitHeight="598.0" fitWidth="1028.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/spritesNStuff/lawn.png" />
+         </image>
+         <effect>
+            <GaussianBlur radius="19.99" />
+         </effect>
+      </ImageView>
+      <Button layoutX="435.0" layoutY="404.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="205.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Restart" />
+      <Button layoutX="446.0" layoutY="276.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="181.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Save" />
+      <Button fx:id="inGameMainMenuButton" layoutX="423.0" layoutY="528.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="228.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Main Menu" />
+      <Button fx:id="inGameResumeButton" layoutX="446.0" layoutY="142.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="181.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Resume" />
+   </children>
+</AnchorPane>

@@ -76,6 +76,8 @@ public    void getInGameMenu() throws IOException {
         }
     });
     System.out.println(Level1.tt.getCurrentTime());
+    double distance = Level1.tt.getCurrentTime().toMillis()*800/40000;
+    System.out.println(distance);
     Level1.tt.pause();
     
     inGameMenuwindow.setScene(scene1);
