@@ -99,10 +99,6 @@ class Level1 extends Level{
             gameScreen.produceZombies();
         });
         tml.getKeyFrames().add(k);
-
-
-
         tml.play();
-
     }
 }

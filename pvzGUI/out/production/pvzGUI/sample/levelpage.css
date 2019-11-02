@@ -76,7 +76,10 @@
     -fx-background-color: #eaeaac;
     -fx-text-alignment: center;
     -fx-font-family: "Quarca Norm Bold";
-    
+}
+
+.cardPane{
+    -fx-background-color: #7c3d1d;
 }
 
 .levelpausebutton{
