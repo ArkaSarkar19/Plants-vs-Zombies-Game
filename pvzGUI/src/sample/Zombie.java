@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.sql.Time;
@@ -46,7 +47,7 @@ public class Zombie  extends Character{
     public void attack(Plant plant){
 
     }
-    public void move(Timeline tml, int i){
+    public void move(){
 
     }
     public boolean gameOver(){
@@ -66,26 +67,21 @@ class NormalZombie extends Zombie{
         tt.setNode(zombieImage);
     }
     @Override
-    public void move(Timeline tml,int i){
-//        tt.setDuration(Duration.millis(1000));
-//        System.out.println("Start: "+ position);
-////        tt.setFromX(position);
-//        tt.setByX(-speed);
-////        position-=speed;
-////        System.out.println(position);
-////        System.out.println(this);
-////        System.out.println(position);
-////        tt.setCycleCount(Animation.INDEFINITE);
-//        tt.play();
-//        tt.setOnFinished(e->{
-//            tt.playFromStart();
-//            zombieImage.setX(zombieImage.getX()-speed);
-//            System.out.println("end: "+ zombieImage.getX());
-////            tt.setNode(zombieImage);
-//        });
-        KeyFrame movezombie = new KeyFrame(Duration.millis(40000 - 10000*i%30000),
-                new KeyValue(zombieImage.translateXProperty(), -700));
-        tml.getKeyFrames().add(movezombie);
+    public void move(){
+        tt.setDuration(Duration.millis(1000));
+        System.out.println("Start: "+ position);
+        getZombieImage().setX(800);
+
+        tt.setByX(-speed);
+        tt.play();
+        tt.setOnFinished(e->{
+            tt.playFromStart();
+            zombieImage.setX(zombieImage.getX()-speed);
+            System.out.println("end: "+ zombieImage.getX());
+            if(zombieImage.getX()<= 0){
+                tt.stop();
+            }
+        });
 
     }
 }

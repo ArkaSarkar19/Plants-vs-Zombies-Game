@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class Level implements Serializable {
@@ -76,56 +77,32 @@ class Level1 extends Level{
 
     public  void getlevel1() throws IOException, InterruptedException {
         start = System.currentTimeMillis();
-        level1window = new Stage();
-        level1window.initModality(Modality.APPLICATION_MODAL);
+        level1window = Main.window;
+        //level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         Scene scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
-        Timeline tml = new Timeline();
-        tml.setCycleCount(Timeline.INDEFINITE);
 
-            tml.playFrom(String.valueOf(((System.currentTimeMillis() - start + 4000))));
-            {
-               for(int i=0;i<10;i++) {
-                   NormalZombie z = new NormalZombie(2);
-                   p.add(z.getZombieImage(), 9, i%5);
-                   z.move(tml,i);
+        NormalPeaShooter peashooter = new NormalPeaShooter(new int[]{4,1});
+        GameScreen gameScreen = new GameScreen();
+        gameScreen.setLawngrid(p);
 
-               }
-                NormalZombie z = new NormalZombie(2);
-                p.add(z.getZombieImage(), 9, 5);
-                z.move(tml,0);
-
-
-
-            }
-
-        tml.play();
-
+        gameScreen.addPlant(new int[]{4,1},peashooter);
 
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
+        Timeline tml = new Timeline();
+        tml.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame k = new KeyFrame(new Duration(3000),event -> {
+            gameScreen.produceZombies();
+        });
+        tml.getKeyFrames().add(k);
 
-//        tt.play();
-//        TranslateTransition ttx = new TranslateTransition();
-//        ttx.setNode(zx);
-//        ttx.setDuration(Duration.millis(40000));
-//        ttx.setByX(-800);
-//        ttx.setCycleCount(5);
-////        ttx.play();
-//        ParallelTransition pt = new ParallelTransition(tt,ttx);
-//
-//        pt.play();
-//        tt.setNode(zomb);
-//        tt.setDuration(Duration.millis(40000));
-//        tt.setByX(-800);
-//        tt.setCycleCount(5);
-//        tt.play();
-//        System.out.println(tt.getCurrentTime());
-//        p.add(zomb,9,0);
-//        p.add(zx,9,7);
+
+
+        tml.play();
 
     }
 }

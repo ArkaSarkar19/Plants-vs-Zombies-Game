@@ -1,6 +1,9 @@
 package sample;
 
+import javafx.scene.layout.GridPane;
+
 import java.io.Serializable;
+import java.util.Random;
 import java.util.TreeSet;
 
 public class GameScreen implements Serializable {
@@ -25,6 +28,7 @@ public class GameScreen implements Serializable {
     private TreeSet<Pea> lanePea_3;
     private TreeSet<Pea> lanePea_4;
     private TreeSet<Pea> lanePea_5;
+    private GridPane lawngrid;
 
     public GameScreen(){
         this.garden = new Plant[9][5];
@@ -116,19 +120,27 @@ public class GameScreen implements Serializable {
     public Plant[][] getGarden() {
         return garden;
     }
-    public Zombie spawnZombie(Zombie zombie){
-        return null;
-    }
+//    public Zombie spawnZombie(Zombie zombie){
+//        return null;
+//    }
     public void removeZombie(Zombie zombie){
 
     }
     public void produceSuns(){
 
     }
+    public void produceZombies(){
+        Random r = new Random();
+        int a = r.nextInt(5);
+        NormalZombie z = new NormalZombie(a);
+        lawngrid.add(z.getZombieImage(),9,a);
+        z.move();
+    }
     public void moveZombiePeas(){
 
     }
-    public void addPlant(int[][] position, Plant plant){
+    public void addPlant(int[] position, Plant plant){
+        lawngrid.add(plant.getPlantImage(),position[1],position[0]);
 
     }
     public void removePlant(int[][] position){
@@ -141,4 +153,7 @@ public class GameScreen implements Serializable {
 
     }
 
+    public void setLawngrid(GridPane lawngrid) {
+        this.lawngrid = lawngrid;
+    }
 }
