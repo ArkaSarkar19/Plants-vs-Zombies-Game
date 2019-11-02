@@ -142,27 +142,52 @@ public class Controller {
             event.acceptTransferModes(TransferMode.ANY);
         }
     }
-    public void dragDropped00(DragEvent event){
-        String str = event.getDragboard().getString();
-        drop(sp00, str);
-    }
-    public void dragDropped01(DragEvent event){
-        String str = event.getDragboard().getString();
-        drop(sp01, str);
-    }
-    public void dragDropped02(DragEvent event){
-        String str = event.getDragboard().getString();
-        drop(sp02, str);
-    }
-    public void dragDropped03(DragEvent event){
-        String str = event.getDragboard().getString();
-        drop(sp03, str);
-    }
-    public void dragDropped04(DragEvent event) {
-        String str = event.getDragboard().getString();
-        drop(sp04, str);
-    }
-    
+    public void dragDropped00(DragEvent event){ String str = event.getDragboard().getString(); drop(sp00, str);}
+    public void dragDropped01(DragEvent event){ String str = event.getDragboard().getString(); drop(sp01, str);}
+    public void dragDropped02(DragEvent event){ String str = event.getDragboard().getString(); drop(sp02, str);}
+    public void dragDropped03(DragEvent event){ String str = event.getDragboard().getString(); drop(sp03, str);}
+    public void dragDropped04(DragEvent event){ String str = event.getDragboard().getString(); drop(sp04, str);}
+    public void dragDropped10(DragEvent event){ String str = event.getDragboard().getString(); drop(sp10, str);}
+    public void dragDropped11(DragEvent event){ String str = event.getDragboard().getString(); drop(sp11, str);}
+    public void dragDropped12(DragEvent event){ String str = event.getDragboard().getString(); drop(sp12, str);}
+    public void dragDropped13(DragEvent event){ String str = event.getDragboard().getString(); drop(sp13, str);}
+    public void dragDropped14(DragEvent event){ String str = event.getDragboard().getString(); drop(sp14, str);}
+    public void dragDropped20(DragEvent event){ String str = event.getDragboard().getString(); drop(sp20, str);}
+    public void dragDropped21(DragEvent event){ String str = event.getDragboard().getString(); drop(sp21, str);}
+    public void dragDropped22(DragEvent event){ String str = event.getDragboard().getString(); drop(sp22, str);}
+    public void dragDropped23(DragEvent event){ String str = event.getDragboard().getString(); drop(sp23, str);}
+    public void dragDropped24(DragEvent event){ String str = event.getDragboard().getString(); drop(sp24, str);}
+    public void dragDropped30(DragEvent event){ String str = event.getDragboard().getString(); drop(sp30, str);}
+    public void dragDropped31(DragEvent event){ String str = event.getDragboard().getString(); drop(sp31, str);}
+    public void dragDropped32(DragEvent event){ String str = event.getDragboard().getString(); drop(sp32, str);}
+    public void dragDropped33(DragEvent event){ String str = event.getDragboard().getString(); drop(sp33, str);}
+    public void dragDropped34(DragEvent event){ String str = event.getDragboard().getString(); drop(sp34, str);}
+    public void dragDropped40(DragEvent event){ String str = event.getDragboard().getString(); drop(sp40, str);}
+    public void dragDropped41(DragEvent event){ String str = event.getDragboard().getString(); drop(sp41, str);}
+    public void dragDropped42(DragEvent event){ String str = event.getDragboard().getString(); drop(sp42, str);}
+    public void dragDropped43(DragEvent event){ String str = event.getDragboard().getString(); drop(sp43, str);}
+    public void dragDropped44(DragEvent event){ String str = event.getDragboard().getString(); drop(sp44, str);}
+    public void dragDropped50(DragEvent event){ String str = event.getDragboard().getString(); drop(sp50, str);}
+    public void dragDropped51(DragEvent event){ String str = event.getDragboard().getString(); drop(sp51, str);}
+    public void dragDropped52(DragEvent event){ String str = event.getDragboard().getString(); drop(sp52, str);}
+    public void dragDropped53(DragEvent event){ String str = event.getDragboard().getString(); drop(sp53, str);}
+    public void dragDropped54(DragEvent event){ String str = event.getDragboard().getString(); drop(sp54, str);}
+    public void dragDropped60(DragEvent event){ String str = event.getDragboard().getString(); drop(sp60, str);}
+    public void dragDropped61(DragEvent event){ String str = event.getDragboard().getString(); drop(sp61, str);}
+    public void dragDropped62(DragEvent event){ String str = event.getDragboard().getString(); drop(sp62, str);}
+    public void dragDropped63(DragEvent event){ String str = event.getDragboard().getString(); drop(sp63, str);}
+    public void dragDropped64(DragEvent event){ String str = event.getDragboard().getString(); drop(sp64, str);}
+    public void dragDropped70(DragEvent event){ String str = event.getDragboard().getString(); drop(sp70, str);}
+    public void dragDropped71(DragEvent event){ String str = event.getDragboard().getString(); drop(sp71, str);}
+    public void dragDropped72(DragEvent event){ String str = event.getDragboard().getString(); drop(sp72, str);}
+    public void dragDropped73(DragEvent event){ String str = event.getDragboard().getString(); drop(sp73, str);}
+    public void dragDropped74(DragEvent event){ String str = event.getDragboard().getString(); drop(sp74, str);}
+    public void dragDropped80(DragEvent event){ String str = event.getDragboard().getString(); drop(sp80, str);}
+    public void dragDropped81(DragEvent event){ String str = event.getDragboard().getString(); drop(sp81, str);}
+    public void dragDropped82(DragEvent event){ String str = event.getDragboard().getString(); drop(sp82, str);}
+    public void dragDropped83(DragEvent event){ String str = event.getDragboard().getString(); drop(sp83, str);}
+    public void dragDropped84(DragEvent event){ String str = event.getDragboard().getString(); drop(sp84, str);}
+
 
     private void drop(Pane s, String str){
         if (str.equals("sunflower")){
