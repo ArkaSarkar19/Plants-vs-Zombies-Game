@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
         root = FXMLLoader.load(getClass().getResource("startpage.fxml"));
-        window.setTitle("Pants Vs Zombies");
-        window.setScene(new Scene(root, 1080, 810));
+        window.setTitle("Plants Vs Zombies");
+        window.setScene(new Scene(root, 1080, 805));
         window.setResizable(false);
         window.show();
     }

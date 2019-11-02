@@ -205,6 +205,8 @@ public class Controller {
         if (str.equals("sunflower")){
             Sunflower p = new Sunflower(position);
             s.getChildren().add(p.getPlantImage());
+            p.produceSuns();
+
         }
         else if (str.equals("peaShooter")){
             NormalPeaShooter p = new NormalPeaShooter(position);

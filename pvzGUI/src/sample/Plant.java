@@ -1,9 +1,13 @@
 package sample;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
+
+import java.util.Random;
 
 
 public abstract class Plant extends Character {
@@ -81,28 +85,38 @@ class NormalPeaShooter extends PeaShooter{
 class Sunflower extends Plant{
     private  double timeIntervalOfSuns;
     private double lastSunProduced;
+    protected TranslateTransition tt;
     public Sunflower(int[] position){
         super(7000,50, 25,position);
         this.timeIntervalOfSuns = 10000;
         this.lastSunProduced = 0;
         plantImage = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
-
+        tt = new TranslateTransition();
 
 
     }
 
     @Override
     public GameObject useAbility() {
-        if(lastSunProduced==0 || System.currentTimeMillis()-lastSunProduced > timeIntervalOfSuns){
-            lastSunProduced = System.currentTimeMillis();
-            return this.produceSuns();
-        }
+//        if(lastSunProduced==0 || System.currentTimeMillis()-lastSunProduced > timeIntervalOfSuns){
+//            lastSunProduced = System.currentTimeMillis();
+//            return this.produceSuns();
+//
+//        }
+//        this.produceSuns();
         return null;
     }
 
-    private Sun produceSuns(){
-        Sun new_sun = new Sun(position);
-        return new_sun;
+    public Sun produceSuns(){
+        Random r = new Random();
+        int a = r.nextInt(6);
+        KeyFrame k = new KeyFrame(new Duration(2500-100*a),event -> {
+            Sun new_sun = new Sun(position);
+             GameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
+            //s.getChildren().add(new_sun.getSunImage());
+        });
+        GameScreen.timeline.getKeyFrames().add(k);
+        return null;
     }
 }
 

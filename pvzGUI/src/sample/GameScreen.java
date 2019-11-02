@@ -143,11 +143,11 @@ public class GameScreen implements Serializable {
         Random r = new Random();
         int b = r.nextInt(3);
         if(b==2){
-        int a = r.nextInt(5);
-        System.out.println(a);
-        NormalZombie z = new NormalZombie(a);
-        lawngrid.add(z.getZombieImage(),9,a);
-        z.move();}
+            int a = r.nextInt(5);
+            NormalZombie z = new NormalZombie(a);
+            lawngrid.add(z.getZombieImage(),9,a);
+            z.move();
+        }
     }
     public void moveZombiePeas(){
 
