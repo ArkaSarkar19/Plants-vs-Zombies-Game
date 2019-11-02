@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
@@ -69,6 +70,7 @@ class Level1 extends Level{
     public ArrayList<NormalZombie> lane = new ArrayList<>();
     double start ;
     public static Stage level1window;
+
     public static TranslateTransition tt;
     public Level1(Player player,GameScreen gameInstance){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], gameInstance, player);
@@ -96,7 +98,11 @@ class Level1 extends Level{
         Timeline tml = new Timeline();
         tml.setCycleCount(5);
         KeyFrame k = new KeyFrame(new Duration(3000),event -> {
+//            Point p1 = MouseInfo.getPointerInfo().getLocation();
+
             gameScreen.produceZombies();
+//            System.out.println(p1.x );
+//            System.out.println(p1.y);
         });
         tml.getKeyFrames().add(k);
         tml.play();

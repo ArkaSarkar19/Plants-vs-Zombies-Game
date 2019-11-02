@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <AnchorPane layoutX="1.0" layoutY="97.0" prefHeight="598.0" prefWidth="1028.0">
          <children>
@@ -41,6 +42,53 @@
                       <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="101.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <children>
+                        <StackPane fx:id="sp54" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp02" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp03" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp04" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp01" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp10" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                        <StackPane fx:id="sp14" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp13" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp12" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp11" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp20" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                        <StackPane fx:id="sp21" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp22" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp23" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp24" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp53" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp52" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp51" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp50" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="5" />
+                        <StackPane fx:id="sp33" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp32" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp31" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp30" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                        <StackPane fx:id="sp44" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp43" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp42" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp41" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp40" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4" />
+                        <StackPane fx:id="sp34" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp70" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" />
+                        <StackPane fx:id="sp64" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp63" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp62" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp61" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp60" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="6" />
+                        <StackPane fx:id="sp83" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp82" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp80" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" />
+                        <StackPane fx:id="sp74" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp73" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                        <StackPane fx:id="sp72" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+                        <StackPane fx:id="sp71" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp81" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                        <StackPane fx:id="sp84" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                        <StackPane fx:id="sp00" onDragDropped="#dragDropped" onDragOver="#dragOver" prefHeight="150.0" prefWidth="200.0" />
+                     </children>
                   </GridPane>
                </children></Pane>
          </children>
@@ -63,7 +111,7 @@
                </children></Pane>
             <Pane layoutX="127.0" layoutY="7.0" prefHeight="91.0" prefWidth="646.0" styleClass="plantsPane" stylesheets="@levelpage.css">
                <children>
-                  <Pane layoutX="17.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane">
+                  <Pane fx:id="sunflower" layoutX="17.0" layoutY="9.0" onDragDetected="#dragSunflower" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane">
                      <children>
                         <ImageView fitHeight="48.0" fitWidth="38.0" layoutX="12.0" layoutY="2.0">
                            <image>

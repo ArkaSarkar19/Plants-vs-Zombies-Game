@@ -69,7 +69,7 @@ class NormalZombie extends Zombie{
     @Override
     public void move(){
         tt.setDuration(Duration.millis(1000));
-        System.out.println("Start: "+ position);
+       // System.out.println("Start: "+ position);
         getZombieImage().setX(800);
 
         tt.setByX(-speed);
@@ -77,7 +77,7 @@ class NormalZombie extends Zombie{
         tt.setOnFinished(e->{
             tt.playFromStart();
             zombieImage.setX(zombieImage.getX()-speed);
-            System.out.println("end: "+ zombieImage.getX());
+           // System.out.println("end: "+ zombieImage.getX());
             if(zombieImage.getX()<= 0){
                 tt.stop();
             }

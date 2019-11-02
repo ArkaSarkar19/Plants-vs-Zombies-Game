@@ -28,7 +28,7 @@ public class GameScreen implements Serializable {
     private TreeSet<Pea> lanePea_3;
     private TreeSet<Pea> lanePea_4;
     private TreeSet<Pea> lanePea_5;
-    private GridPane lawngrid;
+    public  static GridPane lawngrid;
 
     public GameScreen(){
         this.garden = new Plant[9][5];
