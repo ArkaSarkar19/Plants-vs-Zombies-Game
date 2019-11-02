@@ -78,6 +78,9 @@ public class Controller {
     @FXML
     private Pane sunflower;
 
+    @FXML
+    private Pane peaShooter;
+
     public void handleStart() throws IOException {
        LoginBox.getLogin();
        Main.window.close();
@@ -137,6 +140,14 @@ public class Controller {
         db.setContent(cp);
         event.consume();
     }
+    public void dragPeaShooter(MouseEvent event){
+        Dragboard db  = peaShooter.startDragAndDrop(TransferMode.ANY);
+        String sf = "peaShooter";
+        ClipboardContent cp = new ClipboardContent();
+        cp.putString(sf);
+        db.setContent(cp);
+        event.consume();
+    }
     public void dragOver(DragEvent event){
         if (event.getDragboard().hasString()){
             event.acceptTransferModes(TransferMode.ANY);
@@ -191,8 +202,14 @@ public class Controller {
 
     private void drop(Pane s, String str){
         if (str.equals("sunflower")){
-            s.getChildren().add(new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif")))));
+            Sunflower p = new Sunflower(new int[]{0,0});
+            s.getChildren().add(p.getPlantImage());
         }
+        else if (str.equals("peaShooter")){
+            NormalPeaShooter p = new NormalPeaShooter(new int[]{0,0});
+            s.getChildren().add(p.getPlantImage());
+        }
+        else;
     }
 
 

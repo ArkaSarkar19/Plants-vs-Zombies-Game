@@ -1,22 +1,13 @@
 package sample;
 import javafx.animation.*;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
-//import java.sql.Time;
 import java.util.ArrayList;
 
 public class Level implements Serializable {

@@ -52,8 +52,7 @@ abstract class PeaShooter extends Plant{
          super(7000,100,0,position);
          this.startTime = System.currentTimeMillis();
          this.timeIntervalForShooting = 1500;
-         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
-         plantImage = new ImageView(m);
+
      }
      @Override
      public GameObject useAbility(){
@@ -66,6 +65,8 @@ abstract class PeaShooter extends Plant{
 class NormalPeaShooter extends PeaShooter{
     public NormalPeaShooter(int[] position){
         super(position);
+        Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
+        plantImage = new ImageView(m);
     }
     @Override
     protected  Pea shootPeas(){
@@ -82,6 +83,10 @@ class Sunflower extends Plant{
         super(7000,50, 25,position);
         this.timeIntervalOfSuns = 10000;
         this.lastSunProduced = 0;
+        plantImage = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
+
+
+
     }
 
     @Override
