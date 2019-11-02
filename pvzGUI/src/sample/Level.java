@@ -80,20 +80,15 @@ class Level1 extends Level{
         GameScreen gameScreen = new GameScreen();
         gameScreen.setLawngrid(p);
 
-        gameScreen.addPlant(new int[]{4,1},peashooter);
 //        System.out.println(scene1.getmou);
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
         Timeline tml = new Timeline();
-        tml.setCycleCount(5);
-        KeyFrame k = new KeyFrame(new Duration(3000),event -> {
-//            Point p1 = MouseInfo.getPointerInfo().getLocation();
-
+        tml.setCycleCount(20);
+        KeyFrame k = new KeyFrame(new Duration(2500),event -> {
             gameScreen.produceZombies();
-//            System.out.println(p1.x );
-//            System.out.println(p1.y);
         });
         tml.getKeyFrames().add(k);
         tml.play();
