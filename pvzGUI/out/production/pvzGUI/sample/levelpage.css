@@ -1,7 +1,27 @@
+/*@font-face {*/
+
+/*}*/
+
 .selectlevelbackground{
     -fx-background-color: black;
 }
 
+
+/*.selectPlant{*/
+/*    -fx-background-color: #9e4v23;*/
+/*    !*-fx-background-radius: 300 3000 3000 3000;*!*/
+/*    !*fx-border-radius: 300 3000 3000 3000;*!*/
+/*}*/
+.plantsPane{
+    -fx-background-color: #6d3011;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+.paneBG {
+    -fx-background-color: #98451b;
+    -fx-background-radius: 25 25 25 25;
+    -fx-border-radius: 10 10 10 10;
+}
 .gamegridpane{
     /*-fx-background-color: lawngreen;*/
     -fx-shape: "M10.6,265.5c4-4.2,2.1-9,2.1-13.6c0-0.8-0.7-2-0.4-2.5c3.1-3.7,0.3-7.6,0.5-11.3
@@ -49,7 +69,14 @@
 }
 
 .levelpanebackground{
-    -fx-background-color: #2A5058;
+    -fx-background-color: #6d99dd;
+}
+
+.sunLabel{
+    -fx-background-color: #eaeaac;
+    -fx-text-alignment: center;
+    -fx-font-family: "Quarca Norm Bold";
+    
 }
 
 .levelpausebutton{

@@ -1,6 +1,8 @@
 @font-face {
     src: url("resources/SERIO___.TTF");
     src: url("resources/oblivion-font.ttf");
+    src: url("resources/QuarcaNormBold.otf");
+
 }
 .clickToStart{
     -fx-text-fill: white;

@@ -132,6 +132,7 @@ public class GameScreen implements Serializable {
     public void produceZombies(){
         Random r = new Random();
         int a = r.nextInt(5);
+        System.out.println(a);
         NormalZombie z = new NormalZombie(a);
         lawngrid.add(z.getZombieImage(),9,a);
         z.move();

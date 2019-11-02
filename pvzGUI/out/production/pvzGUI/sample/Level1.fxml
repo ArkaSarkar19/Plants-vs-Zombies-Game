@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
@@ -42,9 +43,26 @@
                     </rowConstraints>
                   </GridPane>
                </children></Pane>
-            <Pane id="dekho" layoutX="22.0" layoutY="43.0" prefHeight="251.0" prefWidth="886.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="level1MenuButton" layoutX="904.0" mnemonicParsing="false" onAction="#getInGameMenu" prefHeight="84.0" prefWidth="110.0" styleClass="levelpausebutton" stylesheets="@levelpage.css" text="Menu" />
+      <Button fx:id="level1MenuButton" layoutX="913.0" layoutY="8.0" mnemonicParsing="false" onAction="#getInGameMenu" prefHeight="84.0" prefWidth="110.0" styleClass="levelpausebutton" stylesheets="@levelpage.css" text="Menu" />
+      <Pane layoutX="1.0" layoutY="-1.0" prefHeight="105.0" prefWidth="894.0" styleClass="paneBG" stylesheets="@startpage.css">
+         <children>
+            <Pane layoutX="17.0" layoutY="7.0" prefHeight="91.0" prefWidth="89.0" styleClass="plantsPane" stylesheets="@levelpage.css">
+               <children>
+                  <ImageView layoutX="18.0" layoutY="6.0">
+                     <image>
+                        <Image url="@resources/spritesNStuff/sun.gif" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="12.0" layoutY="58.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="63.0" styleClass="sunLabel" text="50" textAlignment="CENTER">
+                     <font>
+                        <Font name="Quarca-NorBol" size="14.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
+            <Pane layoutX="127.0" layoutY="7.0" prefHeight="91.0" prefWidth="728.0" styleClass="plantsPane" stylesheets="@levelpage.css" />
+         </children>
+      </Pane>
    </children>
 </Pane>

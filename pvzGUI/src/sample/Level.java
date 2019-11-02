@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Serializable;
-import java.sql.Time;
+//import java.sql.Time;
 import java.util.ArrayList;
 
 public class Level implements Serializable {
@@ -88,13 +88,13 @@ class Level1 extends Level{
         gameScreen.setLawngrid(p);
 
         gameScreen.addPlant(new int[]{4,1},peashooter);
-
+//        System.out.println(scene1.getmou);
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
         Timeline tml = new Timeline();
-        tml.setCycleCount(Timeline.INDEFINITE);
+        tml.setCycleCount(5);
         KeyFrame k = new KeyFrame(new Duration(3000),event -> {
             gameScreen.produceZombies();
         });

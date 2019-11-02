@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
-import java.sql.Time;
+//import java.sql.Time;
 
 public class Zombie  extends Character{
     protected int lane;
