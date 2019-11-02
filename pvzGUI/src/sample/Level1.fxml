@@ -91,6 +91,31 @@
                      </children>
                   </GridPane>
                </children></Pane>
+            <ImageView fitHeight="119.0" fitWidth="133.0" layoutX="93.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/spritesNStuff/lawn_mower.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="75.0" fitWidth="88.0" layoutX="157.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/spritesNStuff/lawn_mower.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="84.0" fitWidth="102.0" layoutX="143.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/spritesNStuff/lawn_mower.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="98.0" fitWidth="110.0" layoutX="134.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/spritesNStuff/lawn_mower.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="110.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/spritesNStuff/lawn_mower.gif" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Button fx:id="level1MenuButton" layoutX="913.0" layoutY="8.0" mnemonicParsing="false" onAction="#getInGameMenu" prefHeight="84.0" prefWidth="110.0" styleClass="levelpausebutton" stylesheets="@levelpage.css" text="Menu" />

@@ -1,6 +1,9 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -29,7 +32,7 @@ public class GameScreen implements Serializable {
     private TreeSet<Pea> lanePea_4;
     private TreeSet<Pea> lanePea_5;
     public  static GridPane lawngrid;
-
+    public static Timeline timeline;
     public GameScreen(){
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
@@ -120,13 +123,20 @@ public class GameScreen implements Serializable {
     public Plant[][] getGarden() {
         return garden;
     }
-//    public Zombie spawnZombie(Zombie zombie){
-//        return null;
-//    }
+    public Zombie spawnZombie(){
+        KeyFrame k = new KeyFrame(new Duration(2500), event -> {
+            this.produceZombies();
+        });
+        timeline.getKeyFrames().add(k);
+        return null;
+    }
     public void removeZombie(Zombie zombie){
 
     }
     public void produceSuns(){
+        Random r = new Random();
+        int a = r.nextInt(9);
+
 
     }
     public void produceZombies(){
@@ -143,8 +153,13 @@ public class GameScreen implements Serializable {
 
     }
     public void addPlant(int[] position, Plant plant){
-        lawngrid.add(plant.getPlantImage(),position[1],position[0]);
-
+        //lawngrid.add(plant.getPlantImage(),position[0],position[1]);
+        Random r = new Random();
+        int a = r.nextInt(10);
+        KeyFrame k = new KeyFrame(new Duration(2500 - 60*a), event -> {
+            plant.useAbility();
+        });
+        timeline.getKeyFrames().add(k);
     }
     public void removePlant(int[][] position){
 
@@ -158,5 +173,11 @@ public class GameScreen implements Serializable {
 
     public void setLawngrid(GridPane lawngrid) {
         this.lawngrid = lawngrid;
+    }
+
+    public  void setTimeline(Timeline timeline) {
+        GameScreen.timeline = timeline;
+        timeline.setCycleCount(Timeline.INDEFINITE);
+
     }
 }

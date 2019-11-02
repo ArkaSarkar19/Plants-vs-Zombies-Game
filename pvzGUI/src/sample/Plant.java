@@ -70,7 +70,9 @@ class NormalPeaShooter extends PeaShooter{
     }
     @Override
     protected  Pea shootPeas(){
-        return  null;
+        NormalPea p = new NormalPea(position,0);
+        p.move();
+        return null;
     }
 
 }

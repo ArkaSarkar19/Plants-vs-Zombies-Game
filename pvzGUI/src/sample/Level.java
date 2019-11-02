@@ -75,22 +75,16 @@ class Level1 extends Level{
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         Scene scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
-
-        NormalPeaShooter peashooter = new NormalPeaShooter(new int[]{4,1});
         GameScreen gameScreen = new GameScreen();
         gameScreen.setLawngrid(p);
-
-//        System.out.println(scene1.getmou);
+        Controller.setGameScreen(gameScreen);
         level1window.setScene(scene1);
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
         Timeline tml = new Timeline();
-        tml.setCycleCount(20);
-        KeyFrame k = new KeyFrame(new Duration(2500),event -> {
-            gameScreen.produceZombies();
-        });
-        tml.getKeyFrames().add(k);
+        gameScreen.setTimeline(tml);
+        gameScreen.spawnZombie();
         tml.play();
     }
 }

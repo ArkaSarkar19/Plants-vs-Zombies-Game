@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane onMouseEntered="#handleleveltexttransition" prefHeight="810.0" prefWidth="1108.0" styleClass="lowerPane" stylesheets="@startpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Pane prefHeight="822.0" prefWidth="1108.0" styleClass="upperPaneLogin" />
-      <ImageView fitHeight="481.0" fitWidth="1080.0" layoutY="169.0" onMouseClicked="#handleleveltexttransition" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="810.0" fitWidth="1125.0" pickOnBounds="true">
          <image>
-            <Image url="@resources/RandomStuff/Plants-vs.-Zombies-Battle-for-Neighbourville-Review-02-SO-AMAZING.jpg" />
+            <Image url="@resources/selectLevel.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="textonlevelscreen" fitHeight="49.0" fitWidth="944.0" layoutX="75.0" layoutY="86.0" onMouseMoved="#handleleveltexttransition" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@resources/spritesNStuff/huge_wave_of_zombies_text.png" />
-         </image>
-         <effect>
-            <InnerShadow choke="0.24" />
-         </effect>
-      </ImageView>
-      <Button fx:id="level1Button" layoutX="46.0" layoutY="633.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 1" />
-      <Button fx:id="level2" layoutX="199.0" layoutY="632.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 2" />
-      <Button fx:id="level3" layoutX="355.0" layoutY="631.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 3" />
-      <Button fx:id="level4" layoutX="505.0" layoutY="630.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 4" />
-      <Button fx:id="level5" layoutX="655.0" layoutY="631.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 5" />
-      <Button fx:id="level6" layoutX="806.0" layoutY="630.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 6" />
-      <Button fx:id="level7" layoutX="956.0" layoutY="629.0" mnemonicParsing="false" prefHeight="153.0" prefWidth="128.0" styleClass="levelstart_1" stylesheets="@levelpage.css" text="LEVEL 7" />
+      <Button fx:id="level1Button" layoutX="15.0" layoutY="410.0" mnemonicParsing="false" prefHeight="379.0" prefWidth="188.0" styleClass="levelSelect" stylesheets="@startpage.css" text="1" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="68.0" />
+         </font></Button>
+      <Button fx:id="level2" layoutX="302.0" layoutY="623.0" mnemonicParsing="false" opacity="0.8" prefHeight="168.0" prefWidth="110.0" styleClass="levelSelect2" text="2" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="37.0" />
+         </font></Button>
+      <Button fx:id="level3" layoutX="455.0" layoutY="537.0" mnemonicParsing="false" prefHeight="251.0" prefWidth="110.0" styleClass="levelSelect3" stylesheets="@levelpage.css" text="3" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="21.0" />
+         </font></Button>
+      <Button fx:id="level4" layoutX="531.0" layoutY="625.0" mnemonicParsing="false" opacity="0.83" prefHeight="168.0" prefWidth="110.0" styleClass="levelSelect4" stylesheets="@levelpage.css" text="4" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="28.0" />
+         </font></Button>
+      <Button fx:id="level5" layoutX="660.0" layoutY="409.0" mnemonicParsing="false" prefHeight="379.0" prefWidth="195.0" styleClass="levelSelect5" stylesheets="@levelpage.css" text="5" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="51.0" />
+         </font></Button>
+      <Button fx:id="level6" layoutX="899.0" layoutY="615.0" mnemonicParsing="false" prefHeight="177.0" prefWidth="93.0" styleClass="levelSelect6" stylesheets="@levelpage.css" text="6" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="20.0" />
+         </font></Button>
+      <Button fx:id="level7" layoutX="998.0" layoutY="625.0" mnemonicParsing="false" opacity="0.8" prefHeight="168.0" prefWidth="110.0" styleClass="levelSelect7" stylesheets="@levelpage.css" text="7" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="37.0" />
+         </font></Button>
+      <Label layoutX="217.0" layoutY="114.0" prefHeight="136.0" prefWidth="705.0" text="SELECT LEVEL" textFill="#bcbcbc">
+         <font>
+            <Font name="8BIT WONDER Nominal" size="61.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
