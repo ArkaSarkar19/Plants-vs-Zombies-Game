@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <AnchorPane layoutX="1.0" layoutY="97.0" prefHeight="598.0" prefWidth="1028.0">
          <children>
@@ -91,31 +92,45 @@
                      </children>
                   </GridPane>
                </children></Pane>
-            <ImageView fitHeight="119.0" fitWidth="133.0" layoutX="93.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="170.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/spritesNStuff/lawn_mower.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="75.0" fitWidth="88.0" layoutX="157.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="182.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/spritesNStuff/lawn_mower.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="102.0" layoutX="143.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="181.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/spritesNStuff/lawn_mower.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="98.0" fitWidth="110.0" layoutX="134.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="66.0" fitWidth="63.0" layoutX="180.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/spritesNStuff/lawn_mower.gif" />
                </image>
             </ImageView>
-            <ImageView fitHeight="105.0" fitWidth="125.0" layoutX="110.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="67.0" fitWidth="63.0" layoutX="180.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/spritesNStuff/lawn_mower.gif" />
                </image>
             </ImageView>
+            <Pane layoutX="2.0" layoutY="11.0" prefHeight="127.0" prefWidth="125.0" styleClass="paneBG">
+               <children>
+                  <Label layoutX="7.0" layoutY="12.0" prefHeight="35.0" prefWidth="110.0" styleClass="sunLabel" text="Progress Completed">
+                     <font>
+                        <Font name="Quarca-NorBol" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="57.0" prefHeight="54.0" prefWidth="57.0" styleClass="sunLabel" text="70%">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <Button fx:id="level1MenuButton" layoutX="913.0" layoutY="8.0" mnemonicParsing="false" onAction="#getInGameMenu" prefHeight="84.0" prefWidth="110.0" styleClass="levelpausebutton" stylesheets="@levelpage.css" text="Menu" />
