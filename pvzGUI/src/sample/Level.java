@@ -1,5 +1,7 @@
 package sample;
 import javafx.animation.*;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -58,6 +60,8 @@ public class Level implements Serializable {
 }
 
 class Level1 extends Level{
+    @FXML
+    private Label progressText;
     public ArrayList<NormalZombie> lane = new ArrayList<>();
     double start ;
     public static Stage level1window;
@@ -82,9 +86,15 @@ class Level1 extends Level{
         level1window.setTitle("LEVEL 1");
         level1window.setResizable(false);
         level1window.show();
+        double duration = 5*1000;
+        Label progressText = (Label)scene1.lookup("#progessText");
         Timeline tml = new Timeline();
         gameScreen.setTimeline(tml);
         gameScreen.spawnZombie();
+        KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+            progressText.setText(String.valueOf((Math.round((System.currentTimeMillis() - start)/duration))) + "%");
+        });
+        tml.getKeyFrames().add(k1);
         tml.play();
     }
 }

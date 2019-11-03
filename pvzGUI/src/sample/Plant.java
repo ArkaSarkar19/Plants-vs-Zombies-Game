@@ -110,12 +110,12 @@ class Sunflower extends Plant{
     public Sun produceSuns(){
         Random r = new Random();
         int a = r.nextInt(6);
-        KeyFrame k = new KeyFrame(new Duration(2500-100*a),event -> {
+        KeyFrame k2 = new KeyFrame(new Duration(2500-100*a),event -> {
             Sun new_sun = new Sun(position);
              GameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
             //s.getChildren().add(new_sun.getSunImage());
         });
-        GameScreen.timeline.getKeyFrames().add(k);
+        GameScreen.timeline.getKeyFrames().add(k2);
         return null;
     }
 }
