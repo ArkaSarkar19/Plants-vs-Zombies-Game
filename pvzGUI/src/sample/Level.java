@@ -2,6 +2,7 @@ package sample;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -74,8 +75,8 @@ class Level1 extends Level{
 
     public  void getlevel1() throws IOException, InterruptedException {
         start = System.currentTimeMillis();
-        level1window = Main.window;
-        //level1window.initModality(Modality.APPLICATION_MODAL);
+        level1window = new Stage();
+        level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         Scene scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
