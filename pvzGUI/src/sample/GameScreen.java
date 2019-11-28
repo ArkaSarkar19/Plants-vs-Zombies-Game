@@ -6,9 +6,11 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GameScreen implements Serializable {
     private Plant[][] garden;
@@ -135,8 +137,10 @@ public class GameScreen implements Serializable {
         return garden;
     }
     public Zombie spawnZombie(){
+        Timeline t = null;
         KeyFrame k = new KeyFrame(new Duration(2500), event -> {
-            this.produceZombies();
+             Zombie z = this.produceZombies();
+
         });
         timeline.getKeyFrames().add(k);
         return null;
@@ -144,18 +148,20 @@ public class GameScreen implements Serializable {
     public void removeZombie(Zombie zombie){
 
     }
+
     public void produceSuns(){
         Random r = new Random();
         int a = r.nextInt(9);
 
 
     }
-    public void produceZombies(){
+    public Zombie produceZombies(){
         Random r = new Random();
         int b = r.nextInt(3);
+        NormalZombie z = null;
+
         if(b==2){
             int a = r.nextInt(5);
-            NormalZombie z;
             if(a ==0) {
                 z = new NormalZombie(a, this);
                 laneZombie_1.add(z);
@@ -184,18 +190,19 @@ public class GameScreen implements Serializable {
             lawngrid.add(z.getZombieImage(),9,a);
             z.move();
         }
-
+        return z;
     }
     public void moveZombiePeas(){
 
     }
     public void addPlant(int[] position, Plant plant){
-        Random r = new Random();
-        int a = r.nextInt(10);
+        int[] pos  = plant.getPosition();
+        garden[position[0]][position[1]] = plant;
         KeyFrame k = new KeyFrame(new Duration(2500), event -> {
             plant.useAbility();
         });
         plant.getTimeline().getKeyFrames().add(k);
+        plant.getTimeline().play();
     }
     public void removePlant(int[][] position){
 

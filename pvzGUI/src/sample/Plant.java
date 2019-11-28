@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -27,14 +28,20 @@ public abstract class Plant extends Character {
         this.cost = cost;
         this.position  = position;
         this.lastBought = 0;
+        timeline.setCycleCount(Animation.INDEFINITE);
     }
     public int getBuyTime() {
+
         return buyTime;
     }
-    public int[] getPosition() {
+
+    public int[] getPosition()
+    {
         return position;
     }
+
     public int getCost() {
+
         return cost;
     }
     public boolean canBuy(){
@@ -52,6 +59,7 @@ public abstract class Plant extends Character {
     public Timeline getTimeline() {
         return timeline;
     }
+
 }
 
 abstract class PeaShooter extends Plant{
@@ -79,7 +87,8 @@ class NormalPeaShooter extends PeaShooter{
         super(position);
         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         plantImage = new ImageView(m);
-        timeline.play();
+        plantImage.setX((position[0]+1)*800/9);
+
     }
     @Override
     protected  Pea shootPeas(){
@@ -100,6 +109,8 @@ class Sunflower extends Plant{
         this.timeIntervalOfSuns = 10000;
         this.lastSunProduced = 0;
         plantImage = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
+        plantImage.setX((position[0]+1)*800/9);
+
         tt = new TranslateTransition();
 
 
@@ -117,14 +128,13 @@ class Sunflower extends Plant{
     }
 
     public Sun produceSuns(){
-        Random r = new Random();
-        int a = r.nextInt(6);
-        KeyFrame k2 = new KeyFrame(new Duration(2500-100*a),event -> {
+        KeyFrame k2 = new KeyFrame(new Duration(2500),event -> {
             Sun new_sun = new Sun(position);
              GameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
             //s.getChildren().add(new_sun.getSunImage());
         });
-        GameScreen.timeline.getKeyFrames().add(k2);
+        timeline.getKeyFrames().add(k2);
+        timeline.play();
         return null;
     }
 }

@@ -19,13 +19,15 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected double timeInstantiated;
     protected ImageView zombieImage;
     protected TranslateTransition tt;
-    protected GameScreen g;
+    protected GameScreen gameScreen;
     protected ArrayList<Zombie> ZombieLane;
+    protected Timeline timeline = new Timeline();
     private static int counter;
     protected int id;
     public Zombie(int defense, int attack, int lane, int position, int speed, GameScreen gs){
         super(defense);
-        this.g =gs;
+        this.gameScreen =gs;
+        counter++;
         if (lane ==0){
             ZombieLane = gs.getLaneZombie_1();
         }
@@ -47,7 +49,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         this.position = position;
         this.speed = speed;
         this.timeInstantiated = System.currentTimeMillis();
-
+        timeline.setCycleCount(Animation.INDEFINITE);
     }
 
     @Override
@@ -101,12 +103,16 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         for (int i =0;i<ZombieLane.size();i++){
             Zombie z = ZombieLane.get(i);
             if (z.equals(this)){
-                g.getLawngrid().getChildren().remove(this.zombieImage);
+                gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
                 z = null;
                 System.gc();
                 break;
             }
         }
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
     }
 }
 
@@ -133,6 +139,21 @@ class NormalZombie extends Zombie{
                 removeZombie();
 
             }
+//            System.out.println(this.id+ " " +this + " " + zombieImage.getBoundsInParent());
+
+            for(int j=0;j<9;j++){
+                    if(gameScreen.getGarden()[j][lane] !=null){
+//                        System.out.println("zombie ki position hai ye: "+ (800-zombieImage.getBoundsInLocal().getMinX())+" |ab plant ki position ye hai "+ gameScreen.getGarden()[j][lane].getPlantImage().getBoundsInLocal().getMaxX());
+                        //System.out.println(gameScreen.getGarden()[j][lane].getPlantImage().getX());
+
+                    }
+
+                    if(gameScreen.getGarden()[j][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[j][lane].getPlantImage().getX())){
+                        System.out.println("ooh ooh jaane jaana dhunde tujhe diwana");
+                        tt.stop();
+                    }
+                }
+
         });
 
     }
