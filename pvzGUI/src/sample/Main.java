@@ -24,3 +24,8 @@ public class Main extends Application {
         launch(args);
     }
 }
+//module javafx {
+//    requires javafx.controls;
+//    requires javafx.fxml;
+//    opens sample;
+//}
