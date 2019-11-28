@@ -212,6 +212,8 @@ public class Controller {
             NormalPeaShooter p = new NormalPeaShooter(position);
             gameScreen.addPlant(position,p);
             s.getChildren().add(p.getPlantImage());
+                   p.getTimeline().play();
+
         }
         else;
     }
