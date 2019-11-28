@@ -27,7 +27,6 @@ public abstract class Plant extends Character {
         this.cost = cost;
         this.position  = position;
         this.lastBought = 0;
-        timeline.play();
     }
     public int getBuyTime() {
         return buyTime;
@@ -80,6 +79,7 @@ class NormalPeaShooter extends PeaShooter{
         super(position);
         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         plantImage = new ImageView(m);
+        timeline.play();
     }
     @Override
     protected  Pea shootPeas(){
