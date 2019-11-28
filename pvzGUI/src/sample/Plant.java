@@ -1,12 +1,14 @@
 package sample;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.sql.Time;
 import java.util.Random;
 
 
@@ -17,12 +19,15 @@ public abstract class Plant extends Character {
     protected double lastBought;
     protected ImageView plantImage;
     protected TranslateTransition tt;
+    protected Timeline timeline = new Timeline();
+
     public Plant(int buyTime,int cost,int defense, int[] position){
         super( defense);
         this.buyTime = buyTime;
         this.cost = cost;
         this.position  = position;
         this.lastBought = 0;
+        timeline.play();
     }
     public int getBuyTime() {
         return buyTime;
@@ -43,6 +48,10 @@ public abstract class Plant extends Character {
 
     public ImageView getPlantImage() {
         return plantImage;
+    }
+
+    public Timeline getTimeline() {
+        return timeline;
     }
 }
 

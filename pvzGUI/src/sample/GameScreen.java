@@ -144,22 +144,22 @@ public class GameScreen implements Serializable {
         int b = r.nextInt(3);
         if(b==2){
             int a = r.nextInt(5);
-            NormalZombie z = new NormalZombie(a);
+             NormalZombie z = new NormalZombie(a);
             lawngrid.add(z.getZombieImage(),9,a);
             z.move();
         }
+
     }
     public void moveZombiePeas(){
 
     }
     public void addPlant(int[] position, Plant plant){
-        //lawngrid.add(plant.getPlantImage(),position[0],position[1]);
         Random r = new Random();
         int a = r.nextInt(10);
-        KeyFrame k = new KeyFrame(new Duration(2500 - 60*a), event -> {
+        KeyFrame k = new KeyFrame(new Duration(2500), event -> {
             plant.useAbility();
         });
-        timeline.getKeyFrames().add(k);
+        plant.getTimeline().getKeyFrames().add(k);
     }
     public void removePlant(int[][] position){
 
