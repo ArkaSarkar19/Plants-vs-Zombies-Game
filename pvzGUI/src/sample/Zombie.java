@@ -112,7 +112,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
 class NormalZombie extends Zombie{
     public NormalZombie(int lane, GameScreen l){
-        super(0,25,lane,0,410, l);
+        super(0,25,lane,0,10, l);
         Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_normal.gif").toString());
         zombieImage = new ImageView(z);
         tt = new TranslateTransition();
