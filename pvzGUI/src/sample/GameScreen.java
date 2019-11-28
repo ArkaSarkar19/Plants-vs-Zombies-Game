@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -21,11 +22,11 @@ public class GameScreen implements Serializable {
     private int sunTimer;
     private Lawnmower[] lawnmowers;
     private Shovel shovel;
-    private TreeSet<Zombie> laneZombie_1;
-    private TreeSet<Zombie> laneZombie_2;
-    private TreeSet<Zombie> laneZombie_3;
-    private TreeSet<Zombie> laneZombie_4;
-    private TreeSet<Zombie> laneZombie_5;
+    private ArrayList<Zombie> laneZombie_1;
+    private ArrayList<Zombie> laneZombie_2;
+    private ArrayList<Zombie> laneZombie_3;
+    private ArrayList<Zombie> laneZombie_4;
+    private ArrayList<Zombie> laneZombie_5;
     private TreeSet<Pea> lanePea_1;
     private TreeSet<Pea> lanePea_2;
     private TreeSet<Pea> lanePea_3;
@@ -38,6 +39,16 @@ public class GameScreen implements Serializable {
         this.startTime = System.currentTimeMillis();
         this.sunTimer = 10000;
         this.sunTokens = 0;
+        this.laneZombie_1 = new ArrayList<>();
+        this.laneZombie_2 = new ArrayList<>();
+        this.laneZombie_3 = new ArrayList<>();
+        this.laneZombie_4 = new ArrayList<>();
+        this.laneZombie_5 = new ArrayList<>();
+
+    }
+
+    public static GridPane getLawngrid() {
+            return lawngrid;
     }
 
     public int getSunTokens() {
@@ -100,23 +111,23 @@ public class GameScreen implements Serializable {
         return lanePea_5;
     }
 
-    public TreeSet<Zombie> getLaneZombie_1() {
+    public ArrayList<Zombie> getLaneZombie_1() {
         return laneZombie_1;
     }
 
-    public TreeSet<Zombie> getLaneZombie_2() {
+    public ArrayList<Zombie> getLaneZombie_2() {
         return laneZombie_2;
     }
 
-    public TreeSet<Zombie> getLaneZombie_3() {
+    public ArrayList<Zombie> getLaneZombie_3() {
         return laneZombie_3;
     }
 
-    public TreeSet<Zombie> getLaneZombie_4() {
+    public ArrayList<Zombie> getLaneZombie_4() {
         return laneZombie_4;
     }
 
-    public TreeSet<Zombie> getLaneZombie_5() {
+    public ArrayList<Zombie> getLaneZombie_5() {
         return laneZombie_5;
     }
 
@@ -144,7 +155,32 @@ public class GameScreen implements Serializable {
         int b = r.nextInt(3);
         if(b==2){
             int a = r.nextInt(5);
-             NormalZombie z = new NormalZombie(a);
+            NormalZombie z;
+            if(a ==0) {
+                z = new NormalZombie(a, this);
+                laneZombie_1.add(z);
+//                break;
+            }
+            else if (a==1){
+                z = new NormalZombie(a,this);
+                laneZombie_2.add(z);
+//                break;
+            }
+            else if (a==2) {
+                z = new NormalZombie(a, this);
+                laneZombie_3.add(z);
+//                break;
+            }
+            else if (a==3) {
+                z = new NormalZombie(a, this);
+                laneZombie_4.add(z);
+//                break;
+            }
+            else{
+                z = new NormalZombie(a,this);
+                laneZombie_5.add(z);
+//                break;
+            }
             lawngrid.add(z.getZombieImage(),9,a);
             z.move();
         }
