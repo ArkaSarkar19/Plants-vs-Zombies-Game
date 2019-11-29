@@ -62,6 +62,17 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         return (this.id==z.getID());
     }
 
+    public void peaAttack(int attack){
+        if (this.hp<=attack){
+            hp = 0;
+            System.out.println("ab marega ye");
+            this.removeZombie();
+        }
+        else{
+            hp -=attack;
+        }
+    }
+
     public int getID(){
         return id;
     }
@@ -159,8 +170,12 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected void removeZombie(){
         for (int i =0;i<ZombieLane.size();i++){
             Zombie z = ZombieLane.get(i);
+
             if (z.equals(this)){
                 gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
+                ZombieLane.remove(i);
+                tt.stop();
+                tt= null;
                 z = null;
                 System.gc();
                 break;

@@ -6,26 +6,47 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 public class Pea extends GameObject{
     protected int  attack;
     protected int speed;
     protected int lane;
-    protected int[] position;
+    protected int xPos;
+    protected boolean stop;
     protected ImageView peaImage;
     protected TranslateTransition tt;
     protected static Timeline timeline;
     protected GameScreen gameScreen;
-    public Pea(int[] position,int lane, GameScreen gameScreen){
-        this.position = position;
+    protected ArrayList<Zombie> ZombieLane;
+    protected int[] pos;
+    public Pea(int[] pos,int position,int lane, GameScreen gameScreen){
+        this.xPos = position;
+        this.pos = pos;
         this.lane = lane;
         this.attack = 25;
         this.speed = 25;
+        if (lane ==0){
+            ZombieLane = gameScreen.getLaneZombie_1();
+        }
+        else if (lane ==1){
+            ZombieLane = gameScreen.getLaneZombie_2();
+        }
+        else if (lane ==2){
+            ZombieLane = gameScreen.getLaneZombie_3();
+        }
+        else if (lane ==3){
+            ZombieLane = gameScreen.getLaneZombie_4();
+        }
+        else{
+            ZombieLane = gameScreen.getLaneZombie_5();
+        }
         Image z = new Image(Pea.class.getResource("resources/spritesNStuff/Pea.png").toString());
         peaImage = new ImageView(z);
         tt = new TranslateTransition();
         tt.setNode(peaImage);
         this.gameScreen = gameScreen;
-        gameScreen.lawngrid.add(this.getPeaImage(),position[0]+1,position[1]);
+        gameScreen.lawngrid.add(this.getPeaImage(),pos[0]+1,pos[1]);
     }
 
     public int getAttack() {
@@ -36,18 +57,15 @@ public class Pea extends GameObject{
         return lane;
     }
 
-    public int[] getPosition() {
-        return position;
+    public int getPosition() {
+        return xPos;
     }
 
     public int getSpeed() {
         return speed;
     }
-    protected void  attack(Zombie zombie){
-
-    }
-    protected boolean checkBoundary(){
-        return position[1]<=0;
+    protected void  attack(Zombie zomb){
+       ;
     }
 
     public ImageView getPeaImage() {
@@ -56,14 +74,36 @@ public class Pea extends GameObject{
 
     protected void move(){
         tt.setDuration(Duration.millis(100));
-        peaImage.setX(800);
+        peaImage.setX(xPos);
         tt.setByX(+speed);
         tt.play();
         tt.setOnFinished(e->{
-            tt.playFromStart();
-            peaImage.setX(peaImage.getX()-speed);
-            if(peaImage.getX()<= 0){
+            peaImage.setX(peaImage.getX()+speed);
+            if(peaImage.getX()>= 830){
+                gameScreen.getLawngrid().getChildren().remove(this.peaImage);
+                peaImage= null;
                 tt.stop();
+                stop=true;
+                tt=null;
+
+                System.gc();
+                return;
+            }
+            for (int i=0;i<ZombieLane.size();i++){
+                if ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMinX() -50 <= this.peaImage.getX()) && ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMaxX()+25 >= this.peaImage.getX()))){
+                    System.out.println("HIT HUA HAI");
+
+                    gameScreen.getLawngrid().getChildren().remove(this.peaImage);
+                    attack(ZombieLane.get(i));
+                    peaImage= null;
+                    tt.stop();
+                    stop=true;
+                    System.gc();
+                    break;
+                }
+            }
+            if (!stop){
+                tt.playFromStart();
             }
         });
     }
@@ -74,7 +114,11 @@ public class Pea extends GameObject{
 }
 
 class NormalPea extends Pea{
-    public NormalPea(int[] position, int lane, GameScreen gameScreen){
-        super(position,lane,gameScreen);
+    public NormalPea(int[] pos,int position, int lane, GameScreen gameScreen){
+        super(pos, position,lane,gameScreen);
+    }
+    @Override
+    protected void  attack(Zombie zomb){
+        zomb.peaAttack(attack);
     }
 }

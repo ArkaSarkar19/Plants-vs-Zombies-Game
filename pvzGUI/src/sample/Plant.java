@@ -134,7 +134,7 @@ class NormalPeaShooter extends PeaShooter{
     }
     @Override
     protected  Pea shootPeas(int lane){
-        NormalPea p = new NormalPea(position,lane,gameScreen);
+        NormalPea p = new NormalPea(position,(position[0]+1)*800/9,lane,gameScreen);
         p.move();
         return null;
     }
@@ -160,12 +160,6 @@ class Sunflower extends Plant{
 
     @Override
     public GameObject useAbility() {
-//        if(lastSunProduced==0 || System.currentTimeMillis()-lastSunProduced > timeIntervalOfSuns){
-//            lastSunProduced = System.currentTimeMillis();
-//            return this.produceSuns();
-//
-//        }
-//        this.produceSuns();
         return null;
     }
 
