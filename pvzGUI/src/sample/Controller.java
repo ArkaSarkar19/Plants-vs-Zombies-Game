@@ -204,6 +204,7 @@ public class Controller {
     private void drop(Pane s, String str, int[] position){
         if (str.equals("sunflower")){
             Sunflower p = new Sunflower(position);
+            gameScreen.addPlant(position,p);
             s.getChildren().add(p.getPlantImage());
             p.produceSuns();
 
