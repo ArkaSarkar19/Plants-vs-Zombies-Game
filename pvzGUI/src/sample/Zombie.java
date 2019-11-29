@@ -108,24 +108,23 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                     }
                     break;
                 } else {
-                    speed = 10;
+                    speed = s;
                 }
             }
         }
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
                 if (gameScreen.eatPlant(getJ,lane, attack)){
-                    speed = 10;
+                    speed = s;
                     stop = false;
                 }
                 else {
                     stop = true;
                     speed = 0;
                 }
-
             }
             else{
-                speed = 10;
+                speed = s;
             }
         }
         return getJ;
@@ -138,8 +137,12 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         tt.setOnFinished(e->{
             zombieImage.setX(zombieImage.getX()-speed);
             if(zombieImage.getX()<= 0){
-                tt.stop();
-                removeZombie();
+                if (gameScreen.getLawnmowers()[lane] !=null){
+                    System.out.println("ho jaye shuru");
+                    gameScreen.moveLawnmover(lane);
+                }
+//                tt.stop();
+//                removeZombie();
                 return;
             }
             int getJ = attack(-1,finSpeed);
@@ -170,7 +173,6 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected void removeZombie(){
         for (int i =0;i<ZombieLane.size();i++){
             Zombie z = ZombieLane.get(i);
-
             if (z.equals(this)){
                 gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
                 ZombieLane.remove(i);

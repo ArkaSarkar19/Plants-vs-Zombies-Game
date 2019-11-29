@@ -61,6 +61,10 @@ public class GameScreen implements Serializable {
         this.level = level;
     }
 
+    public void setLawnmowers(Lawnmower[] lawnmowers) {
+        this.lawnmowers = lawnmowers;
+    }
+
     public  GridPane getLawngrid() {
             return lawngrid;
     }
@@ -269,7 +273,6 @@ public class GameScreen implements Serializable {
     }
     public void start(){
         Label progressText = (Label)level.getScene().lookup("#progessText");
-
         KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
             System.out.println(level.getTotalZombies());
             System.out.println(level.getCurrentZombies());
@@ -293,5 +296,9 @@ public class GameScreen implements Serializable {
 
     public void setSunTokens(int sunTokens) {
         this.sunTokens = sunTokens;
+    }
+    public void moveLawnmover(int lane){
+        getLawnmowers()[lane].move();
+
     }
 }

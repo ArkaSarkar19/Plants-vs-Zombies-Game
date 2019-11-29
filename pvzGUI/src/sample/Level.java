@@ -2,6 +2,7 @@ package sample;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.util.Duration;
@@ -113,6 +114,8 @@ class Level1 extends Level{
         level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         scene1 = new Scene(login, 1028,702);
+
+
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
         Pane sp00 = (Pane)scene1.lookup("#sp00");
         Pane sp01 = (Pane)scene1.lookup("#sp01");
@@ -164,6 +167,13 @@ class Level1 extends Level{
         GameScreen gameScreen = new GameScreen();
         super.gameScreen = gameScreen;
         gameScreen.setLevel(this);
+        Lawnmower m1 = new Lawnmower(0,(ImageView) scene1.lookup("#lMower1"),gameScreen);
+        Lawnmower m2 = new Lawnmower(1,(ImageView) scene1.lookup("#lMower2"),gameScreen);
+        Lawnmower m3 = new Lawnmower(2,(ImageView) scene1.lookup("#lMower3"),gameScreen);
+        Lawnmower m4 = new Lawnmower(3,(ImageView) scene1.lookup("#lMower4"),gameScreen);
+        Lawnmower m5 = new Lawnmower(4,(ImageView) scene1.lookup("#lMower5"),gameScreen);
+        Lawnmower[] lawnmowers = new Lawnmower[]{m1,m2,m3,m4,m5};
+        gameScreen.setLawnmowers(lawnmowers);
         gameScreen.setLawngrid(p);
         Controller.setGameScreen(gameScreen);
         level1window.setScene(scene1);

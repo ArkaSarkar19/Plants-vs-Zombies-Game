@@ -79,6 +79,8 @@ public class Controller {
 
     @FXML
     private Pane peaShooter;
+    @FXML
+    private Pane shovel;
 
     public void handleStart() throws IOException {
        LoginBox.getLogin();
@@ -144,6 +146,15 @@ public class Controller {
         db.setContent(cp);
         event.consume();
     }
+    public void dragShovel(MouseEvent event){
+        Dragboard db  = shovel.startDragAndDrop(TransferMode.ANY);
+        String sf = "shovel";
+        ClipboardContent cp = new ClipboardContent();
+        cp.putString(sf);
+        db.setContent(cp);
+        event.consume();
+    }
+
     public void dragOver(DragEvent event){
         if (event.getDragboard().hasString()){
             event.acceptTransferModes(TransferMode.ANY);
@@ -208,9 +219,12 @@ public class Controller {
             NormalPeaShooter p = new NormalPeaShooter(position,gameScreen);
             gameScreen.addPlant(position,p);
             s.getChildren().add(p.getPlantImage());
-
         }
-        else;
+        else if (str.equals("shovel")){
+            if (gameScreen.getGarden()[position[0]][position[1]]!=null){
+                gameScreen.removePlant(position[0],position[1]);
+            }
+        }
     }
 
 
