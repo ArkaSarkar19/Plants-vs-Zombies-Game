@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
@@ -7,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
@@ -38,7 +40,8 @@ public class GameScreen implements Serializable {
 
     private Pane[][] panes;
     public   GridPane lawngrid;
-    public  Timeline timeline;
+    public  Timeline zombieTimeline;
+    public Timeline sunTimeline;
     public GameScreen(){
 //        this.level = level;
         this.garden = new Plant[9][5];
@@ -50,8 +53,8 @@ public class GameScreen implements Serializable {
         this.laneZombie_3 = new ArrayList<>();
         this.laneZombie_4 = new ArrayList<>();
         this.laneZombie_5 = new ArrayList<>();
-//        this.panes = Level.panes;
-
+        this.sunTimeline = new Timeline();
+        sunTimeline.setCycleCount(Animation.INDEFINITE);
     }
 
     public void setLevel(Level level) {
@@ -151,7 +154,7 @@ public class GameScreen implements Serializable {
              Zombie z = this.produceZombies();
 
         });
-        timeline.getKeyFrames().add(k);
+        zombieTimeline.getKeyFrames().add(k);
         return null;
     }
     public void removeZombie(Zombie zombie){
@@ -159,9 +162,14 @@ public class GameScreen implements Serializable {
     }
 
     public void produceSuns(){
-        Random r = new Random();
-        int a = r.nextInt(9);
 
+        KeyFrame k = new KeyFrame(new Duration(10000),event -> {
+            Sun s = new Sun(this);
+
+            s.move();
+        });
+        sunTimeline.getKeyFrames().add(k);
+        sunTimeline.play();
 
     }
     public Zombie produceZombies(){
@@ -196,7 +204,7 @@ public class GameScreen implements Serializable {
                 laneZombie_5.add(z);
 //                break;
             }
-            lawngrid.add(z.getZombieImage(),9,a);
+            lawngrid.add(z.getZombieImage(),9,a+1);
             z.move();
         }
         return z;
@@ -207,9 +215,18 @@ public class GameScreen implements Serializable {
     public void addPlant(int[] position, Plant plant){
         int[] pos  = plant.getPosition();
         garden[position[0]][position[1]] = plant;
-        KeyFrame k = new KeyFrame(new Duration(2500), event -> {
-            plant.useAbility();
-        });
+        KeyFrame k = null;
+
+        if(plant instanceof PeaShooter){
+            k = new KeyFrame(new Duration(3500), event -> {
+                plant.useAbility();
+            });
+        }
+        else if(plant instanceof Sunflower){
+            k = new KeyFrame(new Duration(10000), event -> {
+                plant.useAbility();
+            });
+        }
         plant.getTimeline().getKeyFrames().add(k);
         plant.getTimeline().play();
     }
@@ -242,9 +259,21 @@ public class GameScreen implements Serializable {
     }
 
     public  void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
+        this.zombieTimeline = timeline;
         timeline.setCycleCount(Timeline.INDEFINITE);
 
     }
+    public void start(){
+        this.produceSuns();
+        this.spawnZombie();
+        this.sunTokens = 50;
+    }
 
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setSunTokens(int sunTokens) {
+        this.sunTokens = sunTokens;
+    }
 }

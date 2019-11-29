@@ -13,7 +13,7 @@ public class Pea extends GameObject{
     protected int[] position;
     protected ImageView peaImage;
     protected TranslateTransition tt;
-    protected static Timeline timeline;
+    protected  Timeline timeline;
     protected GameScreen gameScreen;
     public Pea(int[] position,int lane, GameScreen gameScreen){
         this.position = position;
@@ -25,7 +25,7 @@ public class Pea extends GameObject{
         tt = new TranslateTransition();
         tt.setNode(peaImage);
         this.gameScreen = gameScreen;
-        gameScreen.lawngrid.add(this.getPeaImage(),position[0]+1,position[1]);
+        gameScreen.lawngrid.add(this.getPeaImage(),position[0]+1,position[1]+1);
     }
 
     public int getAttack() {
@@ -68,8 +68,8 @@ public class Pea extends GameObject{
         });
     }
 
-    public static void setTimeline(Timeline timeline) {
-        Pea.timeline = timeline;
+    public  void setTimeline(Timeline timeline) {
+        timeline = timeline;
     }
 }
 

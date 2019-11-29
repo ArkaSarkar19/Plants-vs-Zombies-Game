@@ -21,7 +21,7 @@ public class Level extends GameObject implements Serializable  {
     protected GameScreen gameInstance;
     protected Player player;
     protected Pane[][] panes;
-
+    protected Scene scene1;
     public Level(ArrayList<String> availablePlants,ArrayList<String> avalableZombies,double[] probabilityZombie,GameScreen gameInstance,Player player){
         this.availablePlants = availablePlants;
         this.avalableZombies = avalableZombies;
@@ -65,9 +65,9 @@ public class Level extends GameObject implements Serializable  {
         return this.panes;
     }
 
-
-
-
+    public Scene getScene() {
+        return scene1;
+    }
 }
 
 class Level1 extends Level{
@@ -87,7 +87,7 @@ class Level1 extends Level{
         level1window = new Stage();
         level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
-        Scene scene1 = new Scene(login, 1028,702);
+        scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
         Pane sp00 = (Pane)scene1.lookup("#sp00");
         Pane sp01 = (Pane)scene1.lookup("#sp01");
@@ -149,11 +149,13 @@ class Level1 extends Level{
         Label progressText = (Label)scene1.lookup("#progessText");
         Timeline tml = new Timeline();
         gameScreen.setTimeline(tml);
-        gameScreen.spawnZombie();
+        gameScreen.start();
+        gameScreen.setLevel(this);
         KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
             progressText.setText(String.valueOf((Math.round((System.currentTimeMillis() - start)/duration))) + "%");
         });
         tml.getKeyFrames().add(k1);
         tml.play();
     }
+
 }

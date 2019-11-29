@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 //import java.sql.Time;
+import java.sql.Time;
 import java.util.Random;
 
 
@@ -21,7 +22,7 @@ public abstract class Plant extends Character {
 //    protected int hp;
     protected ImageView plantImage;
     protected TranslateTransition tt;
-    protected Timeline timeline = new Timeline();
+    protected Timeline timeline;
     protected GameScreen gameScreen;
     public Plant(int buyTime,int cost,int defense, int[] position){
         super(defense);
@@ -29,6 +30,8 @@ public abstract class Plant extends Character {
         this.cost = cost;
         this.position  = position;
         this.lastBought = 0;
+        timeline = new Timeline();
+
         timeline.setCycleCount(Animation.INDEFINITE);
     }
     public int getBuyTime() {
@@ -160,23 +163,24 @@ class Sunflower extends Plant{
 
     @Override
     public GameObject useAbility() {
-//        if(lastSunProduced==0 || System.currentTimeMillis()-lastSunProduced > timeIntervalOfSuns){
-//            lastSunProduced = System.currentTimeMillis();
-//            return this.produceSuns();
-//
-//        }
-//        this.produceSuns();
+        this.produceSuns();
         return null;
     }
 
     public Sun produceSuns(){
-        KeyFrame k2 = new KeyFrame(new Duration(2500),event -> {
-            Sun new_sun = new Sun(position);
-             gameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
-            //s.getChildren().add(new_sun.getSunImage());
-        });
-        timeline.getKeyFrames().add(k2);
-        timeline.play();
+//        KeyFrame k2 = new KeyFrame(new Duration(7500),event -> {
+//            Sun new_sun = new Sun(position,gameScreen);
+//             gameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]+1);
+//            //s.getChildren().add(new_sun.getSunImage());
+//            new_sun.move();
+//        });
+//        timeline.getKeyFrames().add(k2);
+//        timeline.play();
+
+        Sun new_sun = new Sun(position,gameScreen);
+        gameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]+1);
+        //s.getChildren().add(new_sun.getSunImage());
+        new_sun.move();
         return null;
     }
 }
