@@ -161,7 +161,17 @@ public class GameScreen implements Serializable {
     }
     public Zombie spawnZombie(){
         Timeline t = null;
-        KeyFrame k = new KeyFrame(new Duration(2500), event -> {
+        double duration = 0;
+        if(level.getProgress()<25){
+            duration = 6000;
+        }
+        else if(level.getProgress() > 26 && level.getProgress() < 65){
+            duration = 4500;
+        }
+        else{
+            duration = 1800;
+        }
+        KeyFrame k = new KeyFrame(new Duration(duration), event -> {
              Zombie z = this.produceZombies();
 
         });
@@ -188,7 +198,7 @@ public class GameScreen implements Serializable {
         int b = r.nextInt(3);
         NormalZombie z = null;
 
-        if(b==2){
+        if(b<=2){
             int a = r.nextInt(5);
             if(a ==0) {
                 z = new NormalZombie(a, this);
@@ -236,11 +246,25 @@ public class GameScreen implements Serializable {
             k = new KeyFrame(new Duration(3500), event -> {
                 plant.useAbility();
             });
+            Timeline t = new Timeline();
+            t.setCycleCount(700);
+            KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+                inactivePeaShooter();
+            });
+            t.getKeyFrames().add(k1);
+            t.play();
         }
         else if(plant instanceof Sunflower){
             k = new KeyFrame(new Duration(12000), event -> {
                 plant.useAbility();
             });
+            Timeline t = new Timeline();
+            t.setCycleCount(700);
+            KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+                inactiveSunFlower();
+            });
+            t.getKeyFrames().add(k1);
+            t.play();
         }
         plant.getTimeline().getKeyFrames().add(k);
         plant.getTimeline().play();

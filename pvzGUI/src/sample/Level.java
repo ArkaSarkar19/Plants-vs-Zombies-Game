@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Level extends GameObject implements Serializable  {
@@ -106,7 +109,7 @@ class Level1 extends Level{
     public static TranslateTransition tt;
     public Level1(Player player,GameScreen gameInstance){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], gameInstance, player);
-        totalZombies = 35;
+        totalZombies = 28;
         this.availablePlants = new ArrayList<String>();
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");
@@ -118,8 +121,8 @@ class Level1 extends Level{
         level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         scene1 = new Scene(login, 1028,702);
-
-
+//        MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("resources/sounds/background.wav").toUri().toString()));
+//        mediaPlayer.play();
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
         Pane sp00 = (Pane)scene1.lookup("#sp00");
         Pane sp01 = (Pane)scene1.lookup("#sp01");
