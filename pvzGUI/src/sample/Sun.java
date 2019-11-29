@@ -1,16 +1,11 @@
 package sample;
 
 import javafx.animation.TranslateTransition;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-
-import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
 
 public class Sun extends GameObject{
