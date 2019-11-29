@@ -9,9 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import javax.rmi.CORBA.Tie;
 import java.io.Serializable;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
@@ -46,6 +50,7 @@ public class GameScreen implements Serializable {
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
     public  Timeline buyPlantTimeline;
+    public Timeline soundTimeline;
     public GameScreen(){
 //        this.level = level;
         this.garden = new Plant[9][5];
@@ -59,8 +64,10 @@ public class GameScreen implements Serializable {
         this.laneZombie_5 = new ArrayList<>();
         this.sunTimeline = new Timeline();
         this.buyPlantTimeline = new Timeline();
+        this.soundTimeline  = new Timeline();
         sunTimeline.setCycleCount(Animation.INDEFINITE);
         buyPlantTimeline.setCycleCount(Animation.INDEFINITE);
+        soundTimeline.setCycleCount(Animation.INDEFINITE);
         buyPlantTimeline.play();
     }
 
@@ -335,7 +342,13 @@ public class GameScreen implements Serializable {
 
             }
         });
+
         buyPlantTimeline.getKeyFrames().add(k2);
+        KeyFrame k3 = new KeyFrame(new Duration(1000),event -> {
+            MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+            mediaPlayer.play();
+        });
+        soundTimeline.getKeyFrames().add(k3);
         this.produceSuns();
         this.spawnZombie();
         this.sunTokens = 50;
@@ -379,5 +392,9 @@ public class GameScreen implements Serializable {
 
     public Timeline getBuyPlantTimeline() {
         return buyPlantTimeline;
+    }
+
+    public Timeline getSoundTimeline() {
+        return soundTimeline;
     }
 }

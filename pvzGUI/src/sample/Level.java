@@ -121,8 +121,6 @@ class Level1 extends Level{
         level1window.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         scene1 = new Scene(login, 1028,702);
-//        MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("resources/sounds/background.wav").toUri().toString()));
-//        mediaPlayer.play();
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
         Pane sp00 = (Pane)scene1.lookup("#sp00");
         Pane sp01 = (Pane)scene1.lookup("#sp01");
@@ -195,6 +193,7 @@ class Level1 extends Level{
         gameScreen.start();
         tml.play();
         gameScreen.getBuyPlantTimeline().play();
+        gameScreen.getSoundTimeline().play();
 
 
     }
