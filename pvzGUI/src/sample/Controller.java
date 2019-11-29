@@ -28,7 +28,7 @@ public class Controller {
     public ImageView textonlevelscreen;
     public Button level1Button;
     public GridPane lawngrid;
-    public  Stage inGameMenuwindow;
+    public Stage inGameMenuwindow;
     public StackPane sp00;
     public StackPane sp01;
     public StackPane sp02;
@@ -74,8 +74,6 @@ public class Controller {
     public StackPane sp82;
     public StackPane sp83;
     public StackPane sp84;
-
-
     @FXML
     private Pane sunflower;
 
@@ -87,7 +85,6 @@ public class Controller {
        Main.window.close();
     }
     public void handleSignup() throws IOException {
-
         LoginBox.getSignup();
         LoginBox.loginwindow.close();
     }
@@ -103,7 +100,6 @@ public class Controller {
 
     }
     public void handleLogin() throws IOException {
-
         LoginBox.getLevelpage();
         LoginBox.loginwindow.close();
     }
@@ -127,7 +123,6 @@ public class Controller {
                 e.printStackTrace();
             }
         });
-
         inGameMenuwindow.setScene(scene1);
         inGameMenuwindow.setResizable(false);
         inGameMenuwindow.show();
