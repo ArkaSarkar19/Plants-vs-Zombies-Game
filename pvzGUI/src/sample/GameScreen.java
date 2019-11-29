@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -205,6 +206,10 @@ public class GameScreen implements Serializable {
             }
             lawngrid.add(z.getZombieImage(),9,a+1);
             z.move();
+            int prev = level.getCurrentZombies()+1;
+            level.setCurrentZombies(prev);
+            System.out.println(prev);
+
         }
         return z;
     }
@@ -217,12 +222,12 @@ public class GameScreen implements Serializable {
         KeyFrame k = null;
 
         if(plant instanceof PeaShooter){
-            k = new KeyFrame(new Duration(3500), event -> {
+            k = new KeyFrame(new Duration(5500), event -> {
                 plant.useAbility();
             });
         }
         else if(plant instanceof Sunflower){
-            k = new KeyFrame(new Duration(10000), event -> {
+            k = new KeyFrame(new Duration(15000), event -> {
                 plant.useAbility();
             });
         }
@@ -263,6 +268,20 @@ public class GameScreen implements Serializable {
 
     }
     public void start(){
+        Label progressText = (Label)level.getScene().lookup("#progessText");
+
+        KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+            System.out.println(level.getTotalZombies());
+            System.out.println(level.getCurrentZombies());
+            level.setProgress(level.getCurrentZombies()*100 /level.getTotalZombies());
+            progressText.setText(String.valueOf((Math.round(level.getProgress()) + "%")));
+            if(level.getProgress() > 75){
+                System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
+            }
+
+        });
+        zombieTimeline.getKeyFrames().add(k1);
+//        zombieTimeline.play();
         this.produceSuns();
         this.spawnZombie();
         this.sunTokens = 50;

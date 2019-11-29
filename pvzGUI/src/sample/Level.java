@@ -22,6 +22,10 @@ public class Level extends GameObject implements Serializable  {
     protected Player player;
     protected Pane[][] panes;
     protected Scene scene1;
+    protected int totalZombies;
+    protected int currentZombies = 0;
+    protected double progress;
+
     public Level(ArrayList<String> availablePlants,ArrayList<String> avalableZombies,double[] probabilityZombie,GameScreen gameInstance,Player player){
         this.availablePlants = availablePlants;
         this.avalableZombies = avalableZombies;
@@ -68,18 +72,39 @@ public class Level extends GameObject implements Serializable  {
     public Scene getScene() {
         return scene1;
     }
+
+    public int getCurrentZombies() {
+        return currentZombies;
+    }
+
+    public void setCurrentZombies(int currentZombies) {
+        this.currentZombies = currentZombies;
+    }
+
+    public int getTotalZombies() {
+        return totalZombies;
+    }
+
+    public double getProgress() {
+        return progress;
+    }
+
+    public void setProgress(double progress) {
+        this.progress = progress;
+    }
 }
 
 class Level1 extends Level{
     @FXML
     private Label progressText;
+
     public ArrayList<NormalZombie> lane = new ArrayList<>();
     double start ;
     public static Stage level1window;
     public static TranslateTransition tt;
     public Level1(Player player,GameScreen gameInstance){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], gameInstance, player);
-
+        totalZombies = 35;
     }
 
     public  void getlevel1() throws IOException, InterruptedException {
@@ -149,13 +174,11 @@ class Level1 extends Level{
         Label progressText = (Label)scene1.lookup("#progessText");
         Timeline tml = new Timeline();
         gameScreen.setTimeline(tml);
-        gameScreen.start();
         gameScreen.setLevel(this);
-        KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
-            progressText.setText(String.valueOf((Math.round((System.currentTimeMillis() - start)/duration))) + "%");
-        });
-        tml.getKeyFrames().add(k1);
+        gameScreen.start();
         tml.play();
+
+
     }
 
 }

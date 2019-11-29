@@ -140,6 +140,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             if(zombieImage.getX()<= 0){
                 tt.stop();
                 removeZombie();
+                return;
             }
             int getJ = attack(-1,finSpeed);
             if (!stop) {
