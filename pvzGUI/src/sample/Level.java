@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Level implements Serializable {
+public class Level extends GameObject implements Serializable  {
     protected ArrayList<String> availablePlants;
     protected  ArrayList<String> avalableZombies;
     protected double[] probabilityZombie;
@@ -137,6 +137,7 @@ class Level1 extends Level{
         Pane[][] panes = new Pane[][]{{sp00,sp01,sp02,sp03,sp04},{sp10,sp11,sp12,sp13,sp14},{sp20,sp21,sp22,sp23,sp24},{sp30,sp31,sp32,sp33,sp34},{sp40,sp41,sp42,sp43,sp44},{sp50,sp51,sp52,sp53,sp54},{sp60,sp61,sp62,sp63,sp64},{sp70,sp71,sp72,sp73,sp74},{sp80,sp81,sp82,sp83,sp84}};
         this.setPanes(panes);
         GameScreen gameScreen = new GameScreen();
+        super.gameScreen = gameScreen;
         gameScreen.setLevel(this);
         gameScreen.setLawngrid(p);
         Controller.setGameScreen(gameScreen);

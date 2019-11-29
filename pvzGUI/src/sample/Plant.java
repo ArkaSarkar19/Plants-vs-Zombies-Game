@@ -22,7 +22,7 @@ public abstract class Plant extends Character {
     protected ImageView plantImage;
     protected TranslateTransition tt;
     protected Timeline timeline = new Timeline();
-
+    protected GameScreen gameScreen;
     public Plant(int buyTime,int cost,int defense, int[] position){
         super(defense);
         this.buyTime = buyTime;
@@ -125,15 +125,16 @@ abstract class PeaShooter extends Plant{
 }
 
 class NormalPeaShooter extends PeaShooter{
-    public NormalPeaShooter(int[] position){
+    public NormalPeaShooter(int[] position, GameScreen gameScreen){
         super(position);
         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         plantImage = new ImageView(m);
         plantImage.setX((position[0]+1)*800/9);
+        this.gameScreen = gameScreen;
     }
     @Override
     protected  Pea shootPeas(int lane){
-        NormalPea p = new NormalPea(position,lane);
+        NormalPea p = new NormalPea(position,lane,gameScreen);
         p.move();
         return null;
     }
@@ -145,13 +146,13 @@ class Sunflower extends Plant{
     private  double timeIntervalOfSuns;
     private double lastSunProduced;
     protected TranslateTransition tt;
-    public Sunflower(int[] position){
+    public Sunflower(int[] position, GameScreen gameScreen){
         super(7000,50, 25,position);
         this.timeIntervalOfSuns = 10000;
         this.lastSunProduced = 0;
         plantImage = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
         plantImage.setX((position[0]+1)*800/9);
-
+        this.gameScreen = gameScreen;
         tt = new TranslateTransition();
 
 
@@ -171,7 +172,7 @@ class Sunflower extends Plant{
     public Sun produceSuns(){
         KeyFrame k2 = new KeyFrame(new Duration(2500),event -> {
             Sun new_sun = new Sun(position);
-             GameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
+             gameScreen.lawngrid.add(new_sun.getSunImage(),position[0],position[1]);
             //s.getChildren().add(new_sun.getSunImage());
         });
         timeline.getKeyFrames().add(k2);
@@ -181,8 +182,9 @@ class Sunflower extends Plant{
 }
 
 class WallNut extends Plant{
-    public WallNut(int[] position){
+    public WallNut(int[] position, GameScreen gameScreen){
         super(10000,50,15,position);
+        this.gameScreen = gameScreen;
     }
 
     @Override

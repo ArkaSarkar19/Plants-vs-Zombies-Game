@@ -37,8 +37,8 @@ public class GameScreen implements Serializable {
     private Level level;
 
     private Pane[][] panes;
-    public  static GridPane lawngrid;
-    public static Timeline timeline;
+    public   GridPane lawngrid;
+    public  Timeline timeline;
     public GameScreen(){
 //        this.level = level;
         this.garden = new Plant[9][5];
@@ -58,7 +58,7 @@ public class GameScreen implements Serializable {
         this.level = level;
     }
 
-    public static GridPane getLawngrid() {
+    public  GridPane getLawngrid() {
             return lawngrid;
     }
 
@@ -245,8 +245,9 @@ public class GameScreen implements Serializable {
     }
 
     public  void setTimeline(Timeline timeline) {
-        GameScreen.timeline = timeline;
+        this.timeline = timeline;
         timeline.setCycleCount(Timeline.INDEFINITE);
 
     }
+
 }

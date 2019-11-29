@@ -203,13 +203,15 @@ public class Controller {
 
     private void drop(Pane s, String str, int[] position){
         if (str.equals("sunflower")){
-            Sunflower p = new Sunflower(position);
+            Sunflower p = new Sunflower(position,gameScreen);
+            gameScreen.addPlant(position,p);
+
             s.getChildren().add(p.getPlantImage());
             p.produceSuns();
 
         }
         else if (str.equals("peaShooter")){
-            NormalPeaShooter p = new NormalPeaShooter(position);
+            NormalPeaShooter p = new NormalPeaShooter(position,gameScreen);
             gameScreen.addPlant(position,p);
             s.getChildren().add(p.getPlantImage());
 
@@ -223,7 +225,7 @@ public class Controller {
         System.out.println("sir arka god");
     }
 
-    public static void setGameScreen(GameScreen g) {
+    public  static  void setGameScreen(GameScreen g) {
         gameScreen = g;
 
     }

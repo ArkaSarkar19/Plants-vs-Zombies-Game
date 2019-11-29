@@ -14,7 +14,8 @@ public class Pea extends GameObject{
     protected ImageView peaImage;
     protected TranslateTransition tt;
     protected static Timeline timeline;
-    public Pea(int[] position,int lane){
+    protected GameScreen gameScreen;
+    public Pea(int[] position,int lane, GameScreen gameScreen){
         this.position = position;
         this.lane = lane;
         this.attack = 25;
@@ -23,7 +24,8 @@ public class Pea extends GameObject{
         peaImage = new ImageView(z);
         tt = new TranslateTransition();
         tt.setNode(peaImage);
-        GameScreen.lawngrid.add(this.getPeaImage(),position[0]+1,position[1]);
+        this.gameScreen = gameScreen;
+        gameScreen.lawngrid.add(this.getPeaImage(),position[0]+1,position[1]);
     }
 
     public int getAttack() {
@@ -72,7 +74,7 @@ public class Pea extends GameObject{
 }
 
 class NormalPea extends Pea{
-    public NormalPea(int[] position, int lane){
-        super(position,lane);
+    public NormalPea(int[] position, int lane, GameScreen gameScreen){
+        super(position,lane,gameScreen);
     }
 }

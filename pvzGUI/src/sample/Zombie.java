@@ -93,13 +93,10 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                         stop = false;
                     } else {
                         stop = true;
-                        System.out.println(getZombieImage().getX());
-                        System.out.println("abhi bhi wohi hai");
                         speed = 0;
                     }
                     break;
                 } else {
-                    System.out.println("else execute hua");
                     speed = 10;
                 }
             }
@@ -109,18 +106,14 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = 10;
                     stop = false;
-                    System.out.println("ab chalana chayiye 2");
                 }
                 else {
                     stop = true;
-                    System.out.println(getZombieImage().getX());
-                    System.out.println("abhi bhi wohi hai 2");
                     speed = 0;
                 }
 
             }
             else{
-                System.out.println("else execute hua 2");
                 speed = 10;
             }
         }
