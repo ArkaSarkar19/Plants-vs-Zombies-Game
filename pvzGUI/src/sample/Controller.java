@@ -205,7 +205,6 @@ public class Controller {
         if (str.equals("sunflower")){
             Sunflower p = new Sunflower(position,gameScreen);
             gameScreen.addPlant(position,p);
-
             s.getChildren().add(p.getPlantImage());
             p.produceSuns();
 
