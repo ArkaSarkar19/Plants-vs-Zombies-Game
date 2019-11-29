@@ -93,6 +93,7 @@ public class Level extends GameObject implements Serializable  {
     public void setProgress(double progress) {
         this.progress = progress;
     }
+
 }
 
 class Level1 extends Level{
@@ -106,6 +107,9 @@ class Level1 extends Level{
     public Level1(Player player,GameScreen gameInstance){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], gameInstance, player);
         totalZombies = 35;
+        this.availablePlants = new ArrayList<String>();
+        this.availablePlants.add("peaShooter");
+        this.availablePlants.add("sunFlower");
     }
 
     public  void getlevel1() throws IOException, InterruptedException {
@@ -187,6 +191,7 @@ class Level1 extends Level{
         gameScreen.setLevel(this);
         gameScreen.start();
         tml.play();
+        gameScreen.getBuyPlantTimeline().play();
 
 
     }

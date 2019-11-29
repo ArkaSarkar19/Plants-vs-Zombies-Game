@@ -3,7 +3,10 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -37,11 +40,12 @@ public class GameScreen implements Serializable {
     private TreeSet<Pea> lanePea_4;
     private TreeSet<Pea> lanePea_5;
     private Level level;
-
     private Pane[][] panes;
-    public   GridPane lawngrid;
+    private Controller controller;
+    public  GridPane lawngrid;
     public  Timeline zombieTimeline;
-    public Timeline sunTimeline;
+    public  Timeline sunTimeline;
+    public  Timeline buyPlantTimeline;
     public GameScreen(){
 //        this.level = level;
         this.garden = new Plant[9][5];
@@ -54,7 +58,10 @@ public class GameScreen implements Serializable {
         this.laneZombie_4 = new ArrayList<>();
         this.laneZombie_5 = new ArrayList<>();
         this.sunTimeline = new Timeline();
+        this.buyPlantTimeline = new Timeline();
         sunTimeline.setCycleCount(Animation.INDEFINITE);
+        buyPlantTimeline.setCycleCount(Animation.INDEFINITE);
+        buyPlantTimeline.play();
     }
 
     public void setLevel(Level level) {
@@ -226,12 +233,12 @@ public class GameScreen implements Serializable {
         KeyFrame k = null;
 
         if(plant instanceof PeaShooter){
-            k = new KeyFrame(new Duration(5500), event -> {
+            k = new KeyFrame(new Duration(3500), event -> {
                 plant.useAbility();
             });
         }
         else if(plant instanceof Sunflower){
-            k = new KeyFrame(new Duration(15000), event -> {
+            k = new KeyFrame(new Duration(12000), event -> {
                 plant.useAbility();
             });
         }
@@ -284,7 +291,27 @@ public class GameScreen implements Serializable {
 
         });
         zombieTimeline.getKeyFrames().add(k1);
-//        zombieTimeline.play();
+
+        KeyFrame k2 = new KeyFrame(new Duration(100),event -> {
+
+            ArrayList<String> a = level.getAvailablePlants();
+            for(int i=0;i<a.size();i++){
+                if(a.get(i).equals("peaShooter") && sunTokens - 100 <0){
+                    inactivePeaShooter();
+                }
+               else if(a.get(i).equals("peaShooter") && sunTokens - 100 >=0){
+                    activePeaShooter();
+                }
+                 else if(a.get(i).equals("sunFlower") && sunTokens - 50 <0){
+                    inactiveSunFlower();
+                }
+                 else if(a.get(i).equals("sunFlower") && sunTokens - 50 >=0){
+                    activeSunFLower();
+                }
+
+            }
+        });
+        buyPlantTimeline.getKeyFrames().add(k2);
         this.produceSuns();
         this.spawnZombie();
         this.sunTokens = 50;
@@ -296,9 +323,37 @@ public class GameScreen implements Serializable {
 
     public void setSunTokens(int sunTokens) {
         this.sunTokens = sunTokens;
+        Button s = (Button) getLevel().scene1.lookup("#sunTokenButton");
+        s.setText(String.valueOf(getSunTokens()));
+
     }
     public void moveLawnmover(int lane){
         getLawnmowers()[lane].move();
 
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+    public void inactivePeaShooter(){
+        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter_GS.gif"))));
+    }
+    public void activePeaShooter(){
+        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif"))));
+    }
+    public void inactiveSunFlower(){
+        ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
+        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif"))));
+    }
+    public void activeSunFLower(){
+        ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
+        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
+    }
+
+
+    public Timeline getBuyPlantTimeline() {
+        return buyPlantTimeline;
     }
 }

@@ -174,6 +174,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         for (int i =0;i<ZombieLane.size();i++){
             Zombie z = ZombieLane.get(i);
             if (z.equals(this)){
+//                zombieImage= new ImageView(String.valueOf(new Image(String.valueOf(Zombie.class.getResource("resources/spritesNStuff/zombie_normal_dying.gif")))));
                 gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
                 ZombieLane.remove(i);
                 tt.stop();
@@ -184,9 +185,15 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             }
         }
     }
+
     public Timeline getTimeline() {
+
         return timeline;
     }
+    public void dieZombiegif(){
+
+    }
+
 }
 
 class NormalZombie extends Zombie{

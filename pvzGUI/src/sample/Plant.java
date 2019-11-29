@@ -6,7 +6,7 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.util.Duration;
 
 
 public abstract class Plant extends Character {
@@ -14,7 +14,6 @@ public abstract class Plant extends Character {
     protected final int buyTime;
     protected final int cost;
     protected double lastBought;
-//    protected int hp;
     protected ImageView plantImage;
     protected TranslateTransition tt;
     protected Timeline timeline;
@@ -26,7 +25,6 @@ public abstract class Plant extends Character {
         this.position  = position;
         this.lastBought = 0;
         timeline = new Timeline();
-
         timeline.setCycleCount(Animation.INDEFINITE);
     }
     public int getBuyTime() {
@@ -99,6 +97,7 @@ public abstract class Plant extends Character {
             }
         }
     }
+
 
 }
 

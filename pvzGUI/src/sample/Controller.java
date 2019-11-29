@@ -208,17 +208,26 @@ public class Controller {
 
 
     private void drop(Pane s, String str, int[] position){
-        if (str.equals("sunflower")){
-            Sunflower p = new Sunflower(position,gameScreen);
-            gameScreen.addPlant(position,p);
-            s.getChildren().add(p.getPlantImage());
-            p.produceSuns();
+        if (s.getChildren().size()==0 && str.equals("sunflower")){
+            int prev = gameScreen.getSunTokens();
+            if(prev-50>=0){
+                Sunflower p = new Sunflower(position,gameScreen);
+                gameScreen.addPlant(position,p);
+                gameScreen.setSunTokens(prev - p.getCost());
+                s.getChildren().add(p.getPlantImage());
+                p.produceSuns();
+            }
+
 
         }
-        else if (str.equals("peaShooter")){
-            NormalPeaShooter p = new NormalPeaShooter(position,gameScreen);
-            gameScreen.addPlant(position,p);
-            s.getChildren().add(p.getPlantImage());
+        else if (s.getChildren().size()==0 && str.equals("peaShooter")){
+            int prev = gameScreen.getSunTokens();
+            if(prev-100>=0){
+                NormalPeaShooter p = new NormalPeaShooter(position,gameScreen);
+                gameScreen.addPlant(position,p);
+                gameScreen.setSunTokens(prev - p.getCost());
+                s.getChildren().add(p.getPlantImage());
+            }
         }
         else if (str.equals("shovel")){
             if (gameScreen.getGarden()[position[0]][position[1]]!=null){
