@@ -68,7 +68,7 @@ public abstract class Plant extends Character {
     public boolean eatPlant(int attk){
         if (defense>0){
             if (defense>attk){
-                System.out.println(1);
+
                 defense-=attk;
                 return false;
             }
@@ -77,26 +77,26 @@ public abstract class Plant extends Character {
                 attk -= defense;
                 if (attk>hp){
                     hp = 0;
-                    System.out.println(2);
+
                     return true;
                 }
                 else{
                     hp -= attk;
-                    System.out.println(3);
+
                     return false;
                 }
             }
         }
         else{
-            System.out.println(attk+ " "+ hp);
+
             if (attk>hp){
                 hp = 0;
-                System.out.println(5);
+
                 return true;
             }
             else{
                 hp -= attk;
-                System.out.println(6);
+
                 return false;
             }
         }

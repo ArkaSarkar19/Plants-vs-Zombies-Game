@@ -139,7 +139,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             }
             tt.setByX(-speed);
             tt.playFromStart();
-            System.out.println(tt.getByX());
+//            System.out.println(tt.getByX());
         });
     }
     public boolean gameOver(){

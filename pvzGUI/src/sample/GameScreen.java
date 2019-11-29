@@ -214,7 +214,6 @@ public class GameScreen implements Serializable {
         plant.getTimeline().play();
     }
     public void removePlant(int j, int lane){
-        System.out.println("gone");
         Pane p = level.panes[j][lane];
         p.getChildren().remove(garden[j][lane].getPlantImage());
         garden[j][lane].setTimelineNull();
@@ -230,8 +229,6 @@ public class GameScreen implements Serializable {
     }
 
     public boolean eatPlant(int j, int lane, int attk){
-        System.out.println(garden[j][lane]);
-        System.out.println(garden[j][lane].getHp());
         if(garden[j][lane].eatPlant(attk)){
             removePlant(j,lane);
             return true;
