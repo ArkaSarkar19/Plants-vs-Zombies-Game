@@ -16,6 +16,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected int position;
     protected int speed;
     protected int attack;
+    protected boolean stop;
     protected double timeInstantiated;
     protected ImageView zombieImage;
     protected TranslateTransition tt;
@@ -24,8 +25,10 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected Timeline timeline = new Timeline();
     private static int counter;
     protected int id;
-    public Zombie(int defense, int attack, int lane, int position, int speed, GameScreen gs){
+    protected final int finSpeed;
+    public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
+        this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
         if (lane ==0){
@@ -50,6 +53,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         this.speed = speed;
         this.timeInstantiated = System.currentTimeMillis();
         timeline.setCycleCount(Animation.INDEFINITE);
+        tt = new TranslateTransition();
     }
 
     @Override
@@ -79,11 +83,71 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     public int getAttack() {
         return attack;
     }
-    public void attack(Plant plant){
+    public int attack(int getJ, int s){
+        if (getJ==-1) {
+            for (int j = 0; j < 9; j++) {
+                if (gameScreen.getGarden()[j][lane] != null && (zombieImage.getBoundsInLocal().getMinX() + 30 <= gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX() > gameScreen.getGarden()[j][lane].getPlantImage().getX())) {
+                    getJ = j;
+                    if (gameScreen.eatPlant(j, lane, attack)) {
+                        speed = s;
+                        stop = false;
+                    } else {
+                        stop = true;
+                        System.out.println(getZombieImage().getX());
+                        System.out.println("abhi bhi wohi hai");
+                        speed = 0;
+                    }
+                    break;
+                } else {
+                    System.out.println("else execute hua");
+                    speed = 10;
+                }
+            }
+        }
+        else{
+            if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
+                if (gameScreen.eatPlant(getJ,lane, attack)){
+                    speed = 10;
+                    stop = false;
+                    System.out.println("ab chalana chayiye 2");
+                }
+                else {
+                    stop = true;
+                    System.out.println(getZombieImage().getX());
+                    System.out.println("abhi bhi wohi hai 2");
+                    speed = 0;
+                }
 
+            }
+            else{
+                System.out.println("else execute hua 2");
+                speed = 10;
+            }
+        }
+        return getJ;
     }
     public void move(){
-
+        tt.setDuration(Duration.millis(1000));
+        getZombieImage().setX(800);
+        tt.setByX(-speed);
+        tt.play();
+        tt.setOnFinished(e->{
+            zombieImage.setX(zombieImage.getX()-speed);
+            if(zombieImage.getX()<= 0){
+                tt.stop();
+                removeZombie();
+            }
+            int getJ = attack(-1,finSpeed);
+            if (!stop) {
+                tt.playFromStart();
+            }
+            else{
+                getJ = attack(getJ,finSpeed);
+            }
+            tt.setByX(-speed);
+            tt.playFromStart();
+            System.out.println(tt.getByX());
+        });
     }
     public boolean gameOver(){
         return position == 0;
@@ -110,7 +174,6 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             }
         }
     }
-
     public Timeline getTimeline() {
         return timeline;
     }
@@ -118,43 +181,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
 class NormalZombie extends Zombie{
     public NormalZombie(int lane, GameScreen l){
-        super(0,25,lane,0,10, l);
+        super(0,15,lane,0,10, 10,l);
         Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_normal.gif").toString());
         zombieImage = new ImageView(z);
-        tt = new TranslateTransition();
         tt.setNode(zombieImage);
-    }
-    @Override
-    public void move(){
-        tt.setDuration(Duration.millis(1000));
-        getZombieImage().setX(800);
-        tt.setByX(-speed);
-        tt.play();
-//        System.out.println(ZombieLane);
-        tt.setOnFinished(e->{
-            tt.playFromStart();
-            zombieImage.setX(zombieImage.getX()-speed);
-            if(zombieImage.getX()<= 0){
-                tt.stop();
-                removeZombie();
-
-            }
-//            System.out.println(this.id+ " " +this + " " + zombieImage.getBoundsInParent());
-
-            for(int j=0;j<9;j++){
-                    if(gameScreen.getGarden()[j][lane] !=null){
-//                        System.out.println("zombie ki position hai ye: "+ (800-zombieImage.getBoundsInLocal().getMinX())+" |ab plant ki position ye hai "+ gameScreen.getGarden()[j][lane].getPlantImage().getBoundsInLocal().getMaxX());
-                        //System.out.println(gameScreen.getGarden()[j][lane].getPlantImage().getX());
-
-                    }
-
-                    if(gameScreen.getGarden()[j][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[j][lane].getPlantImage().getX())){
-                        System.out.println("ooh ooh jaane jaana dhunde tujhe diwana");
-                        tt.stop();
-                    }
-                }
-
-        });
-
     }
 }

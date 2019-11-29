@@ -3,10 +3,10 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
@@ -34,9 +34,13 @@ public class GameScreen implements Serializable {
     private TreeSet<Pea> lanePea_3;
     private TreeSet<Pea> lanePea_4;
     private TreeSet<Pea> lanePea_5;
+    private Level level;
+
+    private Pane[][] panes;
     public  static GridPane lawngrid;
     public static Timeline timeline;
     public GameScreen(){
+//        this.level = level;
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
         this.sunTimer = 10000;
@@ -46,7 +50,12 @@ public class GameScreen implements Serializable {
         this.laneZombie_3 = new ArrayList<>();
         this.laneZombie_4 = new ArrayList<>();
         this.laneZombie_5 = new ArrayList<>();
+//        this.panes = Level.panes;
 
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public static GridPane getLawngrid() {
@@ -204,13 +213,30 @@ public class GameScreen implements Serializable {
         plant.getTimeline().getKeyFrames().add(k);
         plant.getTimeline().play();
     }
-    public void removePlant(int[][] position){
+    public void removePlant(int j, int lane){
+        System.out.println("gone");
+        Pane p = level.panes[j][lane];
+        p.getChildren().remove(garden[j][lane].getPlantImage());
+        garden[j][lane].setTimelineNull();
+        garden[j][lane] = null;
+        System.gc();
 
     }
     public void collectSunTokens(){
 
     }
     public void addPea(int lane, Pea pea){
+
+    }
+
+    public boolean eatPlant(int j, int lane, int attk){
+        System.out.println(garden[j][lane]);
+        System.out.println(garden[j][lane].getHp());
+        if(garden[j][lane].eatPlant(attk)){
+            removePlant(j,lane);
+            return true;
+        }
+        return false;
 
     }
 

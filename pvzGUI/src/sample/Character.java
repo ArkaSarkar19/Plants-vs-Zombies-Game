@@ -2,7 +2,7 @@ package sample;
 
 public class Character extends GameObject {
     protected double hp;
-    protected final int defense;
+    protected int defense;
     protected final double timeInstantiated;
     public Character(int defense){
         this.hp = 100;

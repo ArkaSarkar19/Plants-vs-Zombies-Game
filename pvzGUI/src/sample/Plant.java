@@ -18,12 +18,13 @@ public abstract class Plant extends Character {
     protected final int buyTime;
     protected final int cost;
     protected double lastBought;
+//    protected int hp;
     protected ImageView plantImage;
     protected TranslateTransition tt;
     protected Timeline timeline = new Timeline();
 
     public Plant(int buyTime,int cost,int defense, int[] position){
-        super( defense);
+        super(defense);
         this.buyTime = buyTime;
         this.cost = cost;
         this.position  = position;
@@ -35,6 +36,11 @@ public abstract class Plant extends Character {
         return buyTime;
     }
 
+    public void setTimelineNull(){
+        this.timeline.stop();
+        this.timeline = null;
+        System.gc();
+    }
     public int[] getPosition()
     {
         return position;
@@ -59,6 +65,42 @@ public abstract class Plant extends Character {
     public Timeline getTimeline() {
         return timeline;
     }
+    public boolean eatPlant(int attk){
+        if (defense>0){
+            if (defense>attk){
+                System.out.println(1);
+                defense-=attk;
+                return false;
+            }
+            else{
+                defense = 0;
+                attk -= defense;
+                if (attk>hp){
+                    hp = 0;
+                    System.out.println(2);
+                    return true;
+                }
+                else{
+                    hp -= attk;
+                    System.out.println(3);
+                    return false;
+                }
+            }
+        }
+        else{
+            System.out.println(attk+ " "+ hp);
+            if (attk>hp){
+                hp = 0;
+                System.out.println(5);
+                return true;
+            }
+            else{
+                hp -= attk;
+                System.out.println(6);
+                return false;
+            }
+        }
+    }
 
 }
 
@@ -76,10 +118,10 @@ abstract class PeaShooter extends Plant{
      }
      @Override
      public GameObject useAbility(){
-         return this.shootPeas();
+         return this.shootPeas(position[1]);
      }
 
-    protected abstract Pea shootPeas();
+    protected abstract Pea shootPeas(int lane);
 }
 
 class NormalPeaShooter extends PeaShooter{
@@ -88,11 +130,10 @@ class NormalPeaShooter extends PeaShooter{
         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         plantImage = new ImageView(m);
         plantImage.setX((position[0]+1)*800/9);
-
     }
     @Override
-    protected  Pea shootPeas(){
-        NormalPea p = new NormalPea(position,0);
+    protected  Pea shootPeas(int lane){
+        NormalPea p = new NormalPea(position,lane);
         p.move();
         return null;
     }
