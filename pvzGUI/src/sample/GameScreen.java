@@ -12,14 +12,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
-import javax.rmi.CORBA.Tie;
 import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeSet;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class GameScreen implements Serializable {
     private Plant[][] garden;
@@ -347,7 +344,9 @@ public class GameScreen implements Serializable {
         KeyFrame k3 = new KeyFrame(new Duration(1000),event -> {
             MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
             mediaPlayer.play();
+
         });
+
         soundTimeline.getKeyFrames().add(k3);
         this.produceSuns();
         this.spawnZombie();
