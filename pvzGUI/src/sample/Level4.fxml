@@ -180,14 +180,14 @@
                         </Button>
                      </children></Pane>
                   <Pane layoutX="472.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
-                  <Pane fx:id= "cherrybomb" layoutX="285.0" layoutY="9.0" onDragDetected="#dragWallNut" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" >
+                  <Pane fx:id= "cherrybomb" layoutX="285.0" layoutY="9.0" onDragDetected="#dragCherryBomb" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" >
                      <children>
                         <ImageView fx:id="cherryBombImage" fitHeight="100" fitWidth="80" layoutX="-10" layoutY="-20">
                            <image>
                               <Image url="@resources/spritesNStuff/cb.gif" />
                            </image>
                         </ImageView>
-                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" styleClass="sunLabel" text="50" textAlignment="CENTER">
+                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" styleClass="sunLabel" text="150" textAlignment="CENTER">
                            <font>
                               <Font name="Quarca-NorBol" size="14.0" />
                            </font>
@@ -200,7 +200,7 @@
                               <Image url="@resources/spritesNStuff/walnut_full_life.gif" />
                            </image>
                         </ImageView>
-                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" styleClass="sunLabel" text="50" textAlignment="CENTER">
+                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50" styleClass="sunLabel" text="50" textAlignment="CENTER">
                            <font>
                               <Font name="Quarca-NorBol" size="14.0" />
                            </font>

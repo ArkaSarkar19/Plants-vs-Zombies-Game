@@ -91,7 +91,10 @@ public class Controller {
     private Pane peaShooter;
     @FXML
     private Pane shovel;
-    private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/shovel.mp3").toUri().toString()));
+    @FXML
+    private Pane cherrybomb;
+    private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\shovel.mp3").toUri().toString()));
+
 
     public void handleStart() throws IOException {
 //        i
@@ -115,11 +118,8 @@ public class Controller {
 
     }
     public void handleLogin() throws IOException {
-//        System.out.println(username.getText()+ " "+ password);
-//        if (username.getText().equals("admin") && password.getText().equals("admin")) {
-            LoginBox.getLevelpage();
-            LoginBox.loginwindow.close();
-//        }
+        LoginBox.getLevelpage();
+        LoginBox.loginwindow.close();
     }
 
     public void getInGameMenu() throws IOException {
@@ -174,13 +174,21 @@ public class Controller {
     public void dragWallNut(MouseEvent event) {
         Dragboard db  = wallnut.startDragAndDrop(TransferMode.ANY);
         String sf = "wallnut";
-        System.out.println("drag ho raha hai tera bhai");
         ClipboardContent cp = new ClipboardContent();
         cp.putString(sf);
         db.setContent(cp);
         event.consume();
     }
 
+    public void dragCherryBomb(MouseEvent event){
+        Dragboard db  = cherrybomb.startDragAndDrop(TransferMode.ANY);
+        String sf = "cherrybomb";
+//        System.out.println("drag ho raha hai tera bhai");
+        ClipboardContent cp = new ClipboardContent();
+        cp.putString(sf);
+        db.setContent(cp);
+        event.consume();
+    }
     public void dragOver(DragEvent event){
         if (event.getDragboard().hasString()){
             event.acceptTransferModes(TransferMode.ANY);
@@ -254,10 +262,19 @@ public class Controller {
             }
         }
         else if(s.getChildren().size()==0 && str.equals("wallnut") && gameScreen.getWallNutAvailable()){
-            System.out.println("drag ho gaya hu mai chutiye");
+//            System.out.println("drag ho gaya hu mai chutiye");
             int prev = gameScreen.getSunTokens();
             if(prev-50>=0){
                 WallNut p = new WallNut(position,gameScreen);
+                gameScreen.addPlant(position,p);
+                gameScreen.setSunTokens(prev - p.getCost());
+                s.getChildren().add(p.getPlantImage());
+            }
+        }
+        else if(s.getChildren().size()==0 && str.equals("cherrybomb") && gameScreen.getCherryBombAvailable()){
+            int prev = gameScreen.getSunTokens();
+            if(prev-150>=0){
+                CherryBomb p = new CherryBomb(position,gameScreen);
                 gameScreen.addPlant(position,p);
                 gameScreen.setSunTokens(prev - p.getCost());
                 s.getChildren().add(p.getPlantImage());

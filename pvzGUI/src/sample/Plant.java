@@ -83,15 +83,12 @@ public abstract class Plant extends Character {
             }
         }
         else{
-
             if (attk>hp){
                 hp = 0;
-
                 return true;
             }
             else{
                 hp -= attk;
-
                 return false;
             }
         }
@@ -182,3 +179,17 @@ class WallNut extends Plant{
     }
 }
 
+class CherryBomb extends Plant{
+    public CherryBomb(int[] position, GameScreen gameScreen){
+        super(10000,50,0,position);
+        this.gameScreen = gameScreen;
+        Image m = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb.gif")));
+        plantImage = new ImageView(m);
+        plantImage.setX((position[0]+1)*800/9);
+    }
+    @Override
+    public GameObject useAbility() {
+        return null;
+    }
+
+}

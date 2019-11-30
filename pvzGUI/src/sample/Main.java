@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 public class Main extends Application {
     public static Parent root;
     public static Stage window;
-    public static MediaPlayer menuSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/menu.wav").toUri().toString()));
-   public static MediaPlayer zombieSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+    public static MediaPlayer menuSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\menu.wav").toUri().toString()));
+   public static MediaPlayer zombieSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
 
     @Override
     public void start(Stage primaryStage) throws Exception{
