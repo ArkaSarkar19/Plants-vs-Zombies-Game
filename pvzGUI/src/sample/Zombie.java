@@ -33,7 +33,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -110,7 +110,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                         gameScreen.blast((int)gameScreen.getGarden()[j][lane].getPlantImage().getX(),lane, gameScreen.getGarden()[j][lane]);
                         return getJ;
                     }
-//                    eatingSound.setAutoPlay(true);
+                    eatingSound.setAutoPlay(true);
+                    eatingSound.setCycleCount(10);
+
                     eatingSound.play();
                     //sound       here
                     if (gameScreen.eatPlant(j, lane, attack)) {
@@ -129,7 +131,10 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
                 //sound here
-                eatingSound.setCycleCount(4);
+                eatingSound.setAutoPlay(true);
+                if(gameScreen.getGarden()[getJ][lane] instanceof WallNut) eatingSound.setCycleCount(13);
+                if(!(gameScreen.getGarden()[getJ][lane] instanceof WallNut)) eatingSound.setCycleCount(4);
+
                 eatingSound.play();
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = s;
@@ -168,6 +173,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             }
             else{
                 getJ = attack(getJ,finSpeed);
+
             }
             tt.setByX(-speed);
             tt.playFromStart();

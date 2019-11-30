@@ -16,8 +16,8 @@
             <GaussianBlur radius="19.99" />
          </effect>
       </ImageView>
-      <Button layoutX="435.0" layoutY="404.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="205.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Restart" />
-      <Button layoutX="446.0" layoutY="276.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="181.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Save" />
+      <Button fx:id="inGameRestartButton" layoutX="435.0" layoutY="404.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="205.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Restart" />
+      <Button fx:id="inGameSaveButton" layoutX="446.0" layoutY="276.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="181.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Save" />
       <Button fx:id="inGameMainMenuButton" layoutX="423.0" layoutY="528.0" mnemonicParsing="false" prefHeight="101.0" prefWidth="228.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Exit" />
       <Button fx:id="inGameResumeButton" layoutX="446.0" layoutY="142.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="181.0" styleClass="inGameMenuButtons" stylesheets="@startpage.css" text="Resume" />
    </children>

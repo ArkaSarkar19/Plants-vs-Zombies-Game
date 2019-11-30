@@ -111,6 +111,9 @@ public class Level extends GameObject implements Serializable  {
     public int getZombiesKilled() {
         return zombiesKilled;
     }
+    public void restart() throws IOException, InterruptedException {
+        this.getlevel();
+    }
 }
 
 class Level1 extends Level{
@@ -231,7 +234,7 @@ class Level2 extends Level{
     public static TranslateTransition tt;
     public Level2(Player player){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], player);
-        totalZombies = 28;
+        totalZombies = 35;
         this.availablePlants = new ArrayList<String>();
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");
@@ -336,7 +339,7 @@ class Level4 extends Level{
     public static TranslateTransition tt;
     public Level4(Player player){
         super(new ArrayList<String>(),new ArrayList<String>(),new double[3], player);
-        totalZombies = 28;
+        totalZombies = 45;
         this.availablePlants = new ArrayList<String>();
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");

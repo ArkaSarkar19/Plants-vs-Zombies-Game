@@ -53,7 +53,6 @@ public class Sun extends GameObject{
         tt.setByY(+sunSpeed);
         tt.play();
         tt.setOnFinished(e->{
-            System.out.println("Sun image " + sunImage.getY());
             tt.playFromStart();
             sunImage.setY(sunImage.getY()-sunSpeed);
             sunImage.setOnMouseClicked(event -> {
