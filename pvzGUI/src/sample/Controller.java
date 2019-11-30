@@ -208,7 +208,7 @@ public class Controller {
 
 
     private void drop(Pane s, String str, int[] position){
-        if (s.getChildren().size()==0 && str.equals("sunflower")){
+        if (s.getChildren().size()==0 && str.equals("sunflower") && gameScreen.getSunFlowerAvailable()){
             int prev = gameScreen.getSunTokens();
             if(prev-50>=0){
                 Sunflower p = new Sunflower(position,gameScreen);
@@ -220,7 +220,7 @@ public class Controller {
 
 
         }
-        else if (s.getChildren().size()==0 && str.equals("peaShooter")){
+        else if (s.getChildren().size()==0 && str.equals("peaShooter") && gameScreen.getPeaShooterAvailable()){
             int prev = gameScreen.getSunTokens();
             if(prev-100>=0){
                 NormalPeaShooter p = new NormalPeaShooter(position,gameScreen);

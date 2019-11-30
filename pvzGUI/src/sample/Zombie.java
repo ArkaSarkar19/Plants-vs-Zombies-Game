@@ -4,8 +4,11 @@ import javafx.animation.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
@@ -26,8 +29,11 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     private static int counter;
     protected int id;
     protected final int finSpeed;
+    protected  MediaPlayer eatingSound;
+
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -99,6 +105,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             for (int j = 0; j < 9; j++) {
                 if (gameScreen.getGarden()[j][lane] != null && (zombieImage.getBoundsInLocal().getMinX() + 30 <= gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX() > gameScreen.getGarden()[j][lane].getPlantImage().getX())) {
                     getJ = j;
+//                    eatingSound.setAutoPlay(true);
+                    eatingSound.play();
+                    //sound       here
                     if (gameScreen.eatPlant(j, lane, attack)) {
                         speed = s;
                         stop = false;
@@ -114,6 +123,8 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         }
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
+                //sound here
+                eatingSound.play();
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = s;
                     stop = false;

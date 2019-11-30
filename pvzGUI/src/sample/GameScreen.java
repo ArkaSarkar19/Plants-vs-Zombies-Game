@@ -44,6 +44,11 @@ public class GameScreen implements Serializable {
     private Pane[][] panes;
     private Controller controller;
     private MediaPlayer backgroundsound;
+    private Boolean peaShooterAvailable;
+    private Boolean sunFlowerAvailable;
+    private Boolean wallNutAvailable;
+    private Boolean potatoMineAvailable;
+    private Boolean cherryBombAvailable;
     public  GridPane lawngrid;
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
@@ -378,18 +383,22 @@ public class GameScreen implements Serializable {
     public void inactivePeaShooter(){
         ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
         i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter_GS.gif"))));
+        this.peaShooterAvailable = false;
     }
     public void activePeaShooter(){
         ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
         i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif"))));
+        this.peaShooterAvailable = true;
     }
     public void inactiveSunFlower(){
         ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
         i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif"))));
+        this.sunFlowerAvailable = false;
     }
     public void activeSunFLower(){
         ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
         i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
+        this.sunFlowerAvailable = true;
     }
 
 
@@ -399,5 +408,25 @@ public class GameScreen implements Serializable {
 
     public Timeline getSoundTimeline() {
         return soundTimeline;
+    }
+
+    public Boolean getCherryBombAvailable() {
+        return cherryBombAvailable;
+    }
+
+    public Boolean getPeaShooterAvailable() {
+        return peaShooterAvailable;
+    }
+
+    public Boolean getPotatoMineAvailable() {
+        return potatoMineAvailable;
+    }
+
+    public Boolean getSunFlowerAvailable() {
+        return sunFlowerAvailable;
+    }
+
+    public Boolean getWallNutAvailable() {
+        return wallNutAvailable;
     }
 }
