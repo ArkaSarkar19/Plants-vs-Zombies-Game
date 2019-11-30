@@ -103,13 +103,11 @@ public abstract class Plant extends Character {
 
 abstract class PeaShooter extends Plant{
     protected double timeIntervalForShooting;
-    protected double timeElapsed;
     protected double startTime;
 
 
     public PeaShooter(int[] position){
          super(7000,100,0,position);
-         this.startTime = System.currentTimeMillis();
          this.timeIntervalForShooting = 1500;
 
      }
@@ -172,8 +170,11 @@ class Sunflower extends Plant{
 
 class WallNut extends Plant{
     public WallNut(int[] position, GameScreen gameScreen){
-        super(10000,50,15,position);
+        super(10000,50,100,position);
         this.gameScreen = gameScreen;
+        Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/walnut_full_life.gif")));
+        plantImage = new ImageView(m);
+        plantImage.setX((position[0]+1)*800/9);
     }
 
     @Override

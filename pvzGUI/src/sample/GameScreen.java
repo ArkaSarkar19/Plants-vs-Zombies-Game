@@ -53,6 +53,8 @@ public class GameScreen implements Serializable {
     private Image inactiveSunFlowerGif;
     private Image activeSunFlowerGif;
     private Stage nextLevelWindow;
+    private Image inactiveWallnutGif;
+    private Image activeWallnutGif;
 
 
     public  GridPane lawngrid;
@@ -85,6 +87,8 @@ public class GameScreen implements Serializable {
         this.activePeaShooterGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         this.inactiveSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif")));
         this.activeSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif")));
+        this.activeWallnutGif= new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/walnut_full_life.gif")));
+        this.inactiveWallnutGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/walnut_GS.gif")));
         this.aHugeWaveOfZombies = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/huge_wave_of_zombies_text.png"))));
         this.hugeWaveCame = false;
     }
@@ -244,19 +248,32 @@ public class GameScreen implements Serializable {
                 plant.useAbility();
             });
             Timeline t = new Timeline();
-            t.setCycleCount(700);
+            t.setCycleCount(500);
             KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
                 inactiveSunFlower();
             });
             t.getKeyFrames().add(k1);
             t.play();
         }
-        plant.getTimeline().getKeyFrames().add(k);
-        plant.getTimeline().play();
+        else if(plant instanceof WallNut){
+            Timeline t = new Timeline();
+            t.setCycleCount(1500);
+            KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+                inactiveWalnut();
+            });
+            t.getKeyFrames().add(k1);
+            t.play();
+        }
+        if (!(plant instanceof WallNut)) {
+            plant.getTimeline().getKeyFrames().add(k);
+            plant.getTimeline().play();
+        }
     }
     public void removePlant(int j, int lane){
         Pane p = level.panes[j][lane];
+
         p.getChildren().remove(garden[j][lane].getPlantImage());
+        garden[j][lane].getTimeline().stop();
         garden[j][lane].setTimelineNull();
         garden[j][lane] = null;
         System.gc();
@@ -311,7 +328,7 @@ public class GameScreen implements Serializable {
                 ft.setCycleCount(7);
                 ft.setAutoReverse(true);
                 ft.playFromStart();
-                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
                 aHugeWaveSound.play();
                 aHugeWaveOfZombies.setVisible(true);
                 hugeWaveCame = true;
@@ -340,7 +357,7 @@ public class GameScreen implements Serializable {
                     level.levelwindow.close();
                   //  Controller c = level.getController();
                     level = null;
-                    Level l = new Level1(p);
+                    Level l = new Level2(p);
 
                     try {
                         //l.setController(c);
@@ -375,12 +392,18 @@ public class GameScreen implements Serializable {
                  else if(a.get(i).equals("sunFlower") && sunTokens - 50 >=0){
                     activeSunFLower();
                 }
+                 else if (a.get(i).equals("wallnut") && sunTokens-50>=0){
+                     activeWalnut();
+                }
+                 else if (a.get(i).equals("wallnut") && sunTokens-50<0){
+                     inactiveWalnut();
+                }
 
             }
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
@@ -410,24 +433,65 @@ public class GameScreen implements Serializable {
         this.controller = controller;
     }
     public void inactivePeaShooter(){
-        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(this.inactivePeaShooterGif);
-        this.peaShooterAvailable = false;
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+            if (i != null) i.setImage(this.inactivePeaShooterGif);
+            this.peaShooterAvailable = false;
+        }
+        catch (NullPointerException e){
+            ;
+        }
     }
-    public void activePeaShooter(){
-        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(this.activePeaShooterGif);
-        this.peaShooterAvailable = true;
+    public void activePeaShooter() {
+        try{
+            ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+            if (i != null) i.setImage(this.activePeaShooterGif);
+            this.peaShooterAvailable = true;
+        }
+        catch (NullPointerException e){
+            ;
+        }
     }
     public void inactiveSunFlower(){
-        ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(this.inactiveSunFlowerGif);
-        this.sunFlowerAvailable = false;
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
+            i.setImage(this.inactiveSunFlowerGif);
+            this.sunFlowerAvailable = false;
+        }
+        catch (NullPointerException e){
+            ;
+        }
     }
     public void activeSunFLower(){
-        ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(this.activeSunFlowerGif);
-        this.sunFlowerAvailable = true;
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
+            if (i != null) i.setImage(this.activeSunFlowerGif);
+            this.sunFlowerAvailable = true;
+        }
+        catch (NullPointerException e){
+            ;
+        }
+    }
+    public void inactiveWalnut(){
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#wallnutImage");
+            i.setImage(this.inactiveWallnutGif);
+            this.wallNutAvailable = false;
+        }
+        catch (NullPointerException e){
+            ;
+        }
+    }
+
+    public void activeWalnut(){
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#wallnutImage");
+            i.setImage(this.activeWallnutGif);
+            this.wallNutAvailable = true;
+        }
+        catch (NullPointerException e){
+            ;
+        }
     }
 
 

@@ -39,11 +39,11 @@
       </Pane>
       <Pane layoutY="300.0" prefHeight="107.0" prefWidth="720.0" styleClass="lowerPane" stylesheets="@startpage.css">
          <children>
-            <Button fx:id="clickToLogin" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="53.0" prefWidth="164.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Load Game">
+            <Button fx:id="clickToLogin" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="53.0" prefWidth="198.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Load Game">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>
-            <Button fx:id="clickToSignup" layoutX="291.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="53.0" prefWidth="164.0" styleClass="loginbutton" stylesheets="@startpage.css" text="New Game">
+            <Button fx:id="clickToSignup" layoutX="291.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="53.0" prefWidth="178.0" styleClass="loginbutton" stylesheets="@startpage.css" text="New Game">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>
