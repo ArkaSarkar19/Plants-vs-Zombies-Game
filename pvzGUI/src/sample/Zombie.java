@@ -33,7 +33,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -195,6 +195,20 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                 System.gc();
                 break;
             }
+        }
+    }
+    protected void removeZombie(int i) {
+        Zombie z = ZombieLane.get(i);
+        if (z.equals(this)) {
+//                zombieImage= new ImageView(String.valueOf(new Image(String.valueOf(Zombie.class.getResource("resources/spritesNStuff/zombie_normal_dying.gif")))));
+            gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
+            ZombieLane.remove(i);
+            tt.stop();
+            tt = null;
+            z = null;
+            System.gc();
+
+
         }
     }
 

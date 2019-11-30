@@ -57,9 +57,9 @@ public class LoginBox {
         Scene scene1 = new Scene(login);
         Button level1Button = (Button)scene1.lookup("#level1Button");
         level1Button.setOnAction(event -> {
-            Level1 l = new Level1(null,null);
+            Level1 l = new Level1(null);
             try {
-                l.getlevel1();
+                l.getlevel();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }

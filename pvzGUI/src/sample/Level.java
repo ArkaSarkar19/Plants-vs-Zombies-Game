@@ -22,19 +22,18 @@ public class Level extends GameObject implements Serializable  {
     protected ArrayList<String> availablePlants;
     protected  ArrayList<String> avalableZombies;
     protected double[] probabilityZombie;
-    protected GameScreen gameInstance;
     protected Player player;
     protected Pane[][] panes;
     protected Scene scene1;
     protected int totalZombies;
     protected int currentZombies = 0;
     protected double progress;
-
-    public Level(ArrayList<String> availablePlants,ArrayList<String> avalableZombies,double[] probabilityZombie,GameScreen gameInstance,Player player){
+    protected Boolean levelCompleted;
+    protected   static Stage levelwindow;
+    public Level(ArrayList<String> availablePlants,ArrayList<String> avalableZombies,double[] probabilityZombie,Player player){
         this.availablePlants = availablePlants;
         this.avalableZombies = avalableZombies;
         this.probabilityZombie = probabilityZombie;
-        this.gameInstance = gameInstance;
         this.player = player;
     }
     public void produceZombies(){
@@ -53,9 +52,7 @@ public class Level extends GameObject implements Serializable  {
         return probabilityZombie;
     }
 
-    public GameScreen getGameInstance() {
-        return gameInstance;
-    }
+
 
     public Player getPlayer() {
         return player;
@@ -97,6 +94,12 @@ public class Level extends GameObject implements Serializable  {
         this.progress = progress;
     }
 
+    public Stage getLevelwindow() {
+        return levelwindow;
+    }
+    public void getlevel() throws IOException, InterruptedException {
+
+    }
 }
 
 class Level1 extends Level{
@@ -105,20 +108,19 @@ class Level1 extends Level{
 
     public ArrayList<NormalZombie> lane = new ArrayList<>();
     double start ;
-    public static Stage level1window;
     public static TranslateTransition tt;
-    public Level1(Player player,GameScreen gameInstance){
-        super(new ArrayList<String>(),new ArrayList<String>(),new double[3], gameInstance, player);
+    public Level1(Player player){
+        super(new ArrayList<String>(),new ArrayList<String>(),new double[3], player);
         totalZombies = 28;
         this.availablePlants = new ArrayList<String>();
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");
     }
-
-    public  void getlevel1() throws IOException, InterruptedException {
+    @Override
+    public  void getlevel() throws IOException, InterruptedException {
         start = System.currentTimeMillis();
-        level1window = new Stage();
-        level1window.initModality(Modality.APPLICATION_MODAL);
+        levelwindow = new Stage();
+        levelwindow.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("Level1.fxml"));
         scene1 = new Scene(login, 1028,702);
         GridPane p = (GridPane)scene1.lookup("#lawngrid");
@@ -181,10 +183,10 @@ class Level1 extends Level{
         gameScreen.setLawnmowers(lawnmowers);
         gameScreen.setLawngrid(p);
         Controller.setGameScreen(gameScreen);
-        level1window.setScene(scene1);
-        level1window.setTitle("LEVEL 1");
-        level1window.setResizable(false);
-        level1window.show();
+        levelwindow.setScene(scene1);
+        levelwindow.setTitle("LEVEL 1");
+        levelwindow.setResizable(false);
+        levelwindow.show();
         double duration = 5*1000;
         Label progressText = (Label)scene1.lookup("#progessText");
         Timeline tml = new Timeline();

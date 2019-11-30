@@ -9,7 +9,7 @@ public class Player implements Serializable {
 
     public Player(String name){
         this.name = name;
-        this.instanceLevel = new Level1(this,new GameScreen());
+        this.instanceLevel = new Level1(this);
         this.controller = new Controller();
     }
 }
