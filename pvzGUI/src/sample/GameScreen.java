@@ -267,7 +267,16 @@ public class GameScreen implements Serializable {
             t.getKeyFrames().add(k1);
             t.play();
         }
-        if (!(plant instanceof WallNut)) {
+        else if(plant instanceof CherryBomb){
+            Timeline t = new Timeline();
+            t.setCycleCount(2000);
+            KeyFrame k1 = new KeyFrame(new Duration(10),event -> {
+                inactiveWalnut();
+            });
+            t.getKeyFrames().add(k1);
+            t.play();
+        }
+        if (!(plant instanceof WallNut || plant instanceof CherryBomb)) {
             plant.getTimeline().getKeyFrames().add(k);
             plant.getTimeline().play();
         }
@@ -343,7 +352,8 @@ public class GameScreen implements Serializable {
                 aHugeWaveOfZombies.setVisible(true);
                 hugeWaveCame = true;
             }
-            if(level.getTotalZombies()==level.getZombiesKilled()){
+            if(level.getTotalZombies()<=level.getZombiesKilled()){
+                System.out.println("khatam karo na bhai");
                 level.levelCompleted = true;
                 this.stop();
                 nextLevelWindow = new Stage();
@@ -366,7 +376,7 @@ public class GameScreen implements Serializable {
                     level.levelwindow.close();
                   //  Controller c = level.getController();
                     level = null;
-                    Level l = new Level2(p);
+                    Level l = new Level4(p);
 
                     try {
                         //l.setController(c);
@@ -406,6 +416,12 @@ public class GameScreen implements Serializable {
                 }
                  else if (a.get(i).equals("wallnut") && sunTokens-50<0){
                      inactiveWalnut();
+                }
+                 else if (a.get(i).equals("cherrybomb") && sunTokens-150<0){
+                     inactiveCherryBomb();
+                }
+                 else if (a.get(i).equals("cherrybomb") && sunTokens-150 >=0){
+                     activeCherryBomb();
                 }
 
             }
@@ -503,6 +519,27 @@ public class GameScreen implements Serializable {
         }
 
     }
+    public void inactiveCherryBomb(){
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#cherryBombImage");
+            i.setImage(this.inactiveCherryBombGif);
+            this.cherryBombAvailable = false;
+        }
+        catch (NullPointerException e){
+            ;
+        }
+    }
+
+    public void activeCherryBomb(){
+        try {
+            ImageView i = (ImageView) level.scene1.lookup("#cherryBombImage");
+            i.setImage(this.activeCherryBombGif);
+            this.cherryBombAvailable = true;
+        }
+        catch (NullPointerException e){
+            ;
+        }
+    }
 
 
     public Timeline getBuyPlantTimeline() {
@@ -563,6 +600,43 @@ public class GameScreen implements Serializable {
         System.gc();
 
     }
+    private void removeBlast(ArrayList<Zombie> laneZombie,int position){
+        Zombie z;
+        for (int i=0;i<laneZombie.size();i++){
+             z = laneZombie.get(i);
+            if ((position-88)<=z.getZombieImage().getX() || (position+88)>=z.getZombieImage().getX()){
+                z.removeZombie(i);
+            }
+        }
+    }
+    public void blast(int position, int lane, Plant p){
+        if (lane ==0){
+            removeBlast(laneZombie_1,position);
+            removeBlast(laneZombie_2,position);
+        }
+        else if (lane ==1 || lane ==2|| lane ==3){
+            if (lane ==1){
+                removeBlast(laneZombie_1,position);
+                removeBlast(laneZombie_2,position);
+                removeBlast(laneZombie_3,position);
+            }
+            else if (lane ==2){
+                removeBlast(laneZombie_4,position);
+                removeBlast(laneZombie_2,position);
+                removeBlast(laneZombie_3,position);
+            }
+            else{
+                removeBlast(laneZombie_4,position);
+                removeBlast(laneZombie_5,position);
+                removeBlast(laneZombie_3,position);
+            }
+        }
+        else{
+            removeBlast(laneZombie_4,position);
+            removeBlast(laneZombie_5,position);
+        }
+        removePlant(p.getPosition()[0],lane);
+    }
     private void getHugeWave(){
         int r_zombies  = level.getTotalZombies() - level.getCurrentZombies();
         KeyFrame k = new KeyFrame(new Duration(1000), event -> {
@@ -594,10 +668,6 @@ public class GameScreen implements Serializable {
                     level.setCurrentZombies(prev);
                 }
             }
-
-
-
-
         });
         zombieTimeline.getKeyFrames().add(k);
 

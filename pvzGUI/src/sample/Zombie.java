@@ -106,6 +106,10 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             for (int j = 0; j < 9; j++) {
                 if (gameScreen.getGarden()[j][lane] != null && (zombieImage.getBoundsInLocal().getMinX() + 30 <= gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX() > gameScreen.getGarden()[j][lane].getPlantImage().getX())) {
                     getJ = j;
+                    if (gameScreen.getGarden()[j][lane] instanceof CherryBomb){
+                        gameScreen.blast((int)gameScreen.getGarden()[j][lane].getPlantImage().getX(),lane, gameScreen.getGarden()[j][lane]);
+                        return getJ;
+                    }
 //                    eatingSound.setAutoPlay(true);
                     eatingSound.play();
                     //sound       here

@@ -77,7 +77,7 @@ public class Lawnmower extends GameObject {
             for (int i=0;i<ZombieLane.size();i++) {
                 if ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMinX() - 25 <= this.mowerImage.getX()) && ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMaxX() -20 >= this.mowerImage.getX()))) {
                     System.out.println("mower hit");
-                    ZombieLane.get(i).removeZombie();
+                    ZombieLane.get(i).removeZombie(i);
                 }
             }
             tt.playFromStart();
