@@ -26,7 +26,8 @@ public class Level extends GameObject implements Serializable  {
     protected Pane[][] panes;
     protected Scene scene1;
     protected int totalZombies;
-    protected int currentZombies = 0;
+    protected int zombiesKilled;
+    protected int currentZombies;
     protected double progress;
     protected Boolean levelCompleted;
     protected   static Stage levelwindow;
@@ -91,7 +92,8 @@ public class Level extends GameObject implements Serializable  {
     }
 
     public void setProgress(double progress) {
-        this.progress = progress;
+        if(progress >=100) this.progress = 100;
+        else this.progress = progress;
     }
 
     public Stage getLevelwindow() {
@@ -99,6 +101,14 @@ public class Level extends GameObject implements Serializable  {
     }
     public void getlevel() throws IOException, InterruptedException {
 
+    }
+
+    public void setZombiesKilled() {
+        this.zombiesKilled++;
+    }
+
+    public int getZombiesKilled() {
+        return zombiesKilled;
     }
 }
 

@@ -173,14 +173,16 @@ public class GameScreen implements Serializable {
     public Zombie produceZombies(){
         if(level.progress<100) {
             int bound = 0;
-            if(level.getProgress()<25) bound = 4;
-            else if(level.getProgress() > 26 && level.getProgress() < 75) bound = 3;
-            else if(level.getProgress() > 76 && level.getProgress() < 85) bound = 2;
+            if(level.getProgress()<=25) bound = 4;
+            else if(level.getProgress() > 25 && level.getProgress() <= 75) bound = 3;
+            else if(level.getProgress() >= 75 && level.getProgress() < 85) bound = 2;
             else{
+
+                if(!hugeWaveCame) getHugeWave();
                 return null;
             }
             Random r = new Random();
-            int b = r.nextInt(3);
+            int b = r.nextInt(bound);
             NormalZombie z = null;
 
             if (b <= 2) {
@@ -210,7 +212,7 @@ public class GameScreen implements Serializable {
                 z.move();
                 int prev = level.getCurrentZombies() + 1;
                 level.setCurrentZombies(prev);
-                System.out.println(prev);
+
 
             }
             return z;
@@ -294,7 +296,7 @@ public class GameScreen implements Serializable {
             level.setProgress(level.getCurrentZombies()*100 /level.getTotalZombies());
             progressText.setText(String.valueOf((Math.round(level.getProgress()) + "%")));
 
-            if(!hugeWaveCame && level.getProgress() > 85 ){
+            if(!hugeWaveCame && level.getProgress() >= 85 ){
                 System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
                 AnchorPane a = (AnchorPane) level.getScene().lookup("#mainAnchorPane");
                 a.getChildren().add(aHugeWaveOfZombies);
@@ -305,16 +307,18 @@ public class GameScreen implements Serializable {
                 System.out.println(aHugeWaveOfZombies);
                 ft.setFromValue(1.0);
                 ft.setToValue(0.0);
-                ft.setCycleCount(7);
+                ft.setCycleCount(10);
                 ft.setAutoReverse(true);
                 ft.playFromStart();
+                ft.setOnFinished(event1 -> {
+                    aHugeWaveOfZombies.setVisible(false);
+                });
                 aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
                 aHugeWaveSound.play();
                 aHugeWaveOfZombies.setVisible(true);
                 hugeWaveCame = true;
             }
-            if(level.getProgress() > 88 && hugeWaveCame) aHugeWaveOfZombies.setVisible(false);
-            if(level.getProgress() >= 1){
+            if(level.getTotalZombies()==level.getZombiesKilled()){
                 level.levelCompleted = true;
                 this.stop();
                 nextLevelWindow = new Stage();
@@ -413,7 +417,7 @@ public class GameScreen implements Serializable {
             this.peaShooterAvailable = false;
         }
         catch (NullPointerException e){
-            
+
         }
 
     }
@@ -509,5 +513,40 @@ public class GameScreen implements Serializable {
     }
     private void getHugeWave(){
         int r_zombies  = level.getTotalZombies() - level.getCurrentZombies();
+        KeyFrame k = new KeyFrame(new Duration(1000), event -> {
+
+            {
+                if(level.getCurrentZombies() <= level.getTotalZombies()) {
+                    NormalZombie z1 = new NormalZombie(0, this);
+                    laneZombie_1.add(z1);
+                    NormalZombie z2 = new NormalZombie(1, this);
+                    laneZombie_2.add(z2);
+                    NormalZombie z3 = new NormalZombie(2, this);
+                    laneZombie_3.add(z3);
+                    NormalZombie z4 = new NormalZombie(3, this);
+                    laneZombie_4.add(z4);
+                    NormalZombie z5 = new NormalZombie(4, this);
+                    laneZombie_5.add(z5);
+                    lawngrid.add(z1.getZombieImage(), 9, 0 + 1);
+                    z1.move();
+                    lawngrid.add(z2.getZombieImage(), 9, 1 + 1);
+                    z2.move();
+                    lawngrid.add(z3.getZombieImage(), 9, 2 + 1);
+                    z3.move();
+                    lawngrid.add(z4.getZombieImage(), 9, 3 + 1);
+                    z4.move();
+                    lawngrid.add(z5.getZombieImage(), 9, 4 + 1);
+                    z5.move();
+
+                    int prev = level.getCurrentZombies() + 5;
+                    level.setCurrentZombies(prev);
+                }
+
+
+            }
+
+        });
+        zombieTimeline.getKeyFrames().add(k);
+
     }
 }

@@ -72,6 +72,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         if (this.hp<=attack){
             hp = 0;
             System.out.println("ab marega ye");
+            int prev = gameScreen.getLevel().getZombiesKilled();
+            gameScreen.getLevel().setZombiesKilled();
+            System.out.println("Itne zombies mare " + prev);
             this.removeZombie();
         }
         else{
