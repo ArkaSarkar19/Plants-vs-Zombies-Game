@@ -13,12 +13,15 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class Controller {
     public static GameScreen gameScreen;
@@ -81,6 +84,7 @@ public class Controller {
     private Pane peaShooter;
     @FXML
     private Pane shovel;
+    private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\shovel.mp3").toUri().toString()));
 
     public void handleStart() throws IOException {
        LoginBox.getLogin();
@@ -231,6 +235,7 @@ public class Controller {
         }
         else if (str.equals("shovel")){
             if (gameScreen.getGarden()[position[0]][position[1]]!=null){
+                shovelSound.play();
                 gameScreen.removePlant(position[0],position[1]);
             }
         }
