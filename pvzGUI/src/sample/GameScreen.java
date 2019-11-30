@@ -57,8 +57,6 @@ public class GameScreen implements Serializable {
     private Image activeWallnutGif;
     private Image activeCherryBombGif;
     private Image inactiveCherryBombGif;
-
-
     public  GridPane lawngrid;
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
@@ -67,7 +65,7 @@ public class GameScreen implements Serializable {
     private boolean hugeWaveCame;
     private ImageView aHugeWaveOfZombies;
     private MediaPlayer aHugeWaveSound;
-
+    private ArrayList<String> levelAvailableZombies;
     public GameScreen(){
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
@@ -179,7 +177,7 @@ public class GameScreen implements Serializable {
 
     }
     public Zombie produceZombies(){
-        if(level.progress<100) {
+        if(level.getProgress()<100) {
             int bound = 0;
             if(level.getProgress()<=25) bound = 4;
             else if(level.getProgress() > 25 && level.getProgress() <= 75) bound = 3;
@@ -190,30 +188,32 @@ public class GameScreen implements Serializable {
             }
             Random r = new Random();
             int b = r.nextInt(bound);
-            NormalZombie z = null;
+            Zombie z = null;
+            int c = r.nextInt(levelAvailableZombies.size());
 
             if (b <= 2) {
                 int a = r.nextInt(5);
                 if (a == 0) {
-                    z = new NormalZombie(a, this);
+                    if(c==0) z = new NormalZombie(a, this);
+                    if(c==1) z = new FootballZombie(a, this);
                     laneZombie_1.add(z);
-//                break;
                 } else if (a == 1) {
-                    z = new NormalZombie(a, this);
+                    if(c==0) z = new NormalZombie(a, this);
+                    if(c==1) z = new FootballZombie(a, this);
                     laneZombie_2.add(z);
-//                break;
                 } else if (a == 2) {
-                    z = new NormalZombie(a, this);
+                    if(c==0) z = new NormalZombie(a, this);
+                    if(c==1) z = new FootballZombie(a, this);
                     laneZombie_3.add(z);
-//                break;
                 } else if (a == 3) {
-                    z = new NormalZombie(a, this);
+                    if(c==0) z = new NormalZombie(a, this);
+                    if(c==1) z = new FootballZombie(a, this);
                     laneZombie_4.add(z);
-//                break;
-                } else {
-                    z = new NormalZombie(a, this);
+                }
+                else {
+                    if(c==0) z = new NormalZombie(a, this);
+                    if(c==1) z = new FootballZombie(a, this);
                     laneZombie_5.add(z);
-//                break;
                 }
                 lawngrid.add(z.getZombieImage(), 9, a + 1);
                 z.move();
@@ -416,8 +416,7 @@ public class GameScreen implements Serializable {
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
-
-        //soundTimeline.getKeyFrames().add(k3);
+        this.levelAvailableZombies = level.getAvalableZombies();
         this.produceSuns();
         this.spawnZombie();
         this.sunTokens = 50;

@@ -64,8 +64,40 @@ public class LoginBox {
         Parent login = FXMLLoader.load(LoginBox.class.getResource("SelectLevel.fxml"));
         Scene scene1 = new Scene(login);
         Button level1Button = (Button)scene1.lookup("#level1Button");
+        Button level2Button = (Button)scene1.lookup("#level2");
+        Button level3Button = (Button)scene1.lookup("#level3");
+        Button level4Button = (Button)scene1.lookup("#level4");
+
         level1Button.setOnAction(event -> {
             Level1 l = new Level1(null);
+            try {
+                l.getlevel();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            levelwindow.close();
+        });
+
+        level2Button.setOnAction(event -> {
+            Level2 l = new Level2(null);
+            try {
+                l.getlevel();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            levelwindow.close();
+        });
+        level3Button.setOnAction(event -> {
+            Level1 l = new Level1(null);
+            try {
+                l.getlevel();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            levelwindow.close();
+        });
+        level4Button.setOnAction(event -> {
+            Level4 l = new Level4(null);
             try {
                 l.getlevel();
             } catch (IOException | InterruptedException e) {

@@ -235,3 +235,13 @@ class NormalZombie extends Zombie{
     }
 }
 
+class FootballZombie extends Zombie{
+
+    public FootballZombie(int lane, GameScreen gs) {
+        super(50, 15, lane, 0, 20, 20, gs);
+        Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_football.gif").toString());
+        zombieImage = new ImageView(z);
+        tt.setNode(zombieImage);
+    }
+
+}

@@ -126,6 +126,8 @@ class Level1 extends Level{
         this.availablePlants = new ArrayList<String>();
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");
+        this.avalableZombies = new ArrayList<String>();
+        this.avalableZombies.add("normal_zombie");
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
@@ -234,6 +236,9 @@ class Level2 extends Level{
         this.availablePlants.add("peaShooter");
         this.availablePlants.add("sunFlower");
         this.availablePlants.add("wallnut");
+        this.avalableZombies = new ArrayList<String>();
+        this.avalableZombies.add("normal_zombie");
+
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
@@ -337,6 +342,10 @@ class Level4 extends Level{
         this.availablePlants.add("sunFlower");
         this.availablePlants.add("wallnut");
         this.availablePlants.add("cherrybomb");
+        this.avalableZombies = new ArrayList<String>();
+        this.avalableZombies.add("normal_zombie");
+        this.avalableZombies.add("football_zombie");
+
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
