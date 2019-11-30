@@ -4,8 +4,11 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Pea extends GameObject{
@@ -20,12 +23,15 @@ public class Pea extends GameObject{
     protected GameScreen gameScreen;
     protected ArrayList<Zombie> ZombieLane;
     protected int[] pos;
+    protected  MediaPlayer hitSound;
+
     public Pea(int[] pos,int position,int lane, GameScreen gameScreen){
         this.xPos = position;
         this.pos = pos;
         this.lane = lane;
         this.attack = 25;
         this.speed = 25;
+        hitSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\Pea.wav").toUri().toString()));
         if (lane ==0){
             ZombieLane = gameScreen.getLaneZombie_1();
         }
@@ -91,7 +97,8 @@ public class Pea extends GameObject{
             }
             for (int i=0;i<ZombieLane.size();i++){
                 if ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMinX() -50 <= this.peaImage.getX()) && ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMaxX()+25 >= this.peaImage.getX()))){
-                    System.out.println("HIT HUA HAI");
+//                    System.out.println("HIT HUA HAI");
+                    hitSound.play();
                     gameScreen.getLawngrid().getChildren().remove(this.peaImage);
                     attack(ZombieLane.get(i));
                     peaImage= null;

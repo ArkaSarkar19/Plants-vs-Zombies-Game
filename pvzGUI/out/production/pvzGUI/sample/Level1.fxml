@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane prefHeight="702.0" prefWidth="1028.0" styleClass="levelpanebackground" stylesheets="@levelpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <AnchorPane layoutX="1.0" layoutY="97.0" prefHeight="598.0" prefWidth="1028.0">
          <children>
@@ -125,7 +125,7 @@
                         <Font name="Quarca-NorBol" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="progessText" layoutX="21.0" layoutY="57.0" prefHeight="54.0" prefWidth="87.0" styleClass="sunLabel" text="70%">
+                  <Label fx:id="progessText" layoutX="21.0" layoutY="57.0" prefHeight="54.0" prefWidth="87.0" styleClass="sunLabel" text="0%">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -154,7 +154,7 @@
                <children>
                   <Pane fx:id="sunflower" layoutX="17.0" layoutY="9.0" onDragDetected="#dragSunflower" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane">
                      <children>
-                        <ImageView fitHeight="48.0" fitWidth="38.0" layoutX="12.0" layoutY="2.0">
+                        <ImageView fx:id="sunflowerImage" fitHeight="48.0" fitWidth="38.0" layoutX="12.0" layoutY="2.0">
                            <image>
                               <Image url="@resources/spritesNStuff/sun_flower.gif" />
                            </image>
@@ -168,7 +168,7 @@
                   <Pane layoutX="567.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
                   <Pane fx:id="peaShooter" layoutX="106.0" layoutY="9.0" onDragDetected="#dragPeaShooter" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane">
                      <children>
-                        <ImageView fitHeight="48.0" fitWidth="38.0" layoutX="13.0" layoutY="4.0">
+                        <ImageView fx:id="peashooterImage" fitHeight="48.0" fitWidth="38.0" layoutX="13.0" layoutY="4.0">
                            <image>
                               <Image url="@resources/spritesNStuff/pea_shooter.gif" />
                            </image>

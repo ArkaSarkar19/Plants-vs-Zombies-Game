@@ -20,13 +20,8 @@ import java.util.TreeSet;
 
 public class GameScreen implements Serializable {
     private Plant[][] garden;
-    private int columnWiidths;
     private int sunTokens;
     private double startTime;
-    private double timeElapsed;
-    private double endTime;
-    private int screenHeight;
-    private int screenWidth;
     private int sunTimer;
     private Lawnmower[] lawnmowers;
     private Shovel shovel;
@@ -35,11 +30,6 @@ public class GameScreen implements Serializable {
     private ArrayList<Zombie> laneZombie_3;
     private ArrayList<Zombie> laneZombie_4;
     private ArrayList<Zombie> laneZombie_5;
-    private TreeSet<Pea> lanePea_1;
-    private TreeSet<Pea> lanePea_2;
-    private TreeSet<Pea> lanePea_3;
-    private TreeSet<Pea> lanePea_4;
-    private TreeSet<Pea> lanePea_5;
     private Level level;
     private Pane[][] panes;
     private Controller controller;
@@ -60,7 +50,6 @@ public class GameScreen implements Serializable {
     public  Timeline buyPlantTimeline;
     public Timeline soundTimeline;
     public GameScreen(){
-//        this.level = level;
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
         this.sunTimer = 10000;
@@ -103,28 +92,8 @@ public class GameScreen implements Serializable {
         return sunTimer;
     }
 
-    public double getEndTime() {
-        return endTime;
-    }
-
     public double getStartTime() {
         return startTime;
-    }
-
-    public double getTimeElapsed() {
-        return timeElapsed;
-    }
-
-    public int getColumnWiidths() {
-        return columnWiidths;
-    }
-
-    public int getScreenHeight() {
-        return screenHeight;
-    }
-
-    public int getScreenWidth() {
-        return screenWidth;
     }
 
     public Lawnmower[] getLawnmowers() {
@@ -133,26 +102,6 @@ public class GameScreen implements Serializable {
 
     public Shovel getShovel() {
         return shovel;
-    }
-
-    public TreeSet<Pea> getLanePea_1() {
-        return lanePea_1;
-    }
-
-    public TreeSet<Pea> getLanePea_2() {
-        return lanePea_2;
-    }
-
-    public TreeSet<Pea> getLanePea_3() {
-        return lanePea_3;
-    }
-
-    public TreeSet<Pea> getLanePea_4() {
-        return lanePea_4;
-    }
-
-    public TreeSet<Pea> getLanePea_5() {
-        return lanePea_5;
     }
 
     public ArrayList<Zombie> getLaneZombie_1() {
@@ -356,7 +305,7 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();

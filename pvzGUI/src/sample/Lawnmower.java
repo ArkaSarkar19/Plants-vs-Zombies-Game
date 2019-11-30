@@ -4,8 +4,11 @@ import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Lawnmower extends GameObject {
@@ -16,8 +19,10 @@ public class Lawnmower extends GameObject {
     protected TranslateTransition tt;
     protected Timeline timeline = new Timeline();
     private ArrayList<Zombie> ZombieLane;
+    protected MediaPlayer lawnMowerRoar;
     public Lawnmower(int lane,ImageView mI, GameScreen gameScreen){
         this.lane = lane;
+        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\lamborghini.wav").toUri().toString()));
         this.gameScreen = gameScreen;
         this.speed = 20;
         this.mowerImage = mI;
@@ -57,6 +62,7 @@ public class Lawnmower extends GameObject {
         tt.setDuration(Duration.millis(1000));
         mowerImage.setX(0);
         tt.setByX(+speed);
+        lawnMowerRoar.play();
         tt.play();
         tt.setOnFinished(e->{
             mowerImage.setX(mowerImage.getX()+speed);
