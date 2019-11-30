@@ -91,7 +91,6 @@ public class Pea extends GameObject{
                 tt.stop();
                 stop=true;
                 tt=null;
-
                 System.gc();
                 return;
             }

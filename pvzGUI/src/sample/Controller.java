@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -78,6 +79,10 @@ public class Controller {
     public StackPane sp83;
     public StackPane sp84;
     @FXML
+    private TextField username;
+    @FXML
+    private TextField password;
+    @FXML
     private Pane sunflower;
 
     @FXML
@@ -87,8 +92,10 @@ public class Controller {
     private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\shovel.mp3").toUri().toString()));
 
     public void handleStart() throws IOException {
-       LoginBox.getLogin();
-       Main.window.close();
+//        i
+            LoginBox.getLogin();
+            Main.window.close();
+//        }
     }
     public void handleSignup() throws IOException {
         LoginBox.getSignup();
@@ -106,8 +113,11 @@ public class Controller {
 
     }
     public void handleLogin() throws IOException {
-        LoginBox.getLevelpage();
-        LoginBox.loginwindow.close();
+//        System.out.println(username.getText()+ " "+ password);
+        if (username.getText().equals("admin") && password.getText().equals("admin")) {
+            LoginBox.getLevelpage();
+            LoginBox.loginwindow.close();
+        }
     }
 
     public void getInGameMenu() throws IOException {
