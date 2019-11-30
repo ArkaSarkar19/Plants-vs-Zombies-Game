@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="720.0" styleClass="lowerPane" stylesheets="@startpage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="720.0" styleClass="lowerPane" stylesheets="@startpage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane layoutX="-2.0" prefHeight="293.0" prefWidth="726.0" styleClass="upperPaneLogin" stylesheets="@startpage.css">
          <children>
-            <PasswordField accessibleRole="PASSWORD_FIELD" layoutX="347.0" layoutY="197.0" opacity="0.61" prefHeight="44.0" prefWidth="263.0" promptText="password" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
-            <TextField layoutX="347.0" layoutY="107.0" opacity="0.61" prefHeight="44.0" prefWidth="263.0" promptText="username" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
+            <PasswordField fx:id="password" accessibleRole="PASSWORD_FIELD" layoutX="347.0" layoutY="197.0" opacity="0.61" prefHeight="44.0" prefWidth="263.0" promptText="password" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
+            <TextField fx:id="username" layoutX="347.0" layoutY="107.0" opacity="0.61" prefHeight="44.0" prefWidth="263.0" promptText="username" styleClass="textFieldsLogin" stylesheets="@startpage.css" />
             <Label layoutX="109.0" layoutY="96.0" prefHeight="67.0" prefWidth="155.0" styleClass="loginboxlabels" stylesheets="@startpage.css" text="Username : ">
                <font>
                   <Font name="Ani" size="25.0" />
@@ -39,11 +39,11 @@
       </Pane>
       <Pane layoutY="300.0" prefHeight="107.0" prefWidth="720.0" styleClass="lowerPane" stylesheets="@startpage.css">
          <children>
-            <Button fx:id="clickToLogin" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="53.0" prefWidth="164.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Load Game">
+            <Button fx:id="clickToLogin" layoutX="51.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="53.0" prefWidth="198.0" styleClass="loginbutton" stylesheets="@startpage.css" text="Load Game">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>
-            <Button fx:id="clickToSignup" layoutX="291.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="53.0" prefWidth="164.0" styleClass="loginbutton" stylesheets="@startpage.css" text="New Game">
+            <Button fx:id="clickToSignup" layoutX="291.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="53.0" prefWidth="178.0" styleClass="loginbutton" stylesheets="@startpage.css" text="New Game">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>

@@ -180,8 +180,32 @@
                         </Button>
                      </children></Pane>
                   <Pane layoutX="472.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
-                  <Pane layoutX="285.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
-                  <Pane layoutX="193.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
+                  <Pane fx:id= "cherrybomb" layoutX="285.0" layoutY="9.0" onDragDetected="#dragWallNut" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" >
+                     <children>
+                        <ImageView fx:id="cherryBombImage" fitHeight="100" fitWidth="80" layoutX="-10" layoutY="-20">
+                           <image>
+                              <Image url="@resources/spritesNStuff/cb.gif" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" styleClass="sunLabel" text="50" textAlignment="CENTER">
+                           <font>
+                              <Font name="Quarca-NorBol" size="14.0" />
+                           </font>
+                        </Button>
+                     </children></Pane>
+                  <Pane fx:id="wallnut" layoutX="193.0" layoutY="9.0" onDragDetected="#dragWallNut" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" >
+                     <children>
+                        <ImageView fx:id="wallnutImage" fitHeight="48.0" fitWidth="38.0" layoutX="13.0" layoutY="4.0">
+                           <image>
+                              <Image url="@resources/spritesNStuff/walnut_full_life.gif" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="7.0" layoutY="54.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0" styleClass="sunLabel" text="50" textAlignment="CENTER">
+                           <font>
+                              <Font name="Quarca-NorBol" size="14.0" />
+                           </font>
+                        </Button>
+                     </children></Pane>
                   <Pane layoutX="381.0" layoutY="9.0" prefHeight="73.0" prefWidth="63.0" styleClass="cardPane" />
                </children></Pane>
             <Pane fx:id="shovel" layoutX="789.0" layoutY="7.0" onDragDetected="#dragShovel" prefHeight="91.0" prefWidth="89.0" styleClass="plantsPane" stylesheets="@levelpage.css">

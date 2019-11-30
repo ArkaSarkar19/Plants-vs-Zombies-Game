@@ -31,7 +31,7 @@ public class Pea extends GameObject{
         this.lane = lane;
         this.attack = 25;
         this.speed = 25;
-        hitSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/Pea.wav").toUri().toString()));
+        hitSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\Pea.wav").toUri().toString()));
         if (lane ==0){
             ZombieLane = gameScreen.getLaneZombie_1();
         }
@@ -91,7 +91,6 @@ public class Pea extends GameObject{
                 tt.stop();
                 stop=true;
                 tt=null;
-
                 System.gc();
                 return;
             }
