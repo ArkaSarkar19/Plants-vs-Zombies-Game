@@ -1,17 +1,26 @@
 package sample;
 
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -43,12 +52,18 @@ public class GameScreen implements Serializable {
     private Image activePeaShooterGif;
     private Image inactiveSunFlowerGif;
     private Image activeSunFlowerGif;
+    private Stage nextLevelWindow;
+
 
     public  GridPane lawngrid;
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
     public  Timeline buyPlantTimeline;
     public Timeline soundTimeline;
+    private boolean hugeWaveCame;
+    private ImageView aHugeWaveOfZombies;
+    private MediaPlayer aHugeWaveSound;
+
     public GameScreen(){
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
@@ -70,6 +85,8 @@ public class GameScreen implements Serializable {
         this.activePeaShooterGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
         this.inactiveSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif")));
         this.activeSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif")));
+        this.aHugeWaveOfZombies = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/huge_wave_of_zombies_text.png"))));
+        this.hugeWaveCame = false;
     }
 
     public void setLevel(Level level) {
@@ -280,6 +297,64 @@ public class GameScreen implements Serializable {
             if(level.getProgress() > 75){
                 System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
             }
+            if(!hugeWaveCame && level.getProgress() > 85 ){
+                System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
+                AnchorPane a = (AnchorPane) level.getScene().lookup("#mainAnchorPane");
+                a.getChildren().add(aHugeWaveOfZombies);
+                aHugeWaveOfZombies.setY(250);
+                aHugeWaveOfZombies.setX(150);
+                FadeTransition ft = new FadeTransition();
+                ft.setNode(aHugeWaveOfZombies);
+                System.out.println(aHugeWaveOfZombies);
+                ft.setFromValue(1.0);
+                ft.setToValue(0.0);
+                ft.setCycleCount(7);
+                ft.setAutoReverse(true);
+                ft.playFromStart();
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound.play();
+                aHugeWaveOfZombies.setVisible(true);
+                hugeWaveCame = true;
+            }
+            if(level.getProgress() > 88 && hugeWaveCame) aHugeWaveOfZombies.setVisible(false);
+            if(level.getProgress() >= 1){
+                level.levelCompleted = true;
+                this.stop();
+                nextLevelWindow = new Stage();
+                nextLevelWindow.initModality(Modality.APPLICATION_MODAL);
+                Parent login = null;
+                try {
+                    login = FXMLLoader.load(LoginBox.class.getResource("NextLevelWindow.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Scene scene1 = new Scene(login, 720,405);
+                nextLevelWindow.setScene(scene1);
+                nextLevelWindow.setTitle("LEVEL COMPLETED");
+                nextLevelWindow.setResizable(false);
+                nextLevelWindow.show();
+                Button nextLevel = (Button) scene1.lookup("#nextLevelButton");
+                Button mainMenu = (Button) scene1.lookup("#mainMenuButton");
+                nextLevel.setOnAction(event1 -> {
+                    Player p = level.getPlayer();
+                    level.levelwindow.close();
+                  //  Controller c = level.getController();
+                    level = null;
+                    Level l = new Level1(p);
+
+                    try {
+                        //l.setController(c);
+
+                        l.getlevel();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+
+                });
+            }
 
         });
         zombieTimeline.getKeyFrames().add(k1);
@@ -305,7 +380,7 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
@@ -382,5 +457,37 @@ public class GameScreen implements Serializable {
 
     public Boolean getWallNutAvailable() {
         return wallNutAvailable;
+    }
+    public  void stop(){
+        zombieTimeline.stop();
+        backgroundsound.stop();
+        buyPlantTimeline.stop();
+        sunTimeline.stop();
+        for(int i=0;i<laneZombie_1.size();i++){
+            laneZombie_1.get(i).removeZombie(i);
+        }
+        for(int i=0;i<laneZombie_2.size();i++){
+            laneZombie_2.get(i).removeZombie(i);
+        }
+        for(int i=0;i<laneZombie_3.size();i++){
+            laneZombie_3.get(i).removeZombie(i);
+        }
+        for(int i=0;i<laneZombie_4.size();i++){
+            laneZombie_4.get(i).removeZombie(i);
+        }
+        for(int i=0;i<laneZombie_5.size();i++){
+            laneZombie_5.get(i).removeZombie(i);
+        }
+        for(int i = 0;i<9;i++){
+            for(int j=0;j<5;j++){
+                if(garden[i][j]!=null){
+                    this.removePlant(i,j);
+                }
+            }
+        }
+        garden = null;
+        System.gc();
+
+
     }
 }

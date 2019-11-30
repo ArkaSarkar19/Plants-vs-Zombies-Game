@@ -110,6 +110,7 @@
     -fx-font-family: "oblivion";
     -fx-background-color: linear-gradient(#41456b, #717aba);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-size: 25;
 }
 
 .loginbutton:hover{
@@ -206,3 +207,10 @@
     -fx-background-color: #272226;
 }
 
+.nextLevelMenuLabels{
+    -fx-font-family: 'oblivion';
+    /*-fx-background-color: "#0c6607";*/
+    /*-fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );*/
+    -fx-text-fill: #98783c;
+    -fx-font-size: 55;
+}
