@@ -88,7 +88,7 @@ public class LoginBox {
             levelwindow.close();
         });
         level3Button.setOnAction(event -> {
-            Level1 l = new Level1(null);
+            Level3 l = new Level3(null);
             try {
                 l.getlevel();
             } catch (IOException | InterruptedException e) {
