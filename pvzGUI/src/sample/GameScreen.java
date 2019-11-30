@@ -232,6 +232,11 @@ public class GameScreen implements Serializable {
                         if(d==1)z = new NormalZombie(a, this);
 
                     }
+                    if(c==2){
+                        int d = r.nextInt(2);
+                        if(d==0)z = new BucketZombie(a, this);
+                        if(d==1)z = new NormalZombie(a, this);
+                    }
                     laneZombie_1.add(z);
                 } else if (a == 1) {
                     if(c==0) z = new NormalZombie(a, this);
@@ -240,6 +245,11 @@ public class GameScreen implements Serializable {
                         if(d==0)z = new FootballZombie(a, this);
                         if(d==1)z = new NormalZombie(a, this);
 
+                    }
+                    if(c==2){
+                        int d = r.nextInt(2);
+                        if(d==0)z = new BucketZombie(a, this);
+                        if(d==1)z = new NormalZombie(a, this);
                     }
                     laneZombie_2.add(z);
                 } else if (a == 2) {
@@ -250,6 +260,11 @@ public class GameScreen implements Serializable {
                         if(d==1)z = new NormalZombie(a, this);
 
                     }
+                    if(c==2){
+                        int d = r.nextInt(2);
+                        if(d==0)z = new BucketZombie(a, this);
+                        if(d==1)z = new NormalZombie(a, this);
+                    }
                     laneZombie_3.add(z);
                 } else if (a == 3) {
                     if(c==0) z = new NormalZombie(a, this);
@@ -258,6 +273,11 @@ public class GameScreen implements Serializable {
                         if(d==0)z = new FootballZombie(a, this);
                         if(d==1)z = new NormalZombie(a, this);
 
+                    }
+                    if(c==2){
+                        int d = r.nextInt(2);
+                        if(d==0)z = new BucketZombie(a, this);
+                        if(d==1)z = new NormalZombie(a, this);
                     }
                     laneZombie_4.add(z);
                 }
@@ -268,6 +288,11 @@ public class GameScreen implements Serializable {
                         if(d==0)z = new FootballZombie(a, this);
                         if(d==1)z = new NormalZombie(a, this);
 
+                    }
+                    if(c==2){
+                        int d = r.nextInt(2);
+                        if(d==0)z = new BucketZombie(a, this);
+                        if(d==1)z = new NormalZombie(a, this);
                     }
                     laneZombie_5.add(z);
                 }
@@ -387,7 +412,6 @@ public class GameScreen implements Serializable {
             progressText.setText(String.valueOf((Math.round(level.getProgress()) + "%")));
 
             if(!hugeWaveCame && level.getProgress() >= 85 ){
-                System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
                 AnchorPane a = (AnchorPane) level.getScene().lookup("#mainAnchorPane");
                 a.getChildren().add(aHugeWaveOfZombies);
                 aHugeWaveOfZombies.setY(250);
@@ -707,8 +731,7 @@ public class GameScreen implements Serializable {
                 if (level.getCurrentZombies() <= level.getTotalZombies()) {
 
                     if(level.getAvalableZombies().size()==0){
-                        NormalZombie z1 = new NormalZombie(0, this);
-
+                    NormalZombie z1 = new NormalZombie(0, this);
                     laneZombie_1.add(z1);
                     NormalZombie z2 = new NormalZombie(1, this);
                     laneZombie_2.add(z2);
@@ -742,29 +765,77 @@ public class GameScreen implements Serializable {
                         z1.move();
                         int b = r.nextInt(2);
                         Zombie z2 = null;
-                        if(b==0) z2 = new NormalZombie(0,this);
-                        if(b==1) z2 = new FootballZombie(0,this);
+                        if(b==0) z2 = new NormalZombie(1,this);
+                        if(b==1) z2 = new FootballZombie(1,this);
                         laneZombie_2.add(z2);
                         lawngrid.add(z2.getZombieImage(), 9, 1 + 1);
                         z2.move();
                         int c = r.nextInt(2);
                         Zombie z3 = null;
-                        if(c==0) z3 = new NormalZombie(0,this);
-                        if(c==1) z3 = new FootballZombie(0,this);
+                        if(c==0) z3 = new NormalZombie(2,this);
+                        if(c==1) z3 = new FootballZombie(2,this);
                         laneZombie_3.add(z3);
                         lawngrid.add(z3.getZombieImage(), 9, 2 + 1);
                         z3.move();
                         int d = r.nextInt(2);
                         Zombie z4 = null;
-                        if(d==0) z4 = new NormalZombie(0,this);
-                        if(d==1) z4 = new FootballZombie(0,this);
+                        if(d==0) z4 = new NormalZombie(3,this);
+                        if(d==1) z4 = new FootballZombie(3,this);
                         laneZombie_4.add(z4);
                         lawngrid.add(z4.getZombieImage(), 9, 3 + 1);
                         z4.move();
                         int e = r.nextInt(2);
                         Zombie z5 = null;
-                        if(e==0) z5 = new NormalZombie(0,this);
-                        if(e==1) z5 = new FootballZombie(0,this);
+                        if(e==0) z5 = new NormalZombie(4,this);
+                        if(e==1) z5 = new FootballZombie(4,this);
+                        laneZombie_5.add(z5);
+                        lawngrid.add(z5.getZombieImage(), 9, 4 + 1);
+                        z5.move();
+
+                    }
+                    if(level.getAvalableZombies().size()==2){
+                        int a = r.nextInt(3);
+                        Zombie z1 = null;
+                        if(a==0) z1 = new NormalZombie(0,this);
+                        if(a==1) z1 = new FootballZombie(0,this);
+                        if(a==2) z1 = new BucketZombie(0,this);
+
+                        laneZombie_1.add(z1);
+                        lawngrid.add(z1.getZombieImage(), 9, 0 + 1);
+                        z1.move();
+                        int b = r.nextInt(3);
+                        Zombie z2 = null;
+                        if(b==0) z2 = new NormalZombie(1,this);
+                        if(b==1) z2 = new FootballZombie(1,this);
+                        if(b==2) z2 = new BucketZombie(1,this);
+
+                        laneZombie_2.add(z2);
+                        lawngrid.add(z2.getZombieImage(), 9, 1 + 1);
+                        z2.move();
+                        int c = r.nextInt(3);
+                        Zombie z3 = null;
+                        if(c==0) z3 = new NormalZombie(2,this);
+                        if(c==1) z3 = new FootballZombie(2,this);
+                        if(c==2) z3 = new BucketZombie(2,this);
+
+                        laneZombie_3.add(z3);
+                        lawngrid.add(z3.getZombieImage(), 9, 2 + 1);
+                        z3.move();
+                        int d = r.nextInt(3);
+                        Zombie z4 = null;
+                        if(d==0) z4 = new NormalZombie(3,this);
+                        if(d==1) z4 = new FootballZombie(3,this);
+                        if(d==2) z4 = new BucketZombie(3,this);
+
+                        laneZombie_4.add(z4);
+                        lawngrid.add(z4.getZombieImage(), 9, 3 + 1);
+                        z4.move();
+                        int e = r.nextInt(3);
+                        Zombie z5 = null;
+                        if(e==0) z5 = new NormalZombie(4,this);
+                        if(e==1) z5 = new FootballZombie(4,this);
+                        if(e==2) z1 = new BucketZombie(4,this);
+
                         laneZombie_5.add(z5);
                         lawngrid.add(z5.getZombieImage(), 9, 4 + 1);
                         z5.move();

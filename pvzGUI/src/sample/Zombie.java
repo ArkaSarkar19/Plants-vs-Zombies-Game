@@ -255,3 +255,15 @@ class FootballZombie extends Zombie{
     }
 
 }
+class BucketZombie extends Zombie{
+
+    public BucketZombie(int lane, GameScreen gs) {
+        super(100, 35, lane, 0, 10, 10, gs);
+        Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_bucket.gif").toString());
+        zombieImage = new ImageView(z);
+        zombieImage.setFitWidth(80);
+        zombieImage.setFitHeight(140);
+        tt.setNode(zombieImage);
+    }
+
+}
