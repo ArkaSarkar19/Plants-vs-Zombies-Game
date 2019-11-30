@@ -67,6 +67,8 @@ public class LoginBox {
         Button level2Button = (Button)scene1.lookup("#level2");
         Button level3Button = (Button)scene1.lookup("#level3");
         Button level4Button = (Button)scene1.lookup("#level4");
+        Button level5Button = (Button)scene1.lookup("#level5");
+
 
         level1Button.setOnAction(event -> {
             Level1 l = new Level1(null);
@@ -88,7 +90,7 @@ public class LoginBox {
             levelwindow.close();
         });
         level3Button.setOnAction(event -> {
-            Level1 l = new Level1(null);
+            Level3 l = new Level3(null);
             try {
                 l.getlevel();
             } catch (IOException | InterruptedException e) {
@@ -98,6 +100,15 @@ public class LoginBox {
         });
         level4Button.setOnAction(event -> {
             Level4 l = new Level4(null);
+            try {
+                l.getlevel();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            levelwindow.close();
+        });
+        level5Button.setOnAction(event -> {
+            Level5 l = new Level5(null);
             try {
                 l.getlevel();
             } catch (IOException | InterruptedException e) {

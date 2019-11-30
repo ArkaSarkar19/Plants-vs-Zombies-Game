@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 
 public abstract class Plant extends Character {
     protected final int[] position;
@@ -98,6 +100,7 @@ public abstract class Plant extends Character {
 }
 
 abstract class PeaShooter extends Plant{
+    protected ArrayList<Pea> lanePea;
     protected double timeIntervalForShooting;
     protected double startTime;
 
@@ -111,6 +114,14 @@ abstract class PeaShooter extends Plant{
      public GameObject useAbility(){
          return this.shootPeas(position[1]);
      }
+
+    public void setLanePea(ArrayList<Pea> lanePea) {
+        this.lanePea = lanePea;
+    }
+
+    public ArrayList<Pea> getLanePea() {
+        return lanePea;
+    }
 
     protected abstract Pea shootPeas(int lane);
 }
@@ -126,6 +137,7 @@ class NormalPeaShooter extends PeaShooter{
     @Override
     protected  Pea shootPeas(int lane){
         NormalPea p = new NormalPea(position,(position[0]+1)*800/9,lane,gameScreen);
+        lanePea.add(p);
         p.move();
         return null;
     }

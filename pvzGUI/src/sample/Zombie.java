@@ -33,7 +33,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected boolean blast;
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -136,7 +136,6 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                 eatingSound.setAutoPlay(true);
                 if(gameScreen.getGarden()[getJ][lane] instanceof WallNut) eatingSound.setCycleCount(13);
                 if(!(gameScreen.getGarden()[getJ][lane] instanceof WallNut)) eatingSound.setCycleCount(4);
-                if(!(gameScreen.getGarden()[getJ][lane] instanceof CherryBomb)) eatingSound.setCycleCount(2);
                 eatingSound.play();
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = s;
@@ -176,6 +175,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             }
             else{
                 getJ = attack(getJ,finSpeed);
+
             }
             tt.setByX(-speed);
             tt.playFromStart();
@@ -254,6 +254,18 @@ class FootballZombie extends Zombie{
         super(50, 15, lane, 0, 20, 20, gs);
         Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_football.gif").toString());
         zombieImage = new ImageView(z);
+        tt.setNode(zombieImage);
+    }
+
+}
+class BucketZombie extends Zombie{
+
+    public BucketZombie(int lane, GameScreen gs) {
+        super(100, 35, lane, 0, 10, 10, gs);
+        Image z = new Image(Zombie.class.getResource("resources/spritesNStuff/zombie_bucket.gif").toString());
+        zombieImage = new ImageView(z);
+        zombieImage.setFitWidth(80);
+        zombieImage.setFitHeight(140);
         tt.setNode(zombieImage);
     }
 
