@@ -342,14 +342,16 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        KeyFrame k3 = new KeyFrame(new Duration(1000),event -> {
-
-
-        });
+//        KeyFrame k3 = new KeyFrame(new Duration(51000),event -> {
+//            backgroundsound.play();
+//
+//        });
         backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+        backgroundsound.setAutoPlay(true);
+        backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
 
-        soundTimeline.getKeyFrames().add(k3);
+        //soundTimeline.getKeyFrames().add(k3);
         this.produceSuns();
         this.spawnZombie();
         this.sunTokens = 50;
