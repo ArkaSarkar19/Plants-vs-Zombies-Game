@@ -185,6 +185,9 @@ class CherryBomb extends Plant{
         this.gameScreen = gameScreen;
         Image m = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb.gif")));
         plantImage = new ImageView(m);
+        plantImage.setFitHeight(120);
+        plantImage.setFitWidth(90);
+//        System.out.println("HEIGHT: "+ plantImage.fitHeightProperty().get()+" WIDTH: "+ plantImage.fitWidthProperty().get());
         plantImage.setX((position[0]+1)*800/9);
     }
     @Override

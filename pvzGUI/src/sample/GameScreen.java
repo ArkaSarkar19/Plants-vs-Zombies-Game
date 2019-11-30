@@ -344,7 +344,7 @@ public class GameScreen implements Serializable {
                 });
 //                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
 
-                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
 
                 aHugeWaveSound.play();
                 if(!hugeWaveCame) getHugeWave();
@@ -601,36 +601,55 @@ public class GameScreen implements Serializable {
     }
     private void removeBlast(ArrayList<Zombie> laneZombie,int position){
         Zombie z;
-        for (int i=0;i<laneZombie.size();i++){
-             z = laneZombie.get(i);
-            if ((position-88)<=z.getZombieImage().getX() || (position+88)>=z.getZombieImage().getX()){
+//        ArrayList<Integer> x = new ArrayList<>();
+        int i =0;
+        int cnt =0;
+        while (true){
+            try {
+                z = laneZombie.get(i);
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("I AM OUT< IAM FREE");
+                System.out.println("COUNTER OF KILLS: "+cnt);
+                return;
+            }
+            if ((position-150)<=z.getZombieImage().getX() && (position+130)>=z.getZombieImage().getX()){
                 z.removeZombie(i);
+                cnt++;
+            }
+            else{
+                i++;
             }
         }
     }
     public void blast(int position, int lane, Plant p){
         if (lane ==0){
+//            laneZombie_1.get().removeZombie(i);
             removeBlast(laneZombie_1,position);
             removeBlast(laneZombie_2,position);
         }
         else if (lane ==1 || lane ==2|| lane ==3){
             if (lane ==1){
+//                laneZombie_2.get(i).removeZombie(i);
                 removeBlast(laneZombie_1,position);
                 removeBlast(laneZombie_2,position);
                 removeBlast(laneZombie_3,position);
             }
             else if (lane ==2){
+//                laneZombie_3.get(i).removeZombie(i);
                 removeBlast(laneZombie_4,position);
                 removeBlast(laneZombie_2,position);
                 removeBlast(laneZombie_3,position);
             }
             else{
+//                laneZombie_4.get(i).removeZombie(i);
                 removeBlast(laneZombie_4,position);
                 removeBlast(laneZombie_5,position);
                 removeBlast(laneZombie_3,position);
             }
         }
         else{
+//            laneZombie_5.get(i).removeZombie(i);
             removeBlast(laneZombie_4,position);
             removeBlast(laneZombie_5,position);
         }

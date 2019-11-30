@@ -30,7 +30,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected int id;
     protected final int finSpeed;
     protected  MediaPlayer eatingSound;
-
+    protected boolean blast;
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
         eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
@@ -108,9 +108,13 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                     getJ = j;
                     if (gameScreen.getGarden()[j][lane] instanceof CherryBomb){
                         gameScreen.blast((int)gameScreen.getGarden()[j][lane].getPlantImage().getX(),lane, gameScreen.getGarden()[j][lane]);
+                        stop = true;
+                        blast = true;
                         return getJ;
                     }
-//                    eatingSound.setAutoPlay(true);
+                    eatingSound.setAutoPlay(true);
+                    eatingSound.setCycleCount(10);
+
                     eatingSound.play();
                     //sound       here
                     if (gameScreen.eatPlant(j, lane, attack)) {
@@ -129,7 +133,10 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
                 //sound here
-                eatingSound.setCycleCount(4);
+                eatingSound.setAutoPlay(true);
+                if(gameScreen.getGarden()[getJ][lane] instanceof WallNut) eatingSound.setCycleCount(13);
+                if(!(gameScreen.getGarden()[getJ][lane] instanceof WallNut)) eatingSound.setCycleCount(4);
+                if(!(gameScreen.getGarden()[getJ][lane] instanceof CherryBomb)) eatingSound.setCycleCount(2);
                 eatingSound.play();
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = s;
@@ -155,14 +162,15 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             zombieImage.setX(zombieImage.getX()-speed);
             if(zombieImage.getX()<= 0){
                 if (gameScreen.getLawnmowers()[lane] !=null){
-                    System.out.println("ho jaye shuru");
+//                    System.out.println("ho jaye shuru");
                     gameScreen.moveLawnmover(lane);
                 }
-//                tt.stop();
-//                removeZombie();
                 return;
             }
             int getJ = attack(-1,finSpeed);
+            if (stop && blast){
+                return;
+            }
             if (!stop) {
                 tt.playFromStart();
             }
@@ -191,9 +199,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         for (int i =0;i<ZombieLane.size();i++){
             Zombie z = ZombieLane.get(i);
             if (z.equals(this)){
-                int prev = gameScreen.getLevel().getZombiesKilled();
+//                int prev = gameScreen.getLevel().getZombiesKilled();
                 gameScreen.getLevel().setZombiesKilled();
-                System.out.println("Itne zombies mare " + prev);
+                System.out.println("Itne zombies mare " + gameScreen.getLevel().getZombiesKilled());
 //                zombieImage= new ImageView(String.valueOf(new Image(String.valueOf(Zombie.class.getResource("resources/spritesNStuff/zombie_normal_dying.gif")))));
                 gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
                 ZombieLane.remove(i);
@@ -208,6 +216,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected void removeZombie(int i) {
         Zombie z = ZombieLane.get(i);
         if (z.equals(this)) {
+//            int prev = gameScreen.getLevel().getZombiesKilled();
+            gameScreen.getLevel().setZombiesKilled();
+            System.out.println("Itne zombies mare " + gameScreen.getLevel().getZombiesKilled());
 //                zombieImage= new ImageView(String.valueOf(new Image(String.valueOf(Zombie.class.getResource("resources/spritesNStuff/zombie_normal_dying.gif")))));
             gameScreen.getLawngrid().getChildren().remove(this.zombieImage);
             ZombieLane.remove(i);
@@ -215,8 +226,6 @@ public class Zombie  extends Character implements Comparable<Zombie>{
             tt = null;
             z = null;
             System.gc();
-
-
         }
     }
 
