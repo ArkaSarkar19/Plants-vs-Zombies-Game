@@ -147,16 +147,8 @@ public class GameScreen implements Serializable {
     public Zombie spawnZombie(){
         Timeline t = null;
         double duration = 0;
-        if(level.getProgress()<25){
-            duration = 6000;
-        }
-        else if(level.getProgress() > 26 && level.getProgress() < 65){
-            duration = 4500;
-        }
-        else{
-            duration = 1800;
-        }
-        KeyFrame k = new KeyFrame(new Duration(duration), event -> {
+
+        KeyFrame k = new KeyFrame(new Duration(6000), event -> {
              Zombie z = this.produceZombies();
 
         });
@@ -179,45 +171,51 @@ public class GameScreen implements Serializable {
 
     }
     public Zombie produceZombies(){
-        Random r = new Random();
-        int b = r.nextInt(3);
-        NormalZombie z = null;
-
-        if(b<=2){
-            int a = r.nextInt(5);
-            if(a ==0) {
-                z = new NormalZombie(a, this);
-                laneZombie_1.add(z);
-//                break;
-            }
-            else if (a==1){
-                z = new NormalZombie(a,this);
-                laneZombie_2.add(z);
-//                break;
-            }
-            else if (a==2) {
-                z = new NormalZombie(a, this);
-                laneZombie_3.add(z);
-//                break;
-            }
-            else if (a==3) {
-                z = new NormalZombie(a, this);
-                laneZombie_4.add(z);
-//                break;
-            }
+        if(level.progress<100) {
+            int bound = 0;
+            if(level.getProgress()<25) bound = 4;
+            else if(level.getProgress() > 26 && level.getProgress() < 75) bound = 3;
+            else if(level.getProgress() > 76 && level.getProgress() < 85) bound = 2;
             else{
-                z = new NormalZombie(a,this);
-                laneZombie_5.add(z);
-//                break;
+                return null;
             }
-            lawngrid.add(z.getZombieImage(),9,a+1);
-            z.move();
-            int prev = level.getCurrentZombies()+1;
-            level.setCurrentZombies(prev);
-            System.out.println(prev);
+            Random r = new Random();
+            int b = r.nextInt(3);
+            NormalZombie z = null;
 
+            if (b <= 2) {
+                int a = r.nextInt(5);
+                if (a == 0) {
+                    z = new NormalZombie(a, this);
+                    laneZombie_1.add(z);
+//                break;
+                } else if (a == 1) {
+                    z = new NormalZombie(a, this);
+                    laneZombie_2.add(z);
+//                break;
+                } else if (a == 2) {
+                    z = new NormalZombie(a, this);
+                    laneZombie_3.add(z);
+//                break;
+                } else if (a == 3) {
+                    z = new NormalZombie(a, this);
+                    laneZombie_4.add(z);
+//                break;
+                } else {
+                    z = new NormalZombie(a, this);
+                    laneZombie_5.add(z);
+//                break;
+                }
+                lawngrid.add(z.getZombieImage(), 9, a + 1);
+                z.move();
+                int prev = level.getCurrentZombies() + 1;
+                level.setCurrentZombies(prev);
+                System.out.println(prev);
+
+            }
+            return z;
         }
-        return z;
+        return null;
     }
     public void moveZombiePeas(){
 
@@ -294,9 +292,7 @@ public class GameScreen implements Serializable {
             System.out.println(level.getCurrentZombies());
             level.setProgress(level.getCurrentZombies()*100 /level.getTotalZombies());
             progressText.setText(String.valueOf((Math.round(level.getProgress()) + "%")));
-            if(level.getProgress() > 75){
-                System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
-            }
+
             if(!hugeWaveCame && level.getProgress() > 85 ){
                 System.out.println("A HUGE WAVE OF ZOMBIES ARE COMING");
                 AnchorPane a = (AnchorPane) level.getScene().lookup("#mainAnchorPane");
@@ -317,7 +313,7 @@ public class GameScreen implements Serializable {
                 hugeWaveCame = true;
             }
             if(level.getProgress() > 88 && hugeWaveCame) aHugeWaveOfZombies.setVisible(false);
-            if(level.getProgress() >= 1){
+            if(level.getProgress() >= 100){
                 level.levelCompleted = true;
                 this.stop();
                 nextLevelWindow = new Stage();
@@ -488,6 +484,8 @@ public class GameScreen implements Serializable {
         garden = null;
         System.gc();
 
-
+    }
+    private void getHugeWave(){
+        int r_zombies  = level.getTotalZombies() - level.getCurrentZombies();
     }
 }
