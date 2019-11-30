@@ -255,6 +255,7 @@ public class GameScreen implements Serializable {
     public void removePlant(int j, int lane){
         Pane p = level.panes[j][lane];
         p.getChildren().remove(garden[j][lane].getPlantImage());
+        garden[j][lane].getTimeline().stop();
         garden[j][lane].setTimelineNull();
         garden[j][lane] = null;
         System.gc();
@@ -313,7 +314,7 @@ public class GameScreen implements Serializable {
                 hugeWaveCame = true;
             }
             if(level.getProgress() > 88 && hugeWaveCame) aHugeWaveOfZombies.setVisible(false);
-            if(level.getProgress() >= 100){
+            if(level.getProgress() >= 1){
                 level.levelCompleted = true;
                 this.stop();
                 nextLevelWindow = new Stage();
@@ -406,24 +407,45 @@ public class GameScreen implements Serializable {
         this.controller = controller;
     }
     public void inactivePeaShooter(){
-        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(this.inactivePeaShooterGif);
-        this.peaShooterAvailable = false;
+        try{
+            ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+            if(i!=null) i.setImage(this.inactivePeaShooterGif);
+            this.peaShooterAvailable = false;
+        }
+        catch (NullPointerException e){
+            
+        }
+
     }
     public void activePeaShooter(){
-        ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(this.activePeaShooterGif);
-        this.peaShooterAvailable = true;
+        try{
+            ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
+            if(i!=null) i.setImage(this.activePeaShooterGif);
+            this.peaShooterAvailable = true;
+        }
+        catch (NullPointerException e){
+
+        }
+
     }
     public void inactiveSunFlower(){
-        ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(this.inactiveSunFlowerGif);
-        this.sunFlowerAvailable = false;
+        try{
+            ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
+            if(i!=null) i.setImage(this.inactiveSunFlowerGif);
+            this.sunFlowerAvailable = false;
+        }
+        catch (NullPointerException e){
+
+        }
+
     }
     public void activeSunFLower(){
+        try{
         ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(this.activeSunFlowerGif);
-        this.sunFlowerAvailable = true;
+        if(i!=null) i.setImage(this.activeSunFlowerGif);
+        this.sunFlowerAvailable = true;}
+        catch (NullPointerException e){}
+
     }
 
 

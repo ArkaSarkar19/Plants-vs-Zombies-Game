@@ -187,6 +187,12 @@ class Level1 extends Level{
         levelwindow.setTitle("LEVEL 1");
         levelwindow.setResizable(false);
         levelwindow.show();
+        levelwindow.setOnCloseRequest(event -> {
+            this.gameScreen.stop();
+            this.gameScreen = null;
+            // System.gc();
+            levelwindow = null;
+        });
         double duration = 5*1000;
         Label progressText = (Label)scene1.lookup("#progessText");
         Timeline tml = new Timeline();
