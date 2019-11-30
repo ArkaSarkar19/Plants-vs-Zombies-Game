@@ -64,7 +64,6 @@ public abstract class Plant extends Character {
     public boolean eatPlant(int attk){
         if (defense>0){
             if (defense>attk){
-
                 defense-=attk;
                 return false;
             }
@@ -170,7 +169,7 @@ class Sunflower extends Plant{
 
 class WallNut extends Plant{
     public WallNut(int[] position, GameScreen gameScreen){
-        super(10000,50,100,position);
+        super(10000,50,350,position);
         this.gameScreen = gameScreen;
         Image m  = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/walnut_full_life.gif")));
         plantImage = new ImageView(m);
