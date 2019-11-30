@@ -91,7 +91,7 @@ public class Controller {
     private Pane peaShooter;
     @FXML
     private Pane shovel;
-    private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\shovel.mp3").toUri().toString()));
+    private MediaPlayer shovelSound= new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/shovel.mp3").toUri().toString()));
 
     public void handleStart() throws IOException {
 //        i

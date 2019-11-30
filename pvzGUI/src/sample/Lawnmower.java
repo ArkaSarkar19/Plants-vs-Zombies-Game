@@ -22,7 +22,7 @@ public class Lawnmower extends GameObject {
     protected MediaPlayer lawnMowerRoar;
     public Lawnmower(int lane,ImageView mI, GameScreen gameScreen){
         this.lane = lane;
-        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\lamborghini.wav").toUri().toString()));
+        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/lamborghini.wav").toUri().toString()));
         this.gameScreen = gameScreen;
         this.speed = 20;
         this.mowerImage = mI;
@@ -59,7 +59,7 @@ public class Lawnmower extends GameObject {
     }
 
     protected void move() {
-        tt.setDuration(Duration.millis(1000));
+        tt.setDuration(Duration.millis(20));
         mowerImage.setX(0);
         tt.setByX(+speed);
         lawnMowerRoar.play();
@@ -77,8 +77,10 @@ public class Lawnmower extends GameObject {
             for (int i=0;i<ZombieLane.size();i++) {
                 if ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMinX() - 25 <= this.mowerImage.getX()) && ((ZombieLane.get(i).getZombieImage().getBoundsInLocal().getMaxX() -20 >= this.mowerImage.getX()))) {
                     System.out.println("mower hit");
-                    ZombieLane.get(i).removeZombie();
+                    ZombieLane.get(i).removeZombie(i);
                 }
+
+
             }
             tt.playFromStart();
 

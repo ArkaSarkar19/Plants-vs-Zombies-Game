@@ -100,7 +100,8 @@ public class Level extends GameObject implements Serializable  {
         return levelwindow;
     }
     public void getlevel() throws IOException, InterruptedException {
-
+        Main.menuSound.stop();
+        Main.zombieSound.stop();
     }
 
     public void setZombiesKilled() {
@@ -128,6 +129,7 @@ class Level1 extends Level{
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
+        super.getlevel();
         start = System.currentTimeMillis();
         levelwindow = new Stage();
         levelwindow.initModality(Modality.APPLICATION_MODAL);
@@ -235,6 +237,8 @@ class Level2 extends Level{
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
+        super.getlevel();
+
         start = System.currentTimeMillis();
         levelwindow = new Stage();
         levelwindow.initModality(Modality.APPLICATION_MODAL);
@@ -336,6 +340,8 @@ class Level4 extends Level{
     }
     @Override
     public  void getlevel() throws IOException, InterruptedException {
+        super.getlevel();
+
         start = System.currentTimeMillis();
         levelwindow = new Stage();
         levelwindow.initModality(Modality.APPLICATION_MODAL);

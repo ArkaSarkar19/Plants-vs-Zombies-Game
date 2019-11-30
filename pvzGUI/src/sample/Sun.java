@@ -53,6 +53,7 @@ public class Sun extends GameObject{
         tt.setByY(+sunSpeed);
         tt.play();
         tt.setOnFinished(e->{
+            System.out.println("Sun image " + sunImage.getY());
             tt.playFromStart();
             sunImage.setY(sunImage.getY()-sunSpeed);
             sunImage.setOnMouseClicked(event -> {
@@ -62,12 +63,19 @@ public class Sun extends GameObject{
                 int next = 25+prev;
                 gameScreen.setSunTokens(next);
                 s.setText(String.valueOf(gameScreen.getSunTokens()));
-                tt.stop();
+                this.remove();
             });
-            if(sunImage.getY()<= 0){
+            if(sunImage.getY()<= 220){
                 tt.stop();
             }
         });
+    }
+    public void remove(){
+        gameScreen.getLawngrid().getChildren().remove(this.sunImage);
+        sunImage= null;
+        tt.stop();
+        System.gc();
+
     }
 
 }

@@ -1,13 +1,17 @@
 package sample;
+import javafx.animation.Animation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 //import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class LoginBox {
     public static Stage loginwindow;
@@ -51,6 +55,10 @@ public class LoginBox {
 
     }
     public static void getLevelpage() throws IOException {
+
+        Main.zombieSound.setCycleCount(Animation.INDEFINITE);
+        Main.zombieSound.setAutoPlay(true);
+        Main.zombieSound.play();
         levelwindow = new Stage();
         levelwindow.initModality(Modality.APPLICATION_MODAL);
         Parent login = FXMLLoader.load(LoginBox.class.getResource("SelectLevel.fxml"));

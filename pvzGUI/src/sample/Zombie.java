@@ -33,7 +33,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -234,3 +234,4 @@ class NormalZombie extends Zombie{
         tt.setNode(zombieImage);
     }
 }
+
