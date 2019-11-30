@@ -124,6 +124,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
                 //sound here
+                eatingSound.setCycleCount(4);
                 eatingSound.play();
                 if (gameScreen.eatPlant(getJ,lane, attack)){
                     speed = s;

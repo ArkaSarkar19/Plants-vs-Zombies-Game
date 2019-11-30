@@ -49,6 +49,11 @@ public class GameScreen implements Serializable {
     private Boolean wallNutAvailable;
     private Boolean potatoMineAvailable;
     private Boolean cherryBombAvailable;
+    private Image inactivePeaShooterGif;
+    private Image activePeaShooterGif;
+    private Image inactiveSunFlowerGif;
+    private Image activeSunFlowerGif;
+
     public  GridPane lawngrid;
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
@@ -72,6 +77,10 @@ public class GameScreen implements Serializable {
         buyPlantTimeline.setCycleCount(Animation.INDEFINITE);
         soundTimeline.setCycleCount(Animation.INDEFINITE);
         buyPlantTimeline.play();
+        this.inactivePeaShooterGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter_GS.gif")));
+        this.activePeaShooterGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif")));
+        this.inactiveSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif")));
+        this.activeSunFlowerGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif")));
     }
 
     public void setLevel(Level level) {
@@ -347,10 +356,6 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-//        KeyFrame k3 = new KeyFrame(new Duration(51000),event -> {
-//            backgroundsound.play();
-//
-//        });
         backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
@@ -382,22 +387,22 @@ public class GameScreen implements Serializable {
     }
     public void inactivePeaShooter(){
         ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter_GS.gif"))));
+        i.setImage(this.inactivePeaShooterGif);
         this.peaShooterAvailable = false;
     }
     public void activePeaShooter(){
         ImageView i = (ImageView) level.scene1.lookup("#peashooterImage");
-        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/pea_shooter.gif"))));
+        i.setImage(this.activePeaShooterGif);
         this.peaShooterAvailable = true;
     }
     public void inactiveSunFlower(){
         ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower_GS.gif"))));
+        i.setImage(this.inactiveSunFlowerGif);
         this.sunFlowerAvailable = false;
     }
     public void activeSunFLower(){
         ImageView i = (ImageView) level.scene1.lookup("#sunflowerImage");
-        i.setImage(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/sun_flower.gif"))));
+        i.setImage(this.activeSunFlowerGif);
         this.sunFlowerAvailable = true;
     }
 
