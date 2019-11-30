@@ -43,6 +43,7 @@ public class GameScreen implements Serializable {
     private Level level;
     private Pane[][] panes;
     private Controller controller;
+    private MediaPlayer backgroundsound;
     public  GridPane lawngrid;
     public  Timeline zombieTimeline;
     public  Timeline sunTimeline;
@@ -342,10 +343,11 @@ public class GameScreen implements Serializable {
 
         buyPlantTimeline.getKeyFrames().add(k2);
         KeyFrame k3 = new KeyFrame(new Duration(1000),event -> {
-            MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
-            mediaPlayer.play();
+
 
         });
+        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+        backgroundsound.play();
 
         soundTimeline.getKeyFrames().add(k3);
         this.produceSuns();
