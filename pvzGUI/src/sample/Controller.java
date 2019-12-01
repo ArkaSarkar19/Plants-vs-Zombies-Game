@@ -288,12 +288,12 @@ public class Controller {
         }
         else if(s.getChildren().size()==0 && str.equals("cherrybomb")){
             int prev = gameScreen.getSunTokens();
-//            if(prev-150>=0){
+            if(prev-150>=0){
                 CherryBomb p = new CherryBomb(position,gameScreen);
                 gameScreen.addPlant(position,p);
                 gameScreen.setSunTokens(prev - p.getCost());
                 s.getChildren().add(p.getPlantImage());
-//            }
+            }
         }
         else if (str.equals("shovel")){
             if (gameScreen.getGarden()[position[0]][position[1]]!=null){

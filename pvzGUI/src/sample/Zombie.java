@@ -233,9 +233,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
 
         return timeline;
     }
-    public void dieZombiegif(){
-
-    }
+    
 
 }
 

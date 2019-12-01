@@ -43,6 +43,7 @@ public class GameScreen implements Serializable {
     private Pane[][] panes;
     private Controller controller;
     private MediaPlayer backgroundsound;
+    private MediaPlayer cherryBombBlast;
     private Boolean peaShooterAvailable;
     private Boolean sunFlowerAvailable;
     private Boolean wallNutAvailable;
@@ -103,6 +104,7 @@ public class GameScreen implements Serializable {
         this.activeCherryBombGif= new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb.gif")));
         this.inactiveCherryBombGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb_GS.gif")));
         this.aHugeWaveOfZombies = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/huge_wave_of_zombies_text.png"))));
+        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/CherryBomb.wav").toUri().toString()));
         this.hugeWaveCame = false;
     }
 
@@ -709,6 +711,7 @@ public class GameScreen implements Serializable {
         }
     }
     public void blast(int position, int lane, Plant p){
+        cherryBombBlast.play();
         if (lane ==0){
 //            laneZombie_1.get().removeZombie(i);
             removeBlast(laneZombie_1,position);
