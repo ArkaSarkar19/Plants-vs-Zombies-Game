@@ -8,6 +8,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -33,8 +34,8 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected boolean blast;
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
-//        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
+//        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -164,6 +165,9 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                 if (gameScreen.getLawnmowers()[lane] !=null){
 //                    System.out.println("ho jaye shuru");
                     gameScreen.moveLawnmover(lane);
+                }
+                else{
+                    gameScreen.setGameOver(true);
                 }
                 return;
             }

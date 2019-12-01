@@ -419,7 +419,7 @@ class Level3 extends Level{
         gameScreen.setLawngrid(p);
         Controller.setGameScreen(gameScreen);
         levelwindow.setScene(scene1);
-        levelwindow.setTitle("LEVEL 2");
+        levelwindow.setTitle("LEVEL 3");
         levelwindow.setResizable(false);
         levelwindow.show();
         double duration = 5*1000;
@@ -631,7 +631,7 @@ class Level5 extends Level{
         gameScreen.setLawngrid(p);
         Controller.setGameScreen(gameScreen);
         levelwindow.setScene(scene1);
-        levelwindow.setTitle("LEVEL 4");
+        levelwindow.setTitle("LEVEL 5");
         levelwindow.setResizable(false);
         levelwindow.show();
         double duration = 5*1000;

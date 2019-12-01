@@ -72,6 +72,12 @@ public class GameScreen implements Serializable {
     private ArrayList<Pea> lane_Pea_3;
     private ArrayList<Pea> lane_Pea_4;
     private ArrayList<Pea> lane_Pea_5;
+    private boolean gameOver;
+    private MediaPlayer gameOversound;
+    private MediaPlayer nextlevelSound;
+    private  Stage gameFinised;
+
+
     public GameScreen(){
         this.garden = new Plant[9][5];
         this.startTime = System.currentTimeMillis();
@@ -87,7 +93,6 @@ public class GameScreen implements Serializable {
         this.lane_Pea_3 = new ArrayList<>();
         this.lane_Pea_4 = new ArrayList<>();
         this.lane_Pea_5 = new ArrayList<>();
-
         this.sunTimeline = new Timeline();
         this.buyPlantTimeline = new Timeline();
         this.soundTimeline  = new Timeline();
@@ -114,6 +119,13 @@ public class GameScreen implements Serializable {
 
     public void setLawnmowers(Lawnmower[] lawnmowers) {
         this.lawnmowers = lawnmowers;
+    }
+
+    public void setGameOver(boolean gameOver)  {
+        this.gameOver = gameOver;
+
+
+
     }
 
     public  GridPane getLawngrid() {
@@ -413,7 +425,51 @@ public class GameScreen implements Serializable {
             level.setProgress(level.getCurrentZombies()*100 /level.getTotalZombies());
             progressText.setText(String.valueOf((Math.round(level.getProgress()) + "%")));
 
-            if(!hugeWaveCame && level.getProgress() >= 85 ){
+            if(gameOver){
+
+                gameFinised = new Stage();
+                gameFinised.initModality(Modality.APPLICATION_MODAL);
+                Parent login1 = null;
+                try {
+                    login1 = FXMLLoader.load(getClass().getResource("GameOverWindow.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Scene scene2 = new Scene(login1, 1020,540);
+                gameFinised.setScene(scene2);
+                gameFinised.setTitle("GAME OVER");
+                gameFinised.setResizable(false);
+                gameFinised.show();
+                gameOversound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/atebrains.wav").toUri().toString()));
+                gameOversound.play();
+                Button mainMenu1 = (Button) scene2.lookup("#mainMenuButton");
+                Button retry = (Button) scene2.lookup("#retryButton");
+
+                mainMenu1.setOnAction(event2 -> {
+                    try {
+                        LoginBox.getLevelpage();
+                        gameFinised.close();
+                        gameOversound.stop();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                retry.setOnAction(event2 -> {
+                    try {
+                        level.restart();
+                        gameOversound.stop();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+                this.stop();
+                Level.levelwindow.close();
+
+            }
+            if(!gameOver&& !hugeWaveCame && level.getProgress() >= 85 ){
                 AnchorPane a = (AnchorPane) level.getScene().lookup("#mainAnchorPane");
                 a.getChildren().add(aHugeWaveOfZombies);
                 aHugeWaveOfZombies.setY(250);
@@ -430,9 +486,9 @@ public class GameScreen implements Serializable {
                 ft.setOnFinished(event1 -> {
                     aHugeWaveOfZombies.setVisible(false);
                 });
-//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
 
-                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
+//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
 
                 aHugeWaveSound.play();
                 if(!hugeWaveCame) getHugeWave();
@@ -440,7 +496,7 @@ public class GameScreen implements Serializable {
                 aHugeWaveOfZombies.setVisible(true);
                 hugeWaveCame = true;
             }
-            if(level.getTotalZombies()<=level.getZombiesKilled()){
+            if(!gameOver&&level.getTotalZombies()<=level.getZombiesKilled()){
                 System.out.println("khatam karo na bhai");
                 level.levelCompleted = true;
                 this.stop();
@@ -457,26 +513,114 @@ public class GameScreen implements Serializable {
                 nextLevelWindow.setTitle("LEVEL COMPLETED");
                 nextLevelWindow.setResizable(false);
                 nextLevelWindow.show();
+                nextlevelSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/game_end.wav").toUri().toString()));
+                nextlevelSound.setAutoPlay(true);
+                nextlevelSound.setCycleCount(Animation.INDEFINITE);
+                nextlevelSound.play();
                 Button nextLevel = (Button) scene1.lookup("#nextLevelButton");
                 Button mainMenu = (Button) scene1.lookup("#mainMenuButton");
                 nextLevel.setOnAction(event1 -> {
                     Player p = level.getPlayer();
+                    Level l = null;
                     level.levelwindow.close();
-                  //  Controller c = level.getController();
-                    level = null;
-                    Level l = new Level4(p);
+                    if(level instanceof Level1){
+                        level = null;
+                         l = new Level2(p);
+                        try {
+                            l.getlevel();
+                            nextLevelWindow.close();
+                            nextlevelSound.stop();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(level instanceof Level2){
+                        level = null;
+                        l = new Level3(p);
+                        try {
+                            l.getlevel();
+                            nextLevelWindow.close();
+                            nextlevelSound.stop();
 
-                    try {
-                        //l.setController(c);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(level instanceof Level3){
+                        level = null;
+                        l = new Level4(p);
+                        try {
+                            l.getlevel();
+                            nextLevelWindow.close();
+                            nextlevelSound.stop();
 
-                        l.getlevel();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(level instanceof Level4){
+                        level = null;
+                        l = new Level5(p);
+                        try {
+                            l.getlevel();
+                            nextLevelWindow.close();
+                            nextlevelSound.stop();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if(level instanceof Level5){
+                        nextLevelWindow.close();
+                         Stage gameFinised;
+
+                        gameFinised = new Stage();
+                        gameFinised.initModality(Modality.APPLICATION_MODAL);
+                        Parent login1 = null;
+                        try {
+                            login1 = FXMLLoader.load(LoginBox.class.getResource("GameFinished.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Scene scene2 = new Scene(login1, 720,405);
+                        gameFinised.setScene(scene2);
+                        gameFinised.setTitle("LEVEL COMPLETED");
+                        gameFinised.setResizable(false);
+                        gameFinised.show();
+                        Button mainMenu1 = (Button) scene2.lookup("#mainMenuButton");
+
+                        mainMenu1.setOnAction(event2 -> {
+                            try {
+                                LoginBox.getLevelpage();
+                                Level.levelwindow.close();
+                                nextlevelSound.stop();
+
+                                gameFinised.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
+                });
+                mainMenu.setOnAction(event1 -> {
+                    try {
+                        LoginBox.getLevelpage();
+                        nextLevelWindow.close();
+                        Level.levelwindow.close();
+                        nextlevelSound.stop();
 
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 });
             }
 
@@ -516,8 +660,8 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
-//        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+//        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
@@ -539,6 +683,7 @@ public class GameScreen implements Serializable {
     }
     public void moveLawnmover(int lane){
         getLawnmowers()[lane].move();
+        lawnmowers[lane] = null;
 
     }
 
