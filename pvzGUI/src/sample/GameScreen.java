@@ -104,7 +104,8 @@ public class GameScreen implements Serializable {
         this.activeCherryBombGif= new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb.gif")));
         this.inactiveCherryBombGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb_GS.gif")));
         this.aHugeWaveOfZombies = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/huge_wave_of_zombies_text.png"))));
-        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/CherryBomb.wav").toUri().toString()));
+        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\CherryBomb.wav").toUri().toString()));
+//        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/CherryBomb.wav").toUri().toString()));
         this.hugeWaveCame = false;
     }
 
