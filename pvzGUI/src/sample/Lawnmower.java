@@ -22,8 +22,8 @@ public class Lawnmower extends GameObject {
     protected MediaPlayer lawnMowerRoar;
     public Lawnmower(int lane,ImageView mI, GameScreen gameScreen){
         this.lane = lane;
-//        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\lamborghini.wav").toUri().toString()));
-        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/lamborghini.wav").toUri().toString()));
+        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\lamborghini.wav").toUri().toString()));
+//        lawnMowerRoar = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/lamborghini.wav").toUri().toString()));
         this.gameScreen = gameScreen;
         this.speed = 20;
         this.mowerImage = mI;

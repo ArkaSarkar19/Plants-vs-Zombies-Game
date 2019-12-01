@@ -442,7 +442,8 @@ public class GameScreen implements Serializable {
                 gameFinised.setTitle("GAME OVER");
                 gameFinised.setResizable(false);
                 gameFinised.show();
-                gameOversound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/atebrains.wav").toUri().toString()));
+                gameOversound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\atebrains.wav").toUri().toString()));
+//                gameOversound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/atebrains.wav").toUri().toString()));
                 gameOversound.play();
                 Button mainMenu1 = (Button) scene2.lookup("#mainMenuButton");
                 Button retry = (Button) scene2.lookup("#retryButton");
@@ -487,9 +488,9 @@ public class GameScreen implements Serializable {
                 ft.setOnFinished(event1 -> {
                     aHugeWaveOfZombies.setVisible(false);
                 });
-                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
 
-//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
 
                 aHugeWaveSound.play();
                 if(!hugeWaveCame) getHugeWave();
@@ -514,7 +515,8 @@ public class GameScreen implements Serializable {
                 nextLevelWindow.setTitle("LEVEL COMPLETED");
                 nextLevelWindow.setResizable(false);
                 nextLevelWindow.show();
-                nextlevelSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/game_end.wav").toUri().toString()));
+                nextlevelSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\game_end.wav").toUri().toString()));
+//                nextlevelSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/game_end.wav").toUri().toString()));
                 nextlevelSound.setAutoPlay(true);
                 nextlevelSound.setCycleCount(Animation.INDEFINITE);
                 nextlevelSound.play();
@@ -661,8 +663,8 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-//        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
-        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
+//        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
@@ -830,7 +832,7 @@ public class GameScreen implements Serializable {
                 }
             }
         }
-        garden = null;
+//        garden = null;
         System.gc();
 
     }
@@ -899,7 +901,7 @@ public class GameScreen implements Serializable {
                 Random r = new Random();
                 if (level.getCurrentZombies() <= level.getTotalZombies()) {
 
-                    if(level.getAvalableZombies().size()==0){
+                    if(level.getAvalableZombies().size()==1){
                     NormalZombie z1 = new NormalZombie(0, this);
                     laneZombie_1.add(z1);
                     NormalZombie z2 = new NormalZombie(1, this);
@@ -921,10 +923,9 @@ public class GameScreen implements Serializable {
                     lawngrid.add(z5.getZombieImage(), 9, 4 + 1);
                     z5.move();
 
-                    int prev = level.getCurrentZombies() + 5;
-                    level.setCurrentZombies(prev);
+
                     }
-                    if(level.getAvalableZombies().size()==1){
+                    if(level.getAvalableZombies().size()==2){
                         int a = r.nextInt(2);
                         Zombie z1 = null;
                         if(a==0) z1 = new NormalZombie(0,this);
@@ -962,7 +963,7 @@ public class GameScreen implements Serializable {
                         z5.move();
 
                     }
-                    if(level.getAvalableZombies().size()==2){
+                    if(level.getAvalableZombies().size()==3){
                         int a = r.nextInt(3);
                         Zombie z1 = null;
                         if(a==0) z1 = new NormalZombie(0,this);
@@ -1003,13 +1004,15 @@ public class GameScreen implements Serializable {
                         Zombie z5 = null;
                         if(e==0) z5 = new NormalZombie(4,this);
                         if(e==1) z5 = new FootballZombie(4,this);
-                        if(e==2) z1 = new BucketZombie(4,this);
+                        if(e==2) z5 = new BucketZombie(4,this);
 
                         laneZombie_5.add(z5);
                         lawngrid.add(z5.getZombieImage(), 9, 4 + 1);
                         z5.move();
 
                     }
+                    int prev = level.getCurrentZombies() + 5;
+                    level.setCurrentZombies(prev);
                 }
             }
         });

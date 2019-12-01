@@ -34,8 +34,8 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     protected boolean blast;
     public Zombie(int defense, int attack, int lane, int position, int speed,int fS, GameScreen gs){
         super(defense);
-//        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
-        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
+        eatingSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\chomp.wav").toUri().toString()));
+//        eatingSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/chomp.wav").toUri().toString()));
         this.finSpeed = fS;
         this.gameScreen =gs;
         counter++;
@@ -71,14 +71,28 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     }
 
     public void peaAttack(int attack){
-        if (this.hp<=attack){
+        if (this.hp+defense<=attack){
             hp = 0;
             System.out.println("ab marega ye");
 
             this.removeZombie();
         }
         else{
-            hp -=attack;
+            if (defense >0){
+                if (defense>=attack){
+                    defense -= attack;
+                    attack -=defense;
+                }
+                else{
+                    defense = 0;
+                }
+
+            }
+            if (hp>attack){
+            hp -=attack;}
+            else{
+                hp =0;
+            }
         }
     }
 
@@ -106,32 +120,42 @@ public class Zombie  extends Character implements Comparable<Zombie>{
     public int attack(int getJ, int s){
         if (getJ==-1) {
             for (int j = 0; j < 9; j++) {
-                if (gameScreen.getGarden()[j][lane] != null && (zombieImage.getBoundsInLocal().getMinX() + 30 <= gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX() > gameScreen.getGarden()[j][lane].getPlantImage().getX())) {
-                    getJ = j;
-                    if (gameScreen.getGarden()[j][lane] instanceof CherryBomb){
-                        gameScreen.blast((int)gameScreen.getGarden()[j][lane].getPlantImage().getX(),lane, gameScreen.getGarden()[j][lane]);
-                        stop = true;
-                        blast = true;
-                        return getJ;
-                    }
-                    eatingSound.setAutoPlay(true);
-                    eatingSound.setCycleCount(10);
+                if (gameScreen.getGarden()[j][lane] != null) {
+                    System.out.println(zombieImage);
+                    if (zombieImage.getBoundsInLocal().getMinX() + 30 <= gameScreen.getGarden()[j][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX() > gameScreen.getGarden()[j][lane].getPlantImage().getX()) {
+                        getJ = j;
+                        if (gameScreen.getGarden()[j][lane] instanceof CherryBomb) {
+                            gameScreen.blast((int) gameScreen.getGarden()[j][lane].getPlantImage().getX(), lane, gameScreen.getGarden()[j][lane]);
+                            stop = true;
+                            blast = true;
+                            return getJ;
+                        }
+                        eatingSound.setAutoPlay(true);
+                        eatingSound.setCycleCount(10);
 
-                    eatingSound.play();
-                    //sound       here
-                    if (gameScreen.eatPlant(j, lane, attack)) {
-                        speed = s;
-                        stop = false;
-                    } else {
-                        stop = true;
-                        speed = 0;
+                        eatingSound.play();
+                        //sound       here
+                        if (gameScreen.eatPlant(j, lane, attack)) {
+                            speed = s;
+                            stop = false;
+                        } else {
+                            stop = true;
+                            speed = 0;
+                        }
+                        break;
                     }
-                    break;
-                } else {
+                     else{
+                            speed = s;
+                        }
+                    }
+
+                else {
                     speed = s;
                 }
+                }
+
             }
-        }
+
         else{
             if(gameScreen.getGarden()[getJ][lane] !=null && (zombieImage.getBoundsInLocal().getMinX()+30<=gameScreen.getGarden()[getJ][lane].getPlantImage().getX() && zombieImage.getBoundsInLocal().getMaxX()>gameScreen.getGarden()[getJ][lane].getPlantImage().getX())){
                 //sound here
@@ -212,7 +236,7 @@ public class Zombie  extends Character implements Comparable<Zombie>{
                 ZombieLane.remove(i);
                 tt.stop();
                 tt= null;
-                z = null;
+//                z = null;
                 System.gc();
                 break;
             }
