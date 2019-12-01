@@ -109,8 +109,8 @@ public class GameScreen implements Serializable {
         this.activeCherryBombGif= new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb.gif")));
         this.inactiveCherryBombGif = new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/cb_GS.gif")));
         this.aHugeWaveOfZombies = new ImageView(new Image(String.valueOf(getClass().getResource("resources/spritesNStuff/huge_wave_of_zombies_text.png"))));
-        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\CherryBomb.wav").toUri().toString()));
-//        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/CherryBomb.wav").toUri().toString()));
+//        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\CherryBomb.wav").toUri().toString()));
+        this.cherryBombBlast = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/CherryBomb.wav").toUri().toString()));
         this.hugeWaveCame = false;
     }
 
@@ -442,8 +442,8 @@ public class GameScreen implements Serializable {
                 gameFinised.setTitle("GAME OVER");
                 gameFinised.setResizable(false);
                 gameFinised.show();
-                gameOversound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\atebrains.wav").toUri().toString()));
-//                gameOversound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/atebrains.wav").toUri().toString()));
+//                gameOversound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\atebrains.wav").toUri().toString()));
+                gameOversound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/atebrains.wav").toUri().toString()));
                 gameOversound.play();
                 Button mainMenu1 = (Button) scene2.lookup("#mainMenuButton");
                 Button retry = (Button) scene2.lookup("#retryButton");
@@ -488,9 +488,8 @@ public class GameScreen implements Serializable {
                 ft.setOnFinished(event1 -> {
                     aHugeWaveOfZombies.setVisible(false);
                 });
-//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
-
-                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
+                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/zombies_coming.wav").toUri().toString()));
+//                aHugeWaveSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\zombies_coming.wav").toUri().toString()));
 
                 aHugeWaveSound.play();
                 if(!hugeWaveCame) getHugeWave();
@@ -515,8 +514,8 @@ public class GameScreen implements Serializable {
                 nextLevelWindow.setTitle("LEVEL COMPLETED");
                 nextLevelWindow.setResizable(false);
                 nextLevelWindow.show();
-                nextlevelSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\game_end.wav").toUri().toString()));
-//                nextlevelSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/game_end.wav").toUri().toString()));
+//                nextlevelSound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\game_end.wav").toUri().toString()));
+                nextlevelSound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/game_end.wav").toUri().toString()));
                 nextlevelSound.setAutoPlay(true);
                 nextlevelSound.setCycleCount(Animation.INDEFINITE);
                 nextlevelSound.play();
@@ -663,8 +662,8 @@ public class GameScreen implements Serializable {
         });
 
         buyPlantTimeline.getKeyFrames().add(k2);
-        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
-//        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
+//        backgroundsound = new MediaPlayer(new Media(Paths.get("D:\\Rachit\\Semester 3\\AP\\Plants-vs-Zombies\\pvzGUI\\src\\sample\\resources\\sounds\\background.wav").toUri().toString()));
+        backgroundsound = new MediaPlayer(new Media(Paths.get("/home/arkasarkar/Desktop/APPROJECT/Plants-vs-Zombies/pvzGUI/src/sample/resources/sounds/background.wav").toUri().toString()));
         backgroundsound.setAutoPlay(true);
         backgroundsound.setCycleCount(Animation.INDEFINITE);
         backgroundsound.play();
